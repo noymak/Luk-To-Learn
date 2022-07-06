@@ -23,6 +23,20 @@ class _ScearchScreenState extends State<ScearchScreen> {
                   width: size.width,
                   height: size.height * 0.75,
                   color: Color(0xff6360FF),
+                ),
+                Positioned(
+                  top: 100,
+                  child: Container(
+                    width: size.width,
+                    height: size.height,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 230, 230, 236),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                    ),
+                  ),
                 )
               ],
             )
