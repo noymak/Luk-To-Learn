@@ -26,15 +26,22 @@ class ForgotPassOTP extends StatelessWidget {
                   height: 20,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(9.0),
-                  child: Text(
-                    "Forgot Password",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(Icons.arrow_back_ios),
+                      Text(
+                        "Forgot Password",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 Container(
                   width: size.width,
@@ -99,26 +106,27 @@ class ForgotPassOTP extends StatelessWidget {
 Container ForgotPassOTPForm(String text) {
   return Container(
     decoration: BoxDecoration(
-        // border: Border.all(),
-        color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(18),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade400,
-            offset: const Offset(
-              5.0,
-              5.0,
-            ),
-            blurRadius: 10.0,
-            spreadRadius: 2.0,
-          ), //BoxShadow
-          BoxShadow(
-            color: Colors.white,
-            offset: const Offset(0.0, 0.0),
-            blurRadius: 0.0,
-            spreadRadius: 0.0,
-          ), //BoxShadow
-        ]),
+      // border: Border.all(),
+      color: Colors.grey.shade50,
+      borderRadius: BorderRadius.circular(18),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.shade400,
+          offset: const Offset(
+            5.0,
+            5.0,
+          ),
+          blurRadius: 10.0,
+          spreadRadius: 2.0,
+        ), //BoxShadow
+        // BoxShadow(
+        //   color: Colors.white,
+        //   offset: const Offset(0.0, 0.0),
+        //   blurRadius: 0.0,
+        //   spreadRadius: 0.0,
+        // ), //BoxShadow
+      ],
+    ),
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextFormField(
