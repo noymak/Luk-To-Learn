@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ChangePass extends StatelessWidget {
+class ForgotPassOTP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -28,7 +28,7 @@ class ChangePass extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(9.0),
                   child: Text(
-                    "Change Password",
+                    "Forgot Password",
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
@@ -52,16 +52,12 @@ class ChangePass extends StatelessWidget {
                         SizedBox(
                           height: 20,
                         ),
-                        ChangePassForm("Password"),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        ChangePassForm("Confirm Password"),
+                        ForgotPassOTPForm("OTP"),
                         SizedBox(
                           height: 20,
                         ),
                         Text(
-                          "Please Enter New Password",
+                          "Please Enter OTP",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
@@ -100,7 +96,7 @@ class ChangePass extends StatelessWidget {
   }
 }
 
-Container ChangePassForm(String text) {
+Container ForgotPassOTPForm(String text) {
   return Container(
     decoration: BoxDecoration(
         // border: Border.all(),

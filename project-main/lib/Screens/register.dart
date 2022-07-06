@@ -29,7 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen>
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: Colors.indigoAccent.shade700,
+        backgroundColor: Color(0xff6360FF),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -39,7 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                   width: size.width,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.indigoAccent.shade700,
+                    color: Color(0xff6360FF),
                   ),
                   child: SafeArea(
                     child: Align(
@@ -99,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                         height: 30,
                       ),
                       GestureDetector(
-                        onTap: (){},
+                        onTap: () {},
                         child: Container(
                           width: size.width,
                           height: 50,
