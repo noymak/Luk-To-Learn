@@ -15,57 +15,50 @@ class _ScearchScreenState extends State<ScearchScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
-              children: [
-                Container(
-                  width: size.width,
-                  height: size.height * 0.5,
-                  color: Color(0xff6360FF),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
+            Container(
+              width: size.width,
+              color: Color(0xff6360FF),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 20,
-                        ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.arrow_back_ios_new,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  "Back",
-                                  style: TextStyle(
-                                      fontSize: 26,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                              ],
-                            ),
                             Icon(
-                              Icons.home_outlined,
+                              Icons.arrow_back_ios_new,
                               color: Colors.white,
-                              size: 32,
+                            ),
+                            Text(
+                              "Back",
+                              style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
                           ],
+                        ),
+                        Icon(
+                          Icons.home_outlined,
+                          color: Colors.white,
+                          size: 32,
                         ),
                       ],
                     ),
                   ),
-                ),
-                Positioned(
-                  top: 100,
-                  child: Container(
+                  Container(
                     width: size.width,
-                    height: size.height * 0.4,
+                    height: size.height,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 230, 230, 236),
                       borderRadius: BorderRadius.only(
@@ -136,38 +129,33 @@ class _ScearchScreenState extends State<ScearchScreen> {
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Recommended Course",
+                                style: TextStyle(
+                                    fontSize: 26, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              coursebox(size),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              coursebox(size),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                ),
-              ],
-            ),
-            Container(
-              width: size.width,
-              height: size.height,
-              color: Color.fromARGB(255, 230, 230, 236),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Recommended Course",
-                      style:
-                          TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    coursebox(size),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    coursebox(size),
-                  ],
-                ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),

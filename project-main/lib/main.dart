@@ -23,8 +23,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
-// ได้แล้วไอสัส
-

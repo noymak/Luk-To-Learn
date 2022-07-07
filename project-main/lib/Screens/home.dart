@@ -16,133 +16,126 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
-              children: [
-                Container(
-                  width: size.width,
-                  height: size.height * 0.75,
-                  color: Color(0xff6360FF),
-                ),
-                Positioned(
-                  top: 100,
-                  child: Container(
-                    width: size.width,
-                    height: size.height,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 230, 230, 236),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        children: [
-                          Hero(
-                            tag: 'logo',
-                            child: Image.asset(
-                              'assets/images/logo.png',
-                              width: 300,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'ยินดีต้อนรับสู่ Luk to Learn',
-                              style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 26,
-                          ),
-
-                          //Banner
-                          Banner(size),
-                          SizedBox(
-                            height: 10,
-                          ),
-
-                          // Indicator
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ...List.generate(
-                                banner.length,
-                                (index) => Indicator(
-                                  isActive:
-                                      _selectedIndex == index ? true : false,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            Container(
+              width: size.width,
+              height: size.height * 0.095,
+              color: Color(0xff6360FF),
             ),
             Container(
               width: size.width,
-              // เพิ่มขนาด scroll
-              height: size.height * 0.35,
-              color: Color.fromARGB(255, 230, 230, 236),
+              height: size.height,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 230, 230, 236),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    // Text
+                    Hero(
+                      tag: 'logo',
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        width: 300,
+                      ),
+                    ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'คอร์สทั้งหมด',
+                        'ยินดีต้อนรับสู่ Luk to Learn',
                         style: TextStyle(
-                            fontSize: 26, fontWeight: FontWeight.bold),
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                    // ListView
+                    SizedBox(
+                      height: 26,
+                    ),
+
+                    //Banner
+                    Banner(size),
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    // Indicator
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ...List.generate(
+                          banner.length,
+                          (index) => Indicator(
+                            isActive: _selectedIndex == index ? true : false,
+                          ),
+                        ),
+                      ],
+                    ),
                     Container(
                       width: size.width,
-                      height: 200,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: banner.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            width: 340,
-                            margin: EdgeInsetsDirectional.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  '${banner[index].image}',
-                                ),
-                                fit: BoxFit.cover,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  spreadRadius: 3,
-                                  blurRadius: 7,
-                                  color: Colors.black26,
-                                  offset: Offset(-1, 5),
-                                ),
-                              ],
+                      // เพิ่มขนาด scroll
+                      height: size.height * 0.35,
+                      color: Color.fromARGB(255, 230, 230, 236),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          children: [
+                            // Text
+                            SizedBox(
+                              height: 20,
                             ),
-                          );
-                        },
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'คอร์สทั้งหมด',
+                                style: TextStyle(
+                                    fontSize: 26, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            // ListView
+                            Container(
+                              width: size.width,
+                              height: 200,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: banner.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    width: 300,
+                                    margin: EdgeInsetsDirectional.all(10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          '${banner[index].image}',
+                                        ),
+                                        fit: BoxFit.cover,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          spreadRadius: 3,
+                                          blurRadius: 7,
+                                          color: Colors.black26,
+                                          offset: Offset(-1, 5),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
