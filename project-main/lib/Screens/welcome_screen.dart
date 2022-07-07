@@ -122,16 +122,21 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 50,
-                    width: size.width,
-                    decoration: BoxDecoration(
-                        color: Color(0xffFF8181),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: Text(
-                        "Register Tutor",
-                        style: TextStyle(fontSize: 17, color: Colors.white),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/routetutor');
+                    },
+                    child: Container(
+                      height: 50,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                          color: Color(0xffFF8181),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Center(
+                        child: Text(
+                          "Register Tutor",
+                          style: TextStyle(fontSize: 17, color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
