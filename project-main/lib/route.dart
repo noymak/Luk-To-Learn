@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luk_to_learn/Screens/home.dart';
+import 'package:luk_to_learn/Screens/mycourse.dart';
 import 'package:luk_to_learn/Screens/search.dart';
 
 const TextStyle _textStyle = TextStyle(
@@ -21,7 +22,7 @@ class _RouteScreenState extends State<RouteScreen> {
   List<Widget> pages = const [
     HomeScreen(),
     ScearchScreen(),
-    Text('video', style: _textStyle),
+    Mycourses(),
     Text('person', style: _textStyle),
   ];
   @override
@@ -43,14 +44,14 @@ class _RouteScreenState extends State<RouteScreen> {
             label: 'home',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.search_off),
+            selectedIcon: Icon(Icons.search_off_outlined),
             icon: Icon(Icons.search_outlined),
             label: 'search',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.video_camera_back),
             icon: Icon(Icons.video_camera_back_outlined),
-            label: 'video',
+            label: 'my courses',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.person),
