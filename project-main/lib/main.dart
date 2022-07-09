@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ForgotPass(),
+      home: WelcomeScreen(),
       routes: {
         '/register': ((context) => RegisterScreen()),
         '/route': ((context) => RouteScreen()),
