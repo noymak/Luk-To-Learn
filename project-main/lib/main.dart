@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:luk_to_learn/Screens/changepassword.dart';
 import 'package:luk_to_learn/Screens/forgotpass.dart';
@@ -8,10 +9,15 @@ import 'package:luk_to_learn/Screens/welcome_screen.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/routetutor.dart';
 
+import 'Screens/Auth/auth.dart';
 import 'Screens/hometutor.dart';
 import 'Screens/register.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -20,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: AuthScreen(),
       routes: {
         '/register': ((context) => RegisterScreen()),
         '/route': ((context) => RouteScreen()),

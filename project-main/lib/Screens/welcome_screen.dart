@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:luk_to_learn/controllers/auth_controller.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  var _controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -61,8 +66,9 @@ class WelcomeScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10)),
-                      child: TextField(
+                      child: TextFormField(
                         keyboardType: TextInputType.emailAddress,
+                        controller: _controller.emailController,
                         decoration: InputDecoration(
                           icon: Icon(
                             Icons.email,
@@ -78,8 +84,9 @@ class WelcomeScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10)),
-                      child: TextField(
+                      child: TextFormField(
                         keyboardType: TextInputType.visiblePassword,
+                        controller: _controller.passwordController,
                         decoration: InputDecoration(
                           icon: Icon(
                             Icons.lock,
@@ -92,7 +99,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/route');
+                        _controller.signIn();
                       },
                       child: Container(
                         height: 50,

@@ -99,7 +99,9 @@ class _RegisterScreenState extends State<RegisterScreen>
                         height: 30,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, 'welcome_screen');
+                        },
                         child: Container(
                           width: size.width,
                           height: 50,
