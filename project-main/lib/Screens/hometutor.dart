@@ -70,9 +70,6 @@ class _HomeTutorState extends State<HomeTutor> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
-              child: Row(
-                children: [Icon(Icons.arrow_back_ios_new), Text('data')],
-              ),
             ),
           ],
         ),
