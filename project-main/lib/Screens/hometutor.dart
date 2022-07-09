@@ -35,7 +35,7 @@ class _HomeTutorState extends State<HomeTutor> {
                     ),
                     SizedBox(height: 20),
                     Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(

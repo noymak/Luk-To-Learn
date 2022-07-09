@@ -6,31 +6,31 @@ class ChangePass extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
-      body: Stack(
+      body: Column(
         children: [
           Container(
-            height: 0.15,
-            decoration: BoxDecoration(),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: size.height / 2 * 0.15),
-            height: size.height * 1,
+            margin: EdgeInsets.only(top: size.height / 2 * 0.20),
+            height: size.height,
             decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50))),
-            child: ListView(
+            child: Column(
               children: [
-                SizedBox(
-                  height: 20,
-                ),
                 Padding(
-                  padding: const EdgeInsets.all(9.0),
-                  child: Text(
-                    "Change Password",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(Icons.arrow_back_ios),
+                      Text(
+                        "Forgot Password",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -40,7 +40,7 @@ class ChangePass extends StatelessWidget {
                   width: size.width,
                   height: size.height,
                   decoration: BoxDecoration(
-                      color: Colors.indigo.shade50,
+                      color: Colors.grey[200],
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(18),
                         topRight: Radius.circular(18),
@@ -52,20 +52,13 @@ class ChangePass extends StatelessWidget {
                         SizedBox(
                           height: 20,
                         ),
-                        ChangePassForm("Password"),
+                        ChangePassForm("New Password"),
                         SizedBox(
                           height: 20,
                         ),
                         ChangePassForm("Confirm Password"),
                         SizedBox(
                           height: 20,
-                        ),
-                        Text(
-                          "Please Enter New Password",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                          ),
                         ),
                         SizedBox(
                           height: 320,
@@ -87,9 +80,6 @@ class ChangePass extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 120,
                 ),
               ],
             ),

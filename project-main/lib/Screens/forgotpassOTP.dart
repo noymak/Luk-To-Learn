@@ -6,27 +6,20 @@ class ForgotPassOTP extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
-      body: Stack(
+      body: Column(
         children: [
           Container(
-            height: 0.15,
-            decoration: BoxDecoration(),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: size.height / 2 * 0.15),
-            height: size.height * 1,
+            margin: EdgeInsets.only(top: size.height / 2 * 0.20),
+            height: size.height,
             decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50))),
-            child: ListView(
+            child: Column(
               children: [
-                SizedBox(
-                  height: 20,
-                ),
                 Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -41,13 +34,13 @@ class ForgotPassOTP extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
                 Container(
                   width: size.width,
                   height: size.height,
                   decoration: BoxDecoration(
-                      color: Colors.indigo.shade50,
+                      color: Colors.grey[200],
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(18),
                         topRight: Radius.circular(18),
@@ -91,9 +84,6 @@ class ForgotPassOTP extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 120,
-                ),
               ],
             ),
           ),
@@ -106,27 +96,26 @@ class ForgotPassOTP extends StatelessWidget {
 Container ForgotPassOTPForm(String text) {
   return Container(
     decoration: BoxDecoration(
-      // border: Border.all(),
-      color: Colors.grey.shade50,
-      borderRadius: BorderRadius.circular(18),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.shade400,
-          offset: const Offset(
-            5.0,
-            5.0,
-          ),
-          blurRadius: 10.0,
-          spreadRadius: 2.0,
-        ), //BoxShadow
-        // BoxShadow(
-        //   color: Colors.white,
-        //   offset: const Offset(0.0, 0.0),
-        //   blurRadius: 0.0,
-        //   spreadRadius: 0.0,
-        // ), //BoxShadow
-      ],
-    ),
+        // border: Border.all(),
+        color: Colors.grey.shade50,
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade400,
+            offset: const Offset(
+              5.0,
+              5.0,
+            ),
+            blurRadius: 10.0,
+            spreadRadius: 2.0,
+          ), //BoxShadow
+          BoxShadow(
+            color: Colors.white,
+            offset: const Offset(0.0, 0.0),
+            blurRadius: 0.0,
+            spreadRadius: 0.0,
+          ), //BoxShadow
+        ]),
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextFormField(

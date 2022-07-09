@@ -6,31 +6,31 @@ class ForgotPass extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
-      body: Stack(
+      body: Column(
         children: [
           Container(
-            height: 0.15,
-            decoration: BoxDecoration(),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: size.height / 2 * 0.15),
-            height: size.height * 1,
+            margin: EdgeInsets.only(top: size.height / 2 * 0.20),
+            height: size.height,
             decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50))),
-            child: ListView(
+            child: Column(
               children: [
-                SizedBox(
-                  height: 20,
-                ),
                 Padding(
-                  padding: const EdgeInsets.all(9.0),
-                  child: Text(
-                    "Forgot Password",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(Icons.arrow_back_ios),
+                      Text(
+                        "Forgot Password",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -40,7 +40,7 @@ class ForgotPass extends StatelessWidget {
                   width: size.width,
                   height: size.height,
                   decoration: BoxDecoration(
-                      color: Colors.indigo.shade50,
+                      color: Colors.grey[200],
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(18),
                         topRight: Radius.circular(18),
@@ -83,9 +83,6 @@ class ForgotPass extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 120,
                 ),
               ],
             ),

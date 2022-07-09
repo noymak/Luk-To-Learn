@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:luk_to_learn/Screens/home.dart';
 import 'package:luk_to_learn/Screens/mycourse.dart';
+import 'package:luk_to_learn/Screens/profile.dart';
 import 'package:luk_to_learn/Screens/search.dart';
 
 const TextStyle _textStyle = TextStyle(
@@ -23,7 +24,7 @@ class _RouteScreenState extends State<RouteScreen> {
     HomeScreen(),
     ScearchScreen(),
     Mycourses(),
-    Text('person', style: _textStyle),
+    ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
