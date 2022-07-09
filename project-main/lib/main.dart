@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luk_to_learn/Screens/forgotpass.dart';
 import 'package:luk_to_learn/Screens/forgotpassOTP.dart';
 import 'package:luk_to_learn/route.dart';
 import 'package:luk_to_learn/Screens/welcome_screen.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: ForgotPass(),
       routes: {
         '/register': ((context) => RegisterScreen()),
         '/route': ((context) => RouteScreen()),
