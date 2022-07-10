@@ -33,15 +33,12 @@ class MyApp extends StatelessWidget {
         '/register': ((context) => RegisterScreen()),
         '/route': ((context) => RouteScreen()),
         '/routetutor': ((context) => RouteTutorScreen()),
-<<<<<<< HEAD
-        '/courses': ((context) => CoursesScreen()),
-        '/coursesdetail': ((context) => Detail()),
-=======
         '/forgotpass': ((context) => ForgotPass()),
         '/forgotpassOTP': ((context) => ForgotPassOTP()),
         '/changepassword': ((context) => ChangePass()),
-        '/profile': ((context) => ProfileScreen())
->>>>>>> a3c0ecdb250488dd490916efc34a5e963c5df2dc
+        '/profile': ((context) => ProfileScreen()),
+        '/coursesdetail': ((context) => Detail()),
+        '/courses': ((context) => CoursesScreen())
       },
     );
   }
