@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:luk_to_learn/Screens/about.dart';
 import 'package:luk_to_learn/Screens/changepassword.dart';
 import 'package:luk_to_learn/Screens/forgotpass.dart';
 import 'package:luk_to_learn/Screens/forgotpassOTP.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         '/forgotpass': ((context) => ForgotPass()),
         '/forgotpassOTP': ((context) => ForgotPassOTP()),
         '/changepassword': ((context) => ChangePass()),
-        '/profile': ((context) => ProfileScreen())
+        '/about': ((context) => AboutLTL()),
       },
     );
   }

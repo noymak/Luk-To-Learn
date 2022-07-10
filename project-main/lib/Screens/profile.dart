@@ -174,11 +174,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "About Luk to Learn",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, '/about');
+                                  },
+                                  child: Text(
+                                    "About Luk to Learn",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                                 Icon(
