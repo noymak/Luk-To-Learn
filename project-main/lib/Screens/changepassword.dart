@@ -56,17 +56,22 @@ class ChangePass extends StatelessWidget {
                           SizedBox(
                             height: 320,
                           ),
-                          Container(
-                            height: 50,
-                            width: size.width,
-                            decoration: BoxDecoration(
-                                color: Color(0xffFF8181),
-                                borderRadius: BorderRadius.circular(30)),
-                            child: Center(
-                              child: Text(
-                                "Confirm",
-                                style: TextStyle(
-                                    fontSize: 17, color: Colors.white),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/route');
+                            },
+                            child: Container(
+                              height: 50,
+                              width: size.width,
+                              decoration: BoxDecoration(
+                                  color: Color(0xffFF8181),
+                                  borderRadius: BorderRadius.circular(30)),
+                              child: Center(
+                                child: Text(
+                                  "Confirm",
+                                  style: TextStyle(
+                                      fontSize: 17, color: Colors.white),
+                                ),
                               ),
                             ),
                           ),

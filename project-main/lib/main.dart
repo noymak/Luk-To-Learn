@@ -31,7 +31,10 @@ class MyApp extends StatelessWidget {
         '/register': ((context) => RegisterScreen()),
         '/route': ((context) => RouteScreen()),
         '/routetutor': ((context) => RouteTutorScreen()),
-        '/forgotpass': ((context) => ForgotPass())
+        '/forgotpass': ((context) => ForgotPass()),
+        '/forgotpassOTP': ((context) => ForgotPassOTP()),
+        '/changepassword': ((context) => ChangePass()),
+        '/profile': ((context) => ProfileScreen())
       },
     );
   }
