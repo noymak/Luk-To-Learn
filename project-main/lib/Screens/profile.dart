@@ -104,11 +104,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "Change Password",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, '/forgotpass');
+                                  },
+                                  child: Text(
+                                    "Change Password",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                                 Icon(

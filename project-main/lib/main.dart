@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/register': ((context) => RegisterScreen()),
         '/route': ((context) => RouteScreen()),
-        '/routetutor': ((context) => RouteTutorScreen())
+        '/routetutor': ((context) => RouteTutorScreen()),
+        '/forgotpass': ((context) => ForgotPass())
       },
     );
   }

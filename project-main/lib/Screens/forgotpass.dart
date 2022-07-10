@@ -6,88 +6,85 @@ class ForgotPass extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: size.height / 2 * 0.20),
-            height: size.height,
-            decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50))),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(Icons.arrow_back_ios),
-                      Text(
-                        "Forgot Password",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  width: size.width,
-                  height: size.height,
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(18),
-                        topRight: Radius.circular(18),
-                      )),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        ForgotPassForm("E-mail"),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Please Enter Your E-mail",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: size.height / 2 * 0.20),
+              child: Column(
+                children: [
+                  Container(
+                    width: size.width,
+                    height: size.height * 0.9,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        )),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 20,
                           ),
-                        ),
-                        SizedBox(
-                          height: 320,
-                        ),
-                        Container(
-                          height: 50,
-                          width: size.width,
-                          decoration: BoxDecoration(
-                              color: Color(0xffFF8181),
-                              borderRadius: BorderRadius.circular(30)),
-                          child: Center(
-                            child: Text(
-                              "Confirm",
-                              style:
-                                  TextStyle(fontSize: 17, color: Colors.white),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(Icons.arrow_back_ios),
+                                Text(
+                                  "Forgot Password",
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: 20,
+                          ),
+                          ForgotPassForm("E-mail"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Please Enter Your E-mail",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 320,
+                          ),
+                          Container(
+                            height: 50,
+                            width: size.width,
+                            decoration: BoxDecoration(
+                                color: Color(0xffFF8181),
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Center(
+                              child: Text(
+                                "Confirm",
+                                style: TextStyle(
+                                    fontSize: 17, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
