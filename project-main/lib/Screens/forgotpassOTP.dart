@@ -19,7 +19,7 @@ class ForgotPassOTP extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
