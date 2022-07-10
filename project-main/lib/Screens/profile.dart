@@ -18,46 +18,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: <Widget>[
             Container(
               color: Color(0xff6360FF),
-              height: size.height * 0.36,
-              width: double.infinity,
+              height: size.height * 0.35,
+              width: size.width,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: <Widget>[
                     SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                            ),
-                            Text("Account",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SafeArea(
-                      child: Stack(
+                      child: Row(
                         children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            child: CircleAvatar(
-                                radius: 55,
-                                backgroundImage:
-                                    AssetImage('assets/images/profile.jpg')),
+                          SizedBox(
+                            width: 10,
                           ),
+                          Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                          ),
+                          Text("Account",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white)),
                         ],
                       ),
                     ),
+                    SafeArea(
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        child: CircleAvatar(
+                            radius: 55,
+                            backgroundImage:
+                                AssetImage('assets/images/profile.jpg')),
+                      ),
+                    ),
                     SizedBox(
-                      height: 18,
+                      height: 20,
                     ),
                     Text(
                       "Por Lazuardi",
@@ -78,8 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: size.height / 2 * 0.1),
-              height: size.height * 0.53,
+              height: size.height * 0.58,
               decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.only(

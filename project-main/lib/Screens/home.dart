@@ -150,41 +150,46 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Banner
   Widget Banner(Size size) {
-    return Container(
-      width: size.width,
-      height: size.height / 4,
-      child: PageView.builder(
-        controller: PageController(),
-        onPageChanged: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-          //test
-          // print(_selectedIndex);
-        },
-        itemCount: banner.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
-                  image: AssetImage('${banner[index].image}'),
-                  fit: BoxFit.cover,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    spreadRadius: 3,
-                    blurRadius: 7,
-                    color: Colors.black26,
-                    offset: Offset(-2, 6),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/courses');
+      },
+      child: Container(
+        width: size.width,
+        height: size.height / 4,
+        child: PageView.builder(
+          controller: PageController(),
+          onPageChanged: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+            //test
+            // print(_selectedIndex);
+          },
+          itemCount: banner.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  image: DecorationImage(
+                    image: AssetImage('${banner[index].image}'),
+                    fit: BoxFit.cover,
                   ),
-                ],
+                  boxShadow: [
+                    BoxShadow(
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      color: Colors.black26,
+                      offset: Offset(-2, 6),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
