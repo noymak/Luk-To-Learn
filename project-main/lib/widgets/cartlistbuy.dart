@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class cartlist extends StatelessWidget {
-  const cartlist({
+class cartlistbuy extends StatelessWidget {
+  const cartlistbuy({
     Key? key,
     required this.size,
   }) : super(key: key);
@@ -27,6 +27,13 @@ class cartlist extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Container(
+                      width: 70,
+                      height: 70,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: Color(0xffFF8181)),
+                    ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,14 +83,6 @@ class cartlist extends StatelessWidget {
                           ],
                         ),
                       ],
-                    ),
-                    Container(
-                      width: 75,
-                      height: 75,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(18),
-                        color: Color(0xffFF8181),
-                      ),
                     ),
                   ],
                 ),
