@@ -257,16 +257,21 @@ class _CoursesScreenState extends State<CoursesScreen> {
                         SizedBox(
                           width: 30,
                         ),
-                        Container(
-                          width: 150,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Color.fromARGB(255, 54, 175, 115),
-                          ),
-                          child: Center(
-                            child: Text('Add to Cart',
-                                style: TextStyle(color: Colors.white)),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/cart');
+                          },
+                          child: Container(
+                            width: 150,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Color.fromARGB(255, 54, 175, 115),
+                            ),
+                            child: Center(
+                              child: Text('Add to Cart',
+                                  style: TextStyle(color: Colors.white)),
+                            ),
                           ),
                         ),
                       ],
