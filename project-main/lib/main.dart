@@ -8,6 +8,7 @@ import 'package:luk_to_learn/Screens/coursesdetail.dart';
 import 'package:luk_to_learn/Screens/forgotpass.dart';
 import 'package:luk_to_learn/Screens/forgotpassOTP.dart';
 import 'package:luk_to_learn/Screens/profile.dart';
+import 'package:luk_to_learn/Screens/question.dart';
 import 'package:luk_to_learn/route.dart';
 import 'package:luk_to_learn/Screens/welcome_screen.dart';
 import 'package:luk_to_learn/constants.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         '/cart': ((context) => CartScreen()),
         '/courses': ((context) => CoursesScreen()),
         '/coursesdetail': ((context) => Detail()),
+        '/question': ((context) => Question())
       },
     );
   }
