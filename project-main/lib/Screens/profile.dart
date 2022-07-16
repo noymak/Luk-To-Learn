@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:luk_to_learn/controllers/auth_controller.dart';
+
 
 class ProfileScreen extends StatefulWidget {
+  
   const ProfileScreen({Key? key}) : super(key: key);
-
+  
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  var _controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -204,6 +209,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   },
                                   child: Text(
                                     "Frequntly asked question",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.black,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    _controller.signOut();;
+                                  },
+                                  child: Text(
+                                    "Logout",
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,

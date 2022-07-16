@@ -12,4 +12,7 @@ class AuthController extends GetxController {
       password: passwordController.text.trim(),
     );
   }
+  Future signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 }
