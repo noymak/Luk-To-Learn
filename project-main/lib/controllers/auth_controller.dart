@@ -15,4 +15,8 @@ class AuthController extends GetxController {
   Future signOut() async {
     await FirebaseAuth.instance.signOut();
   }
+
+  Future email() async {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text.trim(), password: passwordController.text.trim());
+  }
 }
