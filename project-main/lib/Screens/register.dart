@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:luk_to_learn/controllers/auth_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -24,10 +26,12 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   final formKey = GlobalKey<FormState>();
+  var authController = Get.put(AuthController());
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-
+    
     return Scaffold(
         backgroundColor: Color(0xff6360FF),
         body: SingleChildScrollView(
@@ -57,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen>
               ),
               Container(
                 width: size.width,
-                height: size.height,
+                height: size.height*0.9,
                 decoration: BoxDecoration(
                   color: Colors.indigo.shade50,
                   borderRadius: BorderRadius.only(
@@ -74,33 +78,41 @@ class _RegisterScreenState extends State<RegisterScreen>
                       SizedBox(
                         height: 20,
                       ),
-                      registerForm("Firstname"),
+                      registerForm("Firstname",authController.firstname),
                       SizedBox(
                         height: 20,
                       ),
-                      registerForm("Lastname"),
+                      registerForm("Lastname",authController.lastname),
                       SizedBox(
                         height: 20,
                       ),
-                      registerForm("Email"),
+                      registerForm("Email",authController.emailController),
                       SizedBox(
                         height: 20,
                       ),
-                      registerForm("Password"),
+                      registerForm("Password",authController.passwordController),
                       SizedBox(
                         height: 20,
                       ),
-                      registerForm("Confirm Password"),
+                      registerForm("Confirm Password",authController.confirmpassword),
                       SizedBox(
                         height: 20,
                       ),
-                      registerForm("Mobile Phome"),
+                      registerForm("Mobile Phome",authController.phone),
                       SizedBox(
                         height: 30,
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, 'welcome_screen');
+                          // Navigator.pushNamed(context, '/welcome_screen');
+                          // print(authController.firstname.text);
+                          // print(authController.lastname.text);
+                          // print(authController.emailController.text);
+                          // print(authController.passwordController.text);
+                          // print(authController.confirmpassword.text);
+                          // print(authController.phone.text);
+                          authController.signUp();
+                          Navigator.pushNamed(context, '/route');
                         },
                         child: Container(
                           width: size.width,
@@ -134,7 +146,7 @@ class _RegisterScreenState extends State<RegisterScreen>
         ));
   }
 
-  Container registerForm(String text) {
+  Container registerForm(String text, controller) {
     return Container(
       decoration: BoxDecoration(
           // border: Border.all(),
@@ -160,6 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen>
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: TextFormField(
+          controller: controller,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: text,

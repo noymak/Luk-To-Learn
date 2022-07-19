@@ -8,8 +8,7 @@ class WelcomeScreen extends StatelessWidget {
 
   var _controller = Get.put(AuthController());
   final formKey = GlobalKey<FormState>();
-  var _email;
-  var _password;
+  
 
   void summit(){
     if (!formKey.currentState!.validate()){
