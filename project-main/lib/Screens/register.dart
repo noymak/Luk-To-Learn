@@ -31,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen>
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    
+
     return Scaffold(
         backgroundColor: Color(0xff6360FF),
         body: SingleChildScrollView(
@@ -45,23 +45,33 @@ class _RegisterScreenState extends State<RegisterScreen>
                   decoration: BoxDecoration(
                     color: Color(0xff6360FF),
                   ),
-                  child: SafeArea(
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Register',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/welcome_screen');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "Register",
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
               Container(
                 width: size.width,
-                height: size.height*0.9,
+                height: size.height * 0.9,
                 decoration: BoxDecoration(
                   color: Colors.indigo.shade50,
                   borderRadius: BorderRadius.only(
@@ -73,71 +83,96 @@ class _RegisterScreenState extends State<RegisterScreen>
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      registerForm("Firstname",authController.firstname),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      registerForm("Lastname",authController.lastname),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      registerForm("Email",authController.emailController),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      registerForm("Password",authController.passwordController),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      registerForm("Confirm Password",authController.confirmpassword),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      registerForm("Mobile Phome",authController.phone),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          // Navigator.pushNamed(context, '/welcome_screen');
-                          // print(authController.firstname.text);
-                          // print(authController.lastname.text);
-                          // print(authController.emailController.text);
-                          // print(authController.passwordController.text);
-                          // print(authController.confirmpassword.text);
-                          // print(authController.phone.text);
-                          authController.signUp();
-                          Navigator.pushNamed(context, '/route');
-                        },
-                        child: Container(
-                          width: size.width,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.redAccent,
-                                  Colors.purpleAccent,
-                                ],
-                              ),
-                              borderRadius: BorderRadius.circular(18)),
-                          child: Center(
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                  child: SafeArea(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Username",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        registerForm("Firstname", authController.firstname),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        registerForm("Lastname", authController.lastname),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text("E-mail",
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold)),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        registerForm("Email", authController.emailController),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        registerForm(
+                            "Password", authController.passwordController),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        registerForm(
+                            "Confirm Password", authController.confirmpassword),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text("Phone Number",
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold)),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        registerForm("+66", authController.phone),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            // Navigator.pushNamed(context, '/welcome_screen');
+                            // print(authController.firstname.text);
+                            // print(authController.lastname.text);
+                            // print(authController.emailController.text);
+                            // print(authController.passwordController.text);
+                            // print(authController.confirmpassword.text);
+                            // print(authController.phone.text);
+                            authController.signUp();
+                            Navigator.pushNamed(context, '/route');
+                          },
+                          child: Container(
+                            width: size.width,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.redAccent,
+                                    Colors.purpleAccent,
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(18)),
+                            child: Center(
+                              child: Text(
+                                'Register',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

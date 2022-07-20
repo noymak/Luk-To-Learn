@@ -45,7 +45,8 @@ class MyApp extends StatelessWidget {
         '/courses': ((context) => CoursesScreen()),
         '/coursesdetail': ((context) => Detail()),
         '/question': ((context) => Question()),
-        '/orderhis': ((context) => OrderHistory())
+        '/orderhis': ((context) => OrderHistory()),
+        '/welcome_screen': ((context) => WelcomeScreen()),
       },
     );
   }
