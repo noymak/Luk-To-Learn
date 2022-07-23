@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:luk_to_learn/controllers/auth_controller.dart';
 
-
 class ProfileScreen extends StatefulWidget {
-  
   const ProfileScreen({Key? key}) : super(key: key);
-  
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -152,11 +150,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "Edit Profile",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, '/editprofile');
+                                  },
+                                  child: Text(
+                                    "Edit Profile",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                                 Icon(
@@ -229,7 +233,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    _controller.signOut();;
+                                    _controller.signOut();
+                                    ;
                                   },
                                   child: Text(
                                     "Logout",
