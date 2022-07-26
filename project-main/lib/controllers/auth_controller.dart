@@ -10,6 +10,7 @@ class AuthController extends GetxController {
   final TextEditingController firstname = TextEditingController();
   final TextEditingController lastname = TextEditingController();
   final TextEditingController phone = TextEditingController();
+  final TextEditingController forgotEmailController = TextEditingController();
 
   Future signIn() async {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -48,4 +49,15 @@ class AuthController extends GetxController {
       'phone': phone,
     });
   }
+
+  Future <dynamic> ChangePass(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      Get.snackbar('แจ้งเตือน', 'โปรดช็คอีเมล');
+    } catch(e) {
+      print(e);
+    }
+
+  }
+
 }

@@ -4,6 +4,7 @@ class ChangePass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(

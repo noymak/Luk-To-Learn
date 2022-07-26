@@ -1,9 +1,15 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../controllers/auth_controller.dart';
 
 class ForgotPass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var _authController = Get.put(AuthController());
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
@@ -48,7 +54,7 @@ class ForgotPass extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          ForgotPassForm("E-mail"),
+                          ForgotPassForm("E-mail",_authController.forgotEmailController),
                           SizedBox(
                             height: 20,
                           ),
@@ -64,7 +70,9 @@ class ForgotPass extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, '/forgotpassOTP');
+                              _authController.ChangePass(_authController.forgotEmailController.text.trim());
+                              // Get.snackbar('แจ้งเตือน', 'โปรดเช็ก E-mail');
+                              
                             },
                             child: Container(
                               height: 50,
@@ -95,7 +103,7 @@ class ForgotPass extends StatelessWidget {
   }
 }
 
-Container ForgotPassForm(String text) {
+Container ForgotPassForm(String text ,TextEditingController controller) {
   return Container(
     decoration: BoxDecoration(
         // border: Border.all(),
@@ -121,6 +129,7 @@ Container ForgotPassForm(String text) {
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: text,
