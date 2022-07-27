@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^1.19.1
   get: ^4.6.5
   cloud_firestore: ^3.3.0
+  motion_toast: ^2.3.0
 
 dev_dependencies:
   flutter_test:

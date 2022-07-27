@@ -70,9 +70,9 @@ class ForgotPass extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              _authController.ChangePass(_authController.forgotEmailController.text.trim());
+                              _authController.ChangePass(_authController.forgotEmailController.text.trim(),context);
                               // Get.snackbar('แจ้งเตือน', 'โปรดเช็ก E-mail');
-                              
+                              Get.toNamed('/welcome_screen');
                             },
                             child: Container(
                               height: 50,

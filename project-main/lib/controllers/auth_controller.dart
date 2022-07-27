@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 class AuthController extends GetxController {
   final TextEditingController emailController = TextEditingController();
@@ -50,10 +51,14 @@ class AuthController extends GetxController {
     });
   }
 
-  Future <dynamic> ChangePass(String email) async {
+  Future ChangePass(String email, context) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      Get.snackbar('แจ้งเตือน', 'โปรดช็คอีเมล');
+      MotionToast.success(
+        description: Text("reset password success."),
+        title: Text("Success",style: TextStyle(fontWeight: FontWeight.bold)),
+        ).show(context);
+        // Get.toNamed('/welcome_screen');
     } catch(e) {
       print(e);
     }
