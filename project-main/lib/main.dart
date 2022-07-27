@@ -6,10 +6,12 @@ import 'package:luk_to_learn/Screens/changepassword.dart';
 import 'package:luk_to_learn/Screens/courses.dart';
 import 'package:luk_to_learn/Screens/coursesdetail.dart';
 import 'package:luk_to_learn/Screens/editprofile.dart';
+import 'package:luk_to_learn/Screens/editprofiletutor.dart';
 import 'package:luk_to_learn/Screens/forgotpass.dart';
 import 'package:luk_to_learn/Screens/forgotpassOTP.dart';
 import 'package:luk_to_learn/Screens/orderhis.dart';
 import 'package:luk_to_learn/Screens/profile.dart';
+import 'package:luk_to_learn/Screens/profiletutor.dart';
 import 'package:luk_to_learn/Screens/question.dart';
 import 'package:luk_to_learn/route.dart';
 import 'package:luk_to_learn/Screens/welcome_screen.dart';
@@ -49,6 +51,7 @@ class MyApp extends StatelessWidget {
         '/orderhis': ((context) => OrderHistory()),
         '/welcome_screen': ((context) => WelcomeScreen()),
         '/editprofile': ((context) => EditProfile()),
+        '/editprofiletutor': ((context) => EditProfileTutor()),
       },
     );
   }

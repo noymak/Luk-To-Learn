@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luk_to_learn/Screens/hometutor.dart';
-import 'package:luk_to_learn/Screens/mycoursetutor.dart';
+import 'package:luk_to_learn/Screens/profiletutor.dart';
 
 const TextStyle _textStyle = TextStyle(
   fontSize: 40,
@@ -21,8 +21,8 @@ class _RouteTutorScreenState extends State<RouteTutorScreen> {
   List<Widget> pages = const [
     HomeTutor(),
     Text('search', style: _textStyle),
-    MycouseTutor(),
-    Text('person', style: _textStyle),
+    Text('My course', style: _textStyle),
+    ProfileTutor(),
   ];
   @override
   Widget build(BuildContext context) {

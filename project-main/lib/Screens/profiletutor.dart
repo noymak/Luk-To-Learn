@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MycouseTutor extends StatefulWidget {
-  const MycouseTutor({Key? key}) : super(key: key);
+class ProfileTutor extends StatefulWidget {
+  const ProfileTutor({Key? key}) : super(key: key);
 
   @override
-  State<MycouseTutor> createState() => _MycouseTutorState();
+  State<ProfileTutor> createState() => _ProfileTutorState();
 }
 
-class _MycouseTutorState extends State<MycouseTutor> {
+class _ProfileTutorState extends State<ProfileTutor> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -56,10 +56,15 @@ class _MycouseTutorState extends State<MycouseTutor> {
                       SizedBox(
                         width: 200,
                       ),
-                      Icon(
-                        Icons.settings,
-                        size: 40,
-                        color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/editprofiletutor');
+                        },
+                        child: Icon(
+                          Icons.settings,
+                          size: 40,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
