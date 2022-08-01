@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +38,11 @@ class ForgotPass extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Icon(Icons.arrow_back_ios),
+                                GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/route');
+                                    },
+                                    child: Icon(Icons.arrow_back_ios)),
                                 Text(
                                   "Forgot Password",
                                   style: TextStyle(
@@ -54,7 +56,8 @@ class ForgotPass extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          ForgotPassForm("E-mail",_authController.forgotEmailController),
+                          ForgotPassForm(
+                              "E-mail", _authController.forgotEmailController),
                           SizedBox(
                             height: 20,
                           ),
@@ -70,7 +73,10 @@ class ForgotPass extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              _authController.ChangePass(_authController.forgotEmailController.text.trim(),context);
+                              _authController.ChangePass(
+                                  _authController.forgotEmailController.text
+                                      .trim(),
+                                  context);
                               // Get.snackbar('แจ้งเตือน', 'โปรดเช็ก E-mail');
                               Get.toNamed('/welcome_screen');
                             },
@@ -103,7 +109,7 @@ class ForgotPass extends StatelessWidget {
   }
 }
 
-Container ForgotPassForm(String text ,TextEditingController controller) {
+Container ForgotPassForm(String text, TextEditingController controller) {
   return Container(
     decoration: BoxDecoration(
         // border: Border.all(),

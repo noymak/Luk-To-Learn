@@ -11,6 +11,9 @@ import 'package:luk_to_learn/Screens/editprofiletutor.dart';
 import 'package:luk_to_learn/Screens/forgotpass.dart';
 import 'package:luk_to_learn/Screens/forgotpassOTP.dart';
 import 'package:luk_to_learn/Screens/orderhis.dart';
+import 'package:luk_to_learn/Screens/paymentqr.dart';
+import 'package:luk_to_learn/Screens/paymentselect.dart';
+import 'package:luk_to_learn/Screens/paymentvisa.dart';
 import 'package:luk_to_learn/Screens/profile.dart';
 import 'package:luk_to_learn/Screens/profiletutor.dart';
 import 'package:luk_to_learn/Screens/question.dart';
@@ -53,6 +56,9 @@ class MyApp extends StatelessWidget {
         '/welcome_screen': ((context) => WelcomeScreen()),
         '/editprofile': ((context) => EditProfile()),
         '/editprofiletutor': ((context) => EditProfileTutor()),
+        '/paymentselect': ((context) => PaymentSelect()),
+        '/paymentqr': ((context) => PaymentQR()),
+        '/paymentvisa': ((context) => PaymentVisa()),
       },
     );
   }

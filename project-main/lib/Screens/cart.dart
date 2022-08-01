@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:luk_to_learn/widgets/cartlist.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
@@ -166,12 +167,17 @@ class _CartScreenState extends State<CartScreen> {
                         color: Color.fromARGB(255, 54, 175, 115),
                       ),
                       child: Center(
-                        child: Text(
-                          'Checkout Now',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/paymentselect");
+                          },
+                          child: Text(
+                            'Checkout Now',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                            ),
                           ),
                         ),
                       ),
