@@ -239,7 +239,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/coursesdetail');
+                            Navigator.pushNamed(context, '/coursesvideo');
                           },
                           child: Container(
                             width: 150,

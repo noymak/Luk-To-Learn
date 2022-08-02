@@ -6,6 +6,7 @@ import 'package:luk_to_learn/Screens/cart.dart';
 import 'package:luk_to_learn/Screens/changepassword.dart';
 import 'package:luk_to_learn/Screens/courses.dart';
 import 'package:luk_to_learn/Screens/coursesdetail.dart';
+import 'package:luk_to_learn/Screens/coursesvideo.dart';
 import 'package:luk_to_learn/Screens/editprofile.dart';
 import 'package:luk_to_learn/Screens/editprofiletutor.dart';
 import 'package:luk_to_learn/Screens/forgotpass.dart';
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
         '/paymentselect': ((context) => PaymentSelect()),
         '/paymentqr': ((context) => PaymentQR()),
         '/paymentvisa': ((context) => PaymentVisa()),
+        '/coursesvideo': ((context) => CoursesVideo(title: '',)),
       },
     );
   }
