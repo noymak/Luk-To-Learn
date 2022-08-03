@@ -20,18 +20,17 @@ class _CoursesVideoState extends State<CoursesVideo> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller = VideoPlayerController.network('https://res.cloudinary.com/dtdhnrtir/video/upload/v1659454145/video/y2mate.com_-_STAYC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_BEAUTIFUL_MONSTER_Dance_Practice_1080p_rskuzt.mp4')
-    ..initialize().then((_){
-      setState(() {
-        
+    _controller = VideoPlayerController.network(
+        'https://res.cloudinary.com/dtdhnrtir/video/upload/v1659454145/video/y2mate.com_-_STAYC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_BEAUTIFUL_MONSTER_Dance_Practice_1080p_rskuzt.mp4')
+      ..initialize().then((_) {
+        setState(() {});
       });
-    });
   }
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
-    
   }
 
   @override
@@ -39,16 +38,17 @@ class _CoursesVideoState extends State<CoursesVideo> {
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            });
-          },
-          child: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-          ),),
+        onPressed: () {
+          setState(() {
+            _controller.value.isPlaying
+                ? _controller.pause()
+                : _controller.play();
+          });
+        },
+        child: Icon(
+          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -58,7 +58,10 @@ class _CoursesVideoState extends State<CoursesVideo> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.arrow_back_ios_new,color: Colors.white,),
+                  Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.white,
+                  ),
                   Align(
                     alignment: Alignment.center,
                     child: Text(
@@ -69,20 +72,17 @@ class _CoursesVideoState extends State<CoursesVideo> {
                       ),
                     ),
                   ),
-                  
                 ],
               ),
-              
               SizedBox(
                 height: 30,
               ),
               _controller.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                )
-              : Container(),
-              
+                  ? AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: VideoPlayer(_controller),
+                    )
+                  : Container(),
             ],
           ),
         ),
