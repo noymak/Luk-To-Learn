@@ -91,7 +91,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Declarative interface for \nany Apple Devices",
+                              "Declarative interface for nany Apple Devices",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 28,
