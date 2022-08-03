@@ -76,27 +76,24 @@ class _CoursesVideoState extends State<CoursesVideo> {
                 onTap: (() {
                   Navigator.pushNamed(context, '/courses');
                 }),
-                child: Container(
-                  color: kPrimaryColors,
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.arrow_back_ios_new,
-                        color: Colors.black,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Introduction',
-                          style: TextStyle(
-                            fontSize: 26,
-                            color: Colors.black,
-                          ),
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios_new,
+                      color: kPrimaryColors,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Introduction',
+                        style: TextStyle(
+                          fontSize: 26,
+                          color: kPrimaryColors,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(

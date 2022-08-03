@@ -5,7 +5,7 @@ import 'package:luk_to_learn/Screens/about.dart';
 import 'package:luk_to_learn/Screens/cart.dart';
 import 'package:luk_to_learn/Screens/changepassword.dart';
 import 'package:luk_to_learn/Screens/courses.dart';
-import 'package:luk_to_learn/Screens/coursesdetail.dart';
+import 'package:luk_to_learn/Screens/addcourses.dart';
 import 'package:luk_to_learn/Screens/coursesvideo.dart';
 import 'package:luk_to_learn/Screens/editprofile.dart';
 import 'package:luk_to_learn/Screens/editprofiletutor.dart';
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
         '/about': ((context) => AboutLTL()),
         '/cart': ((context) => CartScreen()),
         '/courses': ((context) => CoursesScreen()),
-        '/coursesdetail': ((context) => Detail()),
+        '/addcourses': ((context) => AddCourses()),
         '/question': ((context) => Question()),
         '/orderhis': ((context) => OrderHistory()),
         '/welcome_screen': ((context) => WelcomeScreen()),

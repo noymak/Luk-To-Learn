@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luk_to_learn/Screens/addcourses.dart';
 import 'package:luk_to_learn/Screens/hometutor.dart';
 import 'package:luk_to_learn/Screens/profiletutor.dart';
 
@@ -20,7 +21,7 @@ class _RouteTutorScreenState extends State<RouteTutorScreen> {
   int _currentIndex = 0;
   List<Widget> pages = const [
     HomeTutor(),
-    Text('search', style: _textStyle),
+    AddCourses(),
     Text('My course', style: _textStyle),
     ProfileTutor(),
   ];
@@ -43,9 +44,9 @@ class _RouteTutorScreenState extends State<RouteTutorScreen> {
             label: 'home',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.search_off_outlined),
-            icon: Icon(Icons.search_outlined),
-            label: 'search',
+            selectedIcon: Icon(Icons.add_box),
+            icon: Icon(Icons.add_box_outlined),
+            label: 'add courses',
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.video_camera_back),

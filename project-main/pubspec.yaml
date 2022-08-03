@@ -40,6 +40,7 @@ dependencies:
   cloud_firestore: ^3.3.0
   motion_toast: ^2.3.0
   video_player: ^2.4.5
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:
