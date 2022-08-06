@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/widgets/lessoncard.dart';
 
@@ -87,10 +88,12 @@ class _CoursesVideoState extends State<CoursesVideo> {
                       alignment: Alignment.center,
                       child: Text(
                         'Introduction',
-                        style: TextStyle(
-                          fontSize: 26,
-                          color: kPrimaryColors,
-                        ),
+                        style: GoogleFonts.kanit(
+                            
+                              fontSize: 26,
+                              color: kPrimaryColors,
+                            
+                          ),
                       ),
                     ),
                   ],

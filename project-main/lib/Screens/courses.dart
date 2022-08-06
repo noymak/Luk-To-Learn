@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/constants.dart';
 
 class CoursesScreen extends StatefulWidget {
   const CoursesScreen({Key? key}) : super(key: key);
@@ -41,9 +45,9 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                 ),
                                 Text(
                                   "Course Detail",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
+                                  style: GoogleFonts.kanit(
+                                    fontSize: 22,
+                                    color: kPrimaryLightColor,
                                   ),
                                 ),
                               ],
@@ -92,9 +96,9 @@ class _CoursesScreenState extends State<CoursesScreen> {
                           children: [
                             Text(
                               "Declarative interface for nany Apple Devices",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 28,
+                              style: GoogleFonts.kanit(
+                                  fontSize: 32,
+                                  color: kPrimaryLightColor,
                                   fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
@@ -110,10 +114,9 @@ class _CoursesScreenState extends State<CoursesScreen> {
                               child: Center(
                                 child: Text(
                                   'ภาษาอังกฤษ',
-                                  style: TextStyle(
-                                    color: Color(0xff6360FF),
+                                  style: GoogleFonts.kanit(
                                     fontSize: 14,
-                                    // fontWeight: FontWeight.bold
+                                    color: kPrimaryColors,
                                   ),
                                 ),
                               ),
@@ -142,21 +145,21 @@ class _CoursesScreenState extends State<CoursesScreen> {
                   children: [
                     Text(
                       'Description',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey),
+                      style: GoogleFonts.kanit(
+                        fontSize: 16,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      'อาจารย์พิเศษในมหาวิทยาลัยชั้นนำและองค์กรต่างๆ เช่น'
-                      'มหาวิทยาลัยศรีนครินทรวิโรฒ วิทยาลัยปัญญาภิวัฒน์\n(หลักสูตรปริญญาโท) และอื่นๆ อีกมากมาย'
-                      'ปริญญาโท \nศิลปศาสตรมหาบัณฑิต ภาษาอังกฤษเพื่ออาชีพ สถาบันภาษา มหาวิทยาลัยธรรมศาสตร์',
-                      style: TextStyle(
+                      'อาจารย์พิเศษในมหาวิทยาลัยชั้นนำและองค์กรต่างๆเช่นมหาวิทยาลัยศรีนครินทรวิโรฒวิทยาลัยปัญญาภิวัฒน์ (หลักสูตรปริญญาโท)และอื่นๆอีกมากมายปริญญาโทศิลปศาสตรมหาบัณฑิตภาษาอังกฤษเพื่ออาชีพสถาบันภาษามหาวิทยาลัยธรรมศาสตร์',
+                      style: GoogleFonts.kanit(
                         fontSize: 16,
                       ),
+                      textAlign: TextAlign.justify,
                     ),
                     SizedBox(
                       height: 15,
@@ -170,10 +173,11 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     ),
                     Text(
                       'Author',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey),
+                      style: GoogleFonts.kanit(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(15),
@@ -194,7 +198,10 @@ class _CoursesScreenState extends State<CoursesScreen> {
                             children: [
                               Text(
                                 'Sarah William',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: GoogleFonts.kanit(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               SizedBox(
                                 height: 8,
@@ -203,8 +210,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                 children: [
                                   Text(
                                     '14 Courses',
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
+                                    style: GoogleFonts.kanit(
+                                      color: Colors.grey,
                                     ),
                                   ),
                                   SizedBox(
@@ -220,8 +227,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                   ),
                                   Text(
                                     '1,400 Students',
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
+                                    style: GoogleFonts.kanit(
+                                      color: Colors.grey,
                                     ),
                                   ),
                                 ],
@@ -249,8 +256,13 @@ class _CoursesScreenState extends State<CoursesScreen> {
                               color: Color(0xff6360FF),
                             ),
                             child: Center(
-                              child: Text('See Detail',
-                                  style: TextStyle(color: Colors.white)),
+                              child: Text(
+                                'See Detail',
+                                style: GoogleFonts.kanit(
+                                  fontSize: 16,
+                                  color: kPrimaryLightColor,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -269,8 +281,13 @@ class _CoursesScreenState extends State<CoursesScreen> {
                               color: Color.fromARGB(255, 54, 175, 115),
                             ),
                             child: Center(
-                              child: Text('Add to Cart',
-                                  style: TextStyle(color: Colors.white)),
+                              child: Text(
+                                'Add to Cart',
+                                style: GoogleFonts.kanit(
+                                  fontSize: 16,
+                                  color: kPrimaryLightColor,
+                                ),
+                              ),
                             ),
                           ),
                         ),

@@ -33,10 +33,10 @@ class _AddCoursesState extends State<AddCourses> {
                         Text(
                           'Add Courses',
                           style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
+                            
                               fontSize: 20,
                               color: kPrimaryLightColor,
-                            ),
+                            
                           ),
                         ),
                       ],
@@ -63,11 +63,11 @@ class _AddCoursesState extends State<AddCourses> {
                       Text(
                         'Sarah William',
                         style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
+                            
                               fontSize: 20,
                               color: kPrimaryLightColor,
                               fontWeight: FontWeight.bold,
-                            ),
+                            
                           ),
                       ),
                       SizedBox(
@@ -78,10 +78,10 @@ class _AddCoursesState extends State<AddCourses> {
                           Text(
                             '14 Courses',
                             style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
+                            
                               fontSize: 16,
                               color: kPrimaryLightColor,
-                            ),
+                            
                           ),
                           ),
                           SizedBox(
@@ -98,10 +98,10 @@ class _AddCoursesState extends State<AddCourses> {
                           Text(
                             '1,400 Students',
                             style:GoogleFonts.kanit(
-                            textStyle: TextStyle(
+                            
                               fontSize: 16,
                               color: kPrimaryLightColor,
-                            ),
+                            
                           ),
                           ),
                         ],
@@ -142,19 +142,19 @@ class _AddCoursesState extends State<AddCourses> {
                             Text(
                               "Courses",
                               style: GoogleFonts.kanit(
-                                textStyle: TextStyle(
+                                
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold,
-                                ),
+                               
                               ),
                             ),
                             Text(
                               "Total 4",
                               style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
+                            
                               fontSize: 26,
                               fontWeight: FontWeight.bold,
-                            ),
+                            
                           ),
                             ),
                           ],
@@ -196,11 +196,11 @@ class _AddCoursesState extends State<AddCourses> {
                             child: Text(
                           'Add Courses',
                           style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
+                            
                               fontSize: 20,
                               color: kPrimaryLightColor,
                               fontWeight: FontWeight.bold,
-                            ),
+                            
                           ),
                         )),
                       ),
