@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 
-class cartlistbuy extends StatelessWidget {
-  const cartlistbuy({
-    Key? key,
-    required this.size,
-  }) : super(key: key);
-
-  final Size size;
+class CourseBox extends StatefulWidget {
+  const CourseBox({Key? key}) : super(key: key);
 
   @override
+  State<CourseBox> createState() => _CourseBoxState();
+}
+
+class _CourseBoxState extends State<CourseBox> {
+  @override
   Widget build(BuildContext context) {
-  return Container(
+    var size = MediaQuery.of(context).size;
+    return Container(
     width: size.width,
     height: 150,
     decoration: BoxDecoration(
@@ -86,5 +87,5 @@ class cartlistbuy extends StatelessWidget {
       ),
     ),
   );
-}
   }
+}

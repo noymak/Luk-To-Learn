@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/widgets/coursebox.dart';
 
 class ProfileTutor extends StatefulWidget {
   const ProfileTutor({Key? key}) : super(key: key);
@@ -12,7 +15,7 @@ class _ProfileTutorState extends State<ProfileTutor> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff6360FF),
+      backgroundColor: kPrimaryColors,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -42,14 +45,25 @@ class _ProfileTutorState extends State<ProfileTutor> {
                         children: [
                           Text(
                             'Welcomeback',
-                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            
+                              style: GoogleFonts.kanit(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: kPrimaryLightColor,
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
                           ),
+                          // SizedBox(
+                          //   height: 3,
+                          // ),
                           Text(
                             'Sarah William',
-                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            style: GoogleFonts.kanit(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: kPrimaryLightColor,
+                            ),
+                          ),
                           ),
                         ],
                       ),
@@ -108,16 +122,21 @@ class _ProfileTutorState extends State<ProfileTutor> {
                                           ),
                                           Text(
                                             'รายละเอียดคอร์ส',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.grey),
+                                            style: GoogleFonts.kanit(
+                            textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                          ),
                                           ),
                                           Text(
                                             'เราติดตามและดูแลนักเรียนของ\nเราเหมือนลูกจนประสบความสำเร็จ',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
+                                            style: GoogleFonts.kanit(
+                            textStyle: TextStyle(
+                              fontSize: 15,
+                              color: Colors.black,
+                            ),
+                          ),
                                           ),
                                         ],
                                       ),
@@ -165,10 +184,13 @@ class _ProfileTutorState extends State<ProfileTutor> {
                         child: Center(
                           child: Text(
                             'Balance',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                            style: GoogleFonts.kanit(
+                            textStyle: TextStyle(
+                              fontSize: 20,
+                              color: kPrimaryLightColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           ),
                         ),
                       ),
@@ -176,23 +198,25 @@ class _ProfileTutorState extends State<ProfileTutor> {
                         height: 15,
                       ),
                       Text('My Courses',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          )),
+                          style: GoogleFonts.kanit(
+                            textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),),
                       SizedBox(
                         height: 10,
                       ),
-                      coursebox(size),
+                      CourseBox(),
                       SizedBox(
                         height: 10,
                       ),
-                      coursebox(size),
+                      CourseBox(),
                       SizedBox(
                         height: 10,
                       ),
-                      coursebox(size),
+                      CourseBox(),
                     ],
                   ),
                 ),
@@ -205,79 +229,3 @@ class _ProfileTutorState extends State<ProfileTutor> {
   }
 }
 
-Container coursebox(Size size) {
-  return Container(
-    width: size.width,
-    height: 150,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(18),
-      color: Colors.white,
-    ),
-    child: Padding(
-      padding: const EdgeInsets.all(20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              color: Color(0xffFF8181),
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Declarative interfaces for any Apple \nDevices",
-                style: TextStyle(fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 6,
-              ),
-              Text(
-                "850.00 BTH",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  Text(
-                    "4.5",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Icon(
-                    Icons.circle,
-                    color: Colors.amber,
-                    size: 10,
-                  ),
-                  Text(
-                    "By SomChai Wong",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  Icon(
-                    Icons.circle,
-                    color: Colors.amber,
-                    size: 10,
-                  ),
-                  Text(
-                    "All Level",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
-}
