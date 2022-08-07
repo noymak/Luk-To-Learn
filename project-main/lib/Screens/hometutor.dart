@@ -59,7 +59,6 @@ class _HomeTutorState extends State<HomeTutor> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Column(
                           children: [
@@ -92,11 +91,11 @@ class _HomeTutorState extends State<HomeTutor> {
                                       Text(
                                         'Develop & Instructor',
                                         style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
-                              fontSize: 18,
-                              color: kPrimaryLightColor,
-                            ),
-                          ),
+                                          textStyle: TextStyle(
+                                            fontSize: 18,
+                                            color: kPrimaryLightColor,
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -151,21 +150,21 @@ class _HomeTutorState extends State<HomeTutor> {
                             Text(
                               'Taotal students',
                               style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
-                              fontSize: 18,
-                              color: kPrimaryLightColor,
-                            ),
-                          ),
+                                textStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: kPrimaryLightColor,
+                                ),
+                              ),
                             ),
                             SizedBox(height: 10),
                             Text(
                               '2405',
                               style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
-                              fontSize: 18,
-                              color: kPrimaryLightColor,
-                            ),
-                          ),
+                                textStyle: TextStyle(
+                                  fontSize: 18,
+                                  color: kPrimaryLightColor,
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -202,21 +201,16 @@ class _HomeTutorState extends State<HomeTutor> {
                             Text(
                               "Courses",
                               style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold
-                            ),
-                            ),
+                                textStyle: TextStyle(
+                                    fontSize: 26, fontWeight: FontWeight.bold),
+                              ),
                             ),
                             Text(
                               "Total 4",
-                              
                               style: GoogleFonts.kanit(
-                            textStyle: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
+                                textStyle: TextStyle(
+                                    fontSize: 26, fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ],
                         ),
@@ -252,4 +246,3 @@ class _HomeTutorState extends State<HomeTutor> {
     );
   }
 }
-

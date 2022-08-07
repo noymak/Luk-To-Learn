@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/Screens/about.dart';
 import 'package:luk_to_learn/Screens/cart.dart';
 import 'package:luk_to_learn/Screens/changepassword.dart';
+import 'package:luk_to_learn/Screens/chatroom.dart';
+import 'package:luk_to_learn/Screens/chatroomtutor.dart';
 import 'package:luk_to_learn/Screens/courses.dart';
 import 'package:luk_to_learn/Screens/addcourses.dart';
 import 'package:luk_to_learn/Screens/coursesvideo.dart';
@@ -66,7 +68,11 @@ class MyApp extends StatelessWidget {
         '/paymentselect': ((context) => PaymentSelect()),
         '/paymentqr': ((context) => PaymentQR()),
         '/paymentvisa': ((context) => PaymentVisa()),
-        '/coursesvideo': ((context) => CoursesVideo(title: '',)),
+        '/coursesvideo': ((context) => CoursesVideo(
+              title: '',
+            )),
+        '/chatroomtutor': ((context) => ChatRoomTutor()),
+        '/chatroom': ((context) => ChatRoom()),
       },
     );
   }

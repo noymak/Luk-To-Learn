@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luk_to_learn/Screens/addcourses.dart';
+import 'package:luk_to_learn/Screens/createchatroom.dart';
 import 'package:luk_to_learn/Screens/hometutor.dart';
 import 'package:luk_to_learn/Screens/profiletutor.dart';
 
@@ -22,7 +23,7 @@ class _RouteTutorScreenState extends State<RouteTutorScreen> {
   List<Widget> pages = const [
     HomeTutor(),
     AddCourses(),
-    Text('My course', style: _textStyle),
+    CreateChatRoom(),
     ProfileTutor(),
   ];
   @override
