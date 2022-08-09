@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ForgotPassOTP extends StatelessWidget {
   @override
@@ -37,7 +38,7 @@ class ForgotPassOTP extends StatelessWidget {
                                 Icon(Icons.arrow_back_ios),
                                 Text(
                                   "Forgot Password",
-                                  style: TextStyle(
+                                  style: GoogleFonts.kanit(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
@@ -54,7 +55,7 @@ class ForgotPassOTP extends StatelessWidget {
                           ),
                           Text(
                             "Please Enter OTP",
-                            style: TextStyle(
+                            style: GoogleFonts.kanit(
                               color: Colors.black,
                               fontSize: 18,
                             ),
@@ -75,7 +76,7 @@ class ForgotPassOTP extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   "Confirm",
-                                  style: TextStyle(
+                                  style: GoogleFonts.kanit(
                                       fontSize: 17, color: Colors.white),
                                 ),
                               ),

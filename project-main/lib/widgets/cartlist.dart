@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class cartlist extends StatelessWidget {
   const cartlist({
@@ -33,14 +34,14 @@ class cartlist extends StatelessWidget {
                       children: [
                         Text(
                           "Declarative interfaces for any Apple \nDevices",
-                          style: TextStyle(fontWeight: FontWeight.w500),
+                          style: GoogleFonts.kanit(fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
                           height: 4,
                         ),
                         Text(
                           "850.00 BTH",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: GoogleFonts.kanit(fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 2,
@@ -53,7 +54,7 @@ class cartlist extends StatelessWidget {
                             ),
                             Text(
                               "4.5",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: GoogleFonts.kanit(fontWeight: FontWeight.bold),
                             ),
                             Icon(
                               Icons.circle,
@@ -62,7 +63,7 @@ class cartlist extends StatelessWidget {
                             ),
                             Text(
                               "By SomChai Wong",
-                              style: TextStyle(color: Colors.grey),
+                              style: GoogleFonts.kanit(color: Colors.grey),
                             ),
                             Icon(
                               Icons.circle,
@@ -71,7 +72,7 @@ class cartlist extends StatelessWidget {
                             ),
                             Text(
                               "All Level",
-                              style: TextStyle(color: Colors.grey),
+                              style: GoogleFonts.kanit(color: Colors.grey),
                             ),
                           ],
                         ),

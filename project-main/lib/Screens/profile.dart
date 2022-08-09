@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/controllers/auth_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             color: Colors.white,
                           ),
                           Text("Account",
-                              style: TextStyle(
+                              style: GoogleFonts.kanit(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white)),
@@ -60,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Text(
                       "Por Lazuardi",
-                      style: TextStyle(
+                      style: GoogleFonts.kanit(
                           fontSize: 30,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
@@ -70,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Text(
                       "por.lazuardi@gmail.com",
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: GoogleFonts.kanit(fontSize: 16, color: Colors.white),
                     ),
                   ],
                 ),
@@ -92,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Account Settings",
-                                style: TextStyle(
+                                style: GoogleFonts.kanit(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.grey[600])),
@@ -108,7 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   },
                                   child: Text(
                                     "Change Password",
-                                    style: TextStyle(
+                                    style: GoogleFonts.kanit(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -132,7 +133,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   },
                                   child: Text(
                                     "Order History",
-                                    style: TextStyle(
+                                    style: GoogleFonts.kanit(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -157,7 +158,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   },
                                   child: Text(
                                     "Edit Profile",
-                                    style: TextStyle(
+                                    style: GoogleFonts.kanit(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -173,7 +174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               height: 50,
                             ),
                             Text("Support",
-                                style: TextStyle(
+                                style: GoogleFonts.kanit(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.grey[600])),
@@ -189,7 +190,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   },
                                   child: Text(
                                     "About Luk to Learn",
-                                    style: TextStyle(
+                                    style: GoogleFonts.kanit(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -213,7 +214,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   },
                                   child: Text(
                                     "Frequntly asked question",
-                                    style: TextStyle(
+                                    style: GoogleFonts.kanit(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -238,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   },
                                   child: Text(
                                     "Logout",
-                                    style: TextStyle(
+                                    style: GoogleFonts.kanit(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                     ),

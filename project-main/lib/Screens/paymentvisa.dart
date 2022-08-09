@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PaymentVisa extends StatefulWidget {
   const PaymentVisa({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _PaymentVisaState extends State<PaymentVisa> {
                         ),
                         Text(
                           'Payment',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         )
                       ],

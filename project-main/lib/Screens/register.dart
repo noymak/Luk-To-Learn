@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/controllers/auth_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -58,7 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                         ),
                         Text(
                           "Register",
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
@@ -92,7 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                         ),
                         Text(
                           "Username",
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                               fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
@@ -107,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                           height: 20,
                         ),
                         Text("E-mail",
-                            style: TextStyle(
+                            style: GoogleFonts.kanit(
                                 fontSize: 25, fontWeight: FontWeight.bold)),
                         SizedBox(
                           height: 20,
@@ -127,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                           height: 20,
                         ),
                         Text("Phone Number",
-                            style: TextStyle(
+                            style: GoogleFonts.kanit(
                                 fontSize: 25, fontWeight: FontWeight.bold)),
                         SizedBox(
                           height: 20,
@@ -162,7 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                             child: Center(
                               child: Text(
                                 'Register',
-                                style: TextStyle(
+                                style: GoogleFonts.kanit(
                                   color: Colors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,

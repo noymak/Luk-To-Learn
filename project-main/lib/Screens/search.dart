@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 
 class ScearchScreen extends StatefulWidget {
@@ -41,7 +42,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                             ),
                             Text(
                               "Back",
-                              style: TextStyle(
+                              style: GoogleFonts.kanit(
                                   fontSize: 26,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
@@ -105,7 +106,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Browser Catagory",
-                              style: TextStyle(
+                              style: GoogleFonts.kanit(
                                 fontSize: 26,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -136,7 +137,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                             children: [
                               Text(
                                 "Recommended Course",
-                                style: TextStyle(
+                                style: GoogleFonts.kanit(
                                     fontSize: 26, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
@@ -188,14 +189,14 @@ class _ScearchScreenState extends State<ScearchScreen> {
               children: [
                 Text(
                   "Declarative interfaces for any Apple \nDevices",
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                  style: GoogleFonts.kanit(fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
                   height: 6,
                 ),
                 Text(
                   "850.00 BTH",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: GoogleFonts.kanit(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 4,
@@ -208,7 +209,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                     ),
                     Text(
                       "4.5",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: GoogleFonts.kanit(fontWeight: FontWeight.bold),
                     ),
                     Icon(
                       Icons.circle,
@@ -217,7 +218,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                     ),
                     Text(
                       "By SomChai Wong",
-                      style: TextStyle(color: Colors.grey),
+                      style: GoogleFonts.kanit(color: Colors.grey),
                     ),
                     Icon(
                       Icons.circle,
@@ -226,7 +227,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                     ),
                     Text(
                       "All Level",
-                      style: TextStyle(color: Colors.grey),
+                      style: GoogleFonts.kanit(color: Colors.grey),
                     ),
                   ],
                 ),
@@ -252,7 +253,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(
+            style: GoogleFonts.kanit(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.white,

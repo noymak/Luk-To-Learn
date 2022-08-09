@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Question extends StatefulWidget {
   const Question({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class _QuestionState extends State<Question> {
                               width: 25,
                             ),
                             Text("Frequntly asked question",
-                                style: TextStyle(
+                                style: GoogleFonts.kanit(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.grey[300])),
@@ -77,7 +78,7 @@ class _QuestionState extends State<Question> {
                     Text(
                       "คำถามที่พบบ่อย",
                       style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                          GoogleFonts.kanit(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(
                       height: 25,
@@ -93,7 +94,7 @@ class _QuestionState extends State<Question> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           'อยากสมัครเรียนหลายๆ คอร์สทีเดียวสามารถทำได้มั้ย? \n\n:สามารถสมัครเรียนทีละคอร์สหรือหลายๆ คอร์ส พร้อมกันทีเดียวก็ได้ โดย ถ้าสมัครหลายคอร์สทีเดียวกัน ในหน้ารายละเอียดคอร์ส เลือก “เพิ่มลงในตะกร้า”เมื่อต้องการจะชำระเงิน เลือกเมนู “ตะกร้า” จากนั้นก็ชำระเงินได้ทันที',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                       ),
@@ -112,7 +113,7 @@ class _QuestionState extends State<Question> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           'ต้องรอเรียนพร้อมกับเอกสารประกอบการเรียนมั้ย? \n\nน้องๆ สามารถเริ่มเรียนบทเรียนออนไลน์ในคอร์สล่วงหน้าได้ก่อนเลย แม้ยังไม่มีเอกสาร เพราะเอกสารประกอบการเรียนเป็นส่วนเพิ่มเติมจากคอร์ส ซึ่งเนื้อหาในเอกสารส่วนใหญ่เป็นแบบฝึกหัดและแนวข้อสอบเพื่อให้น้องๆ ได้ฝึกทำทบทวนในสิ่งที่เรียน',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                               fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                       ),

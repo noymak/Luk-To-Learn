@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OrderHistory extends StatefulWidget {
   const OrderHistory({Key? key}) : super(key: key);
@@ -47,7 +48,7 @@ class _OrderHistoryState extends State<OrderHistory> {
                                 width: 25,
                               ),
                               Text("Order History",
-                                  style: TextStyle(
+                                  style: GoogleFonts.kanit(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.grey[300])),
@@ -112,7 +113,7 @@ Container orderhis(Size size) {
             padding: const EdgeInsets.all(20.0),
             child: Text(
               "11/05/2022",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              style: GoogleFonts.kanit(fontSize: 20, fontWeight: FontWeight.w500),
             ),
           ),
           SizedBox(
@@ -120,14 +121,14 @@ Container orderhis(Size size) {
           ),
           Text(
             "850.00 BTH",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            style: GoogleFonts.kanit(fontSize: 20, fontWeight: FontWeight.w500),
           ),
         ]),
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: Text(
             "Declarative interfaces",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+            style: GoogleFonts.kanit(fontSize: 15, fontWeight: FontWeight.w400),
           ),
         )
       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/auth_controller.dart';
 
@@ -45,7 +46,7 @@ class ForgotPass extends StatelessWidget {
                                     child: Icon(Icons.arrow_back_ios)),
                                 Text(
                                   "Forgot Password",
-                                  style: TextStyle(
+                                  style: GoogleFonts.kanit(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
@@ -63,7 +64,7 @@ class ForgotPass extends StatelessWidget {
                           ),
                           Text(
                             "Please Enter Your E-mail",
-                            style: TextStyle(
+                            style: GoogleFonts.kanit(
                               color: Colors.black,
                               fontSize: 18,
                             ),
@@ -89,7 +90,7 @@ class ForgotPass extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   "Confirm",
-                                  style: TextStyle(
+                                  style: GoogleFonts.kanit(
                                       fontSize: 17, color: Colors.white),
                                 ),
                               ),

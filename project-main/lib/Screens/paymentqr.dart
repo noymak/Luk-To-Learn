@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PaymentQR extends StatefulWidget {
   const PaymentQR({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _PaymentQRState extends State<PaymentQR> {
                         ),
                         Text(
                           'Payment',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         )
                       ],
@@ -73,13 +74,13 @@ class _PaymentQRState extends State<PaymentQR> {
                                   children: [
                                     Text(
                                       'Total',
-                                      style: TextStyle(
+                                      style: GoogleFonts.kanit(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
                                       '1500.0',
-                                      style: TextStyle(
+                                      style: GoogleFonts.kanit(
                                           fontSize: 25,
                                           fontWeight: FontWeight.w400),
                                     )
@@ -99,7 +100,7 @@ class _PaymentQRState extends State<PaymentQR> {
                                   padding:
                                       const EdgeInsets.only(top: 10, left: 120),
                                   child: Text('เสร็จสิ้น',
-                                      style: TextStyle(
+                                      style: GoogleFonts.kanit(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w500)),
                                 ),

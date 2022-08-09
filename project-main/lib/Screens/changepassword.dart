@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ChangePass extends StatelessWidget {
   @override
@@ -38,7 +39,7 @@ class ChangePass extends StatelessWidget {
                                 Icon(Icons.arrow_back_ios),
                                 Text(
                                   "Change Password",
-                                  style: TextStyle(
+                                  style: GoogleFonts.kanit(
                                       fontSize: 30,
                                       fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.center,
@@ -70,7 +71,7 @@ class ChangePass extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   "Confirm",
-                                  style: TextStyle(
+                                  style: GoogleFonts.kanit(
                                       fontSize: 17, color: Colors.white),
                                 ),
                               ),

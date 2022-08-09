@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           Text(
                             "Edit Profile",
-                            style: TextStyle(
+                            style: GoogleFonts.kanit(
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
@@ -108,7 +109,7 @@ class _EditProfileState extends State<EditProfile> {
                           children: [
                             Text(
                               'Name',
-                              style: TextStyle(
+                              style: GoogleFonts.kanit(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.blueAccent),
@@ -121,7 +122,7 @@ class _EditProfileState extends State<EditProfile> {
                               height: 15,
                             ),
                             Text('Last Name',
-                                style: TextStyle(
+                                style: GoogleFonts.kanit(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.blueAccent)),
@@ -134,7 +135,7 @@ class _EditProfileState extends State<EditProfile> {
                             ),
                             Text(
                               'E-mail',
-                              style: TextStyle(
+                              style: GoogleFonts.kanit(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.blueAccent),
@@ -148,7 +149,7 @@ class _EditProfileState extends State<EditProfile> {
                             ),
                             Text(
                               'PhoneNumber',
-                              style: TextStyle(
+                              style: GoogleFonts.kanit(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.blueAccent),
@@ -169,7 +170,7 @@ class _EditProfileState extends State<EditProfile> {
                               child: Center(
                                 child: Text(
                                   "Update Profile",
-                                  style: TextStyle(
+                                  style: GoogleFonts.kanit(
                                       fontSize: 17, color: Colors.white),
                                 ),
                               ),

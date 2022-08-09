@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/model/banner.dart';
 
 import '../widgets/Indicator.dart';
@@ -53,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'ยินดีต้อนรับสู่ Luk to Learn',
-                        style: TextStyle(
+                        style: GoogleFonts.kanit(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
                         ),
@@ -98,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 'คอร์สทั้งหมด',
-                                style: TextStyle(
+                                style: GoogleFonts.kanit(
                                     fontSize: 26, fontWeight: FontWeight.bold),
                               ),
                             ),

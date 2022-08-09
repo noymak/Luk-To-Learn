@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditProfileTutor extends StatefulWidget {
   const EditProfileTutor({Key? key}) : super(key: key);
@@ -44,14 +45,14 @@ class _EditProfileTutorState extends State<EditProfileTutor> {
                         children: [
                           Text(
                             'Sarah William',
-                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            style: GoogleFonts.kanit(fontSize: 13, color: Colors.white),
                           ),
                           SizedBox(
                             height: 5,
                           ),
                           Text(
                             'Developer & Instructor',
-                            style: TextStyle(fontSize: 13, color: Colors.white),
+                            style: GoogleFonts.kanit(fontSize: 13, color: Colors.white),
                           ),
                         ],
                       ),
@@ -112,7 +113,7 @@ class _EditProfileTutorState extends State<EditProfileTutor> {
                                             children: [
                                               Text(
                                                 'รายละเอียดคอร์ส',
-                                                style: TextStyle(
+                                                style: GoogleFonts.kanit(
                                                     fontSize: 15,
                                                     color: Colors.grey),
                                               ),
@@ -125,7 +126,7 @@ class _EditProfileTutorState extends State<EditProfileTutor> {
                                           ),
                                           Text(
                                             'เราติดตามและดูแลนักเรียนของ\nเราเหมือนลูกจนประสบความสำเร็จ',
-                                            style: TextStyle(
+                                            style: GoogleFonts.kanit(
                                                 fontSize: 15,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold),
@@ -176,7 +177,7 @@ class _EditProfileTutorState extends State<EditProfileTutor> {
                         height: 15,
                       ),
                       Text('Courses offered',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
@@ -233,14 +234,14 @@ Container coursebox(Size size) {
             children: [
               Text(
                 "Declarative interfaces for any Apple \nDevices",
-                style: TextStyle(fontWeight: FontWeight.w500),
+                style: GoogleFonts.kanit(fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 height: 6,
               ),
               Text(
                 "850.00 BTH",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: GoogleFonts.kanit(fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 4,
@@ -253,7 +254,7 @@ Container coursebox(Size size) {
                   ),
                   Text(
                     "4.5",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: GoogleFonts.kanit(fontWeight: FontWeight.bold),
                   ),
                   Icon(
                     Icons.circle,
@@ -262,7 +263,7 @@ Container coursebox(Size size) {
                   ),
                   Text(
                     "By SomChai Wong",
-                    style: TextStyle(color: Colors.grey),
+                    style: GoogleFonts.kanit(color: Colors.grey),
                   ),
                   Icon(
                     Icons.circle,
@@ -271,7 +272,7 @@ Container coursebox(Size size) {
                   ),
                   Text(
                     "All Level",
-                    style: TextStyle(color: Colors.grey),
+                    style: GoogleFonts.kanit(color: Colors.grey),
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/widgets/cartlist.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
@@ -39,7 +40,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                       Text(
                         'Cart',
-                        style: TextStyle(
+                        style: GoogleFonts.kanit(
                           color: Colors.white,
                           fontSize: 20,
                         ),
@@ -74,13 +75,13 @@ class _CartScreenState extends State<CartScreen> {
                       children: [
                         Text(
                           'Save for later',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                             color: Colors.grey,
                           ),
                         ),
                         Text(
                           'Remove',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                             color: Colors.grey,
                           ),
                         ),
@@ -101,7 +102,7 @@ class _CartScreenState extends State<CartScreen> {
                       children: [
                         Text(
                           'Saved for later',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -116,13 +117,13 @@ class _CartScreenState extends State<CartScreen> {
                       children: [
                         Text(
                           'Add to cart',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                             color: Colors.grey,
                           ),
                         ),
                         Text(
                           'Remove',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                             color: Colors.grey,
                           ),
                         ),
@@ -141,7 +142,7 @@ class _CartScreenState extends State<CartScreen> {
                       children: [
                         Text(
                           'Total Items',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -149,7 +150,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                         Text(
                           '1,900.00 BTH',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
@@ -173,7 +174,7 @@ class _CartScreenState extends State<CartScreen> {
                           },
                           child: Text(
                             'Checkout Now',
-                            style: TextStyle(
+                            style: GoogleFonts.kanit(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 24,

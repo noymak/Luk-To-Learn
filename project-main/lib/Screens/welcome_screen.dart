@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/controllers/auth_controller.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -45,7 +46,7 @@ class WelcomeScreen extends StatelessWidget {
                     SizedBox(height: 20),
                     Text(
                       "Learn from anything and anywhere",
-                      style: TextStyle(
+                      style: GoogleFonts.kanit(
                         fontSize: 25,
                         color: Colors.white,
                       ),
@@ -146,7 +147,7 @@ class WelcomeScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Sign In",
-                              style: TextStyle(fontSize: 17, color: Colors.white),
+                              style: GoogleFonts.kanit(fontSize: 17, color: Colors.white),
                             ),
                           ),
                         ),
@@ -165,7 +166,7 @@ class WelcomeScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Register",
-                              style: TextStyle(fontSize: 17, color: Colors.white),
+                              style: GoogleFonts.kanit(fontSize: 17, color: Colors.white),
                             ),
                           ),
                         ),
@@ -183,7 +184,7 @@ class WelcomeScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Register Tutor",
-                              style: TextStyle(fontSize: 17, color: Colors.white),
+                              style: GoogleFonts.kanit(fontSize: 17, color: Colors.white),
                             ),
                           ),
                         ),

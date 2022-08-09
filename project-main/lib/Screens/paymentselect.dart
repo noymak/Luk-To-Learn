@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PaymentSelect extends StatefulWidget {
   const PaymentSelect({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _PaymentSelectState extends State<PaymentSelect> {
                         ),
                         Text(
                           'Payment',
-                          style: TextStyle(
+                          style: GoogleFonts.kanit(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         )
                       ],
@@ -68,7 +69,7 @@ class _PaymentSelectState extends State<PaymentSelect> {
                             padding: const EdgeInsets.only(top: 30, left: 100),
                             child: Text(
                               'Qrcode',
-                              style: TextStyle(fontSize: 30),
+                              style: GoogleFonts.kanit(fontSize: 30),
                             ),
                           ),
                         ),
@@ -93,7 +94,7 @@ class _PaymentSelectState extends State<PaymentSelect> {
                             padding: const EdgeInsets.only(top: 30, left: 70),
                             child: Text(
                               'Credit Card',
-                              style: TextStyle(fontSize: 30),
+                              style: GoogleFonts.kanit(fontSize: 30),
                             ),
                           ),
                         ),
@@ -113,7 +114,7 @@ class _PaymentSelectState extends State<PaymentSelect> {
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Text('กรุณาเลือกช่องทางการชำระ',
-                              style: TextStyle(
+                              style: GoogleFonts.kanit(
                                   fontSize: 20, fontWeight: FontWeight.bold)),
                         ),
                       ),
