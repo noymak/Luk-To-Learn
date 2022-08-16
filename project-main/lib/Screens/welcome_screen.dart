@@ -32,7 +32,7 @@ class WelcomeScreen extends StatelessWidget {
             children: [
               Container(
                 height: size.height / 3,
-                width: size.width - (size.width * 0.2),
+                width: size.width ,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -43,11 +43,11 @@ class WelcomeScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 16),
                     Text(
                       "Learn from anything and anywhere",
                       style: GoogleFonts.kanit(
-                        fontSize: 25,
+                        fontSize: 22,
                         color: Colors.white,
                       ),
                       textAlign: TextAlign.center,

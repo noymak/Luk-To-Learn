@@ -102,7 +102,7 @@ class _OrderHistoryState extends State<OrderHistory> {
 Container orderhis(Size size) {
   return Container(
     width: size.width,
-    height: 110,
+    height: 120,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18), color: Colors.grey[300]),
     child: Column(
