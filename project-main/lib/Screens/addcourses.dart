@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
+import '../model/courses.dart';
+
 class AddCourses extends StatefulWidget {
   const AddCourses({Key? key}) : super(key: key);
 
@@ -150,23 +152,7 @@ class _AddCoursesState extends State<AddCourses> {
                         SizedBox(
                           height: 20,
                         ),
-                        cartlistbuy(size: size),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        cartlistbuy(size: size),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        cartlistbuy(size: size),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        cartlistbuy(size: size),
-                        // SizedBox(
-                        //   height: 15,
-                        // ),
-                        // coursebox(size),
+                        ...List.generate(coursesInfo.length, (index) => cartlistbuy(size: size, linkImage: coursesInfo[index].image!, nameCourse: coursesInfo[index].nameCourse!, level: coursesInfo[index].level!, name: coursesInfo[index].name!, price: coursesInfo[index].price! , rate: coursesInfo[index].rate!, detail: '', ),),
                       ],
                     ),
                   ),

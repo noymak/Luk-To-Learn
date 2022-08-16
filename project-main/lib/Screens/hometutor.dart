@@ -1,22 +1,34 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:flutter/material.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:luk_to_learn/widgets/cartlistbuy.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import '../constants.dart';
+import '../model/courses.dart';
 
 class HomeTutor extends StatefulWidget {
   const HomeTutor({Key? key}) : super(key: key);
+  
 
   @override
   State<HomeTutor> createState() => _HomeTutorState();
 }
 
 class _HomeTutorState extends State<HomeTutor> {
+  // FirebaseFirestore firebaseStorage = FirebaseFirestore.instance;
+  // Future <void> downloanImage() async {
+  //   // firebaseStorage.ref().child('').getDownloadURL();
+  // }
+  
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    // print(coursesInfo[0].name);
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
@@ -206,7 +218,7 @@ class _HomeTutorState extends State<HomeTutor> {
                               ),
                             ),
                             Text(
-                              "Total 4",
+                              "Total ${coursesInfo.length}",
                               style: GoogleFonts.kanit(
                                 textStyle: TextStyle(
                                     fontSize: 26, fontWeight: FontWeight.bold),
@@ -217,23 +229,7 @@ class _HomeTutorState extends State<HomeTutor> {
                         SizedBox(
                           height: 20,
                         ),
-                        cartlistbuy(size: size),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        cartlistbuy(size: size),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        cartlistbuy(size: size),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        cartlistbuy(size: size),
-                        // SizedBox(
-                        //   height: 15,
-                        // ),
-                        // cartlistbuy(size: size),
+                        ...List.generate(coursesInfo.length, (index) => cartlistbuy(size: size, linkImage: coursesInfo[index].image!, nameCourse: coursesInfo[index].nameCourse!, level: coursesInfo[index].level!, name: coursesInfo[index].name!, price: coursesInfo[index].price! , rate: coursesInfo[index].rate!, detail: coursesInfo[index].detail!, ),),
                       ],
                     ),
                   ),

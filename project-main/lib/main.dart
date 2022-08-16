@@ -9,6 +9,8 @@ import 'package:luk_to_learn/Screens/chatroom.dart';
 import 'package:luk_to_learn/Screens/chatroomtutor.dart';
 import 'package:luk_to_learn/Screens/courses.dart';
 import 'package:luk_to_learn/Screens/addcourses.dart';
+import 'package:luk_to_learn/Screens/courses_screen/coursesdetail.dart';
+
 import 'package:luk_to_learn/Screens/coursesvideo.dart';
 import 'package:luk_to_learn/Screens/editprofile.dart';
 import 'package:luk_to_learn/Screens/editprofiletutor.dart';
@@ -68,11 +70,10 @@ class MyApp extends StatelessWidget {
         '/paymentselect': ((context) => PaymentSelect()),
         '/paymentqr': ((context) => PaymentQR()),
         '/paymentvisa': ((context) => PaymentVisa()),
-        '/coursesvideo': ((context) => CoursesVideo(
-              title: '',
-            )),
+        '/coursesvideo': ((context) => CoursesVideo(title: '')),
         '/chatroomtutor': ((context) => ChatRoomTutor()),
         '/chatroom': ((context) => ChatRoom()),
+        '/coursesdetails': ((context) => CoursesDetails()),
       },
     );
   }

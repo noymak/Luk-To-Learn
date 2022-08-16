@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/Screens/editprofiletutor.dart';
 import 'package:luk_to_learn/widgets/cartlist.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
+
+import '../model/courses.dart';
+
+
+
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -110,7 +116,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       ],
                     ),
-                    cartlistbuy(size: size),
+                    ...List.generate(coursesBox.length, (index) => cartlistbuy(size: size, linkImage: coursesBox[index].image!, nameCourse: coursesBox[index].nameCourse!, level: coursesBox[index].level!, name: coursesBox[index].name!, price: coursesBox[index].price! , rate: coursesBox[index].rate!, detail: '', ),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
