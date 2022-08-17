@@ -174,22 +174,27 @@ class _AddCoursesState extends State<AddCourses> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: 260,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: kPrimaryColor1,
-                        ),
-                        child: Center(
-                            child: Text(
-                          'Add Courses',
-                          style: GoogleFonts.kanit(
-                            fontSize: 20,
-                            color: kPrimaryLightColor,
-                            fontWeight: FontWeight.bold,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/checkinfocourse');
+                        },
+                        child: Container(
+                          width: 260,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: kPrimaryColor1,
                           ),
-                        )),
+                          child: Center(
+                              child: Text(
+                            'Add Courses',
+                            style: GoogleFonts.kanit(
+                              fontSize: 20,
+                              color: kPrimaryLightColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
+                        ),
                       ),
                     ],
                   ),

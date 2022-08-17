@@ -7,6 +7,7 @@ import 'package:luk_to_learn/Screens/cart.dart';
 import 'package:luk_to_learn/Screens/changepassword.dart';
 import 'package:luk_to_learn/Screens/chatroom.dart';
 import 'package:luk_to_learn/Screens/chatroomtutor.dart';
+import 'package:luk_to_learn/Screens/checkinfocourse.dart';
 import 'package:luk_to_learn/Screens/courses.dart';
 import 'package:luk_to_learn/Screens/addcourses.dart';
 import 'package:luk_to_learn/Screens/courses_screen/coursesdetail.dart';
@@ -16,6 +17,7 @@ import 'package:luk_to_learn/Screens/editprofile.dart';
 import 'package:luk_to_learn/Screens/editprofiletutor.dart';
 import 'package:luk_to_learn/Screens/forgotpass.dart';
 import 'package:luk_to_learn/Screens/forgotpassOTP.dart';
+import 'package:luk_to_learn/Screens/infocourse.dart';
 import 'package:luk_to_learn/Screens/orderhis.dart';
 import 'package:luk_to_learn/Screens/paymentqr.dart';
 import 'package:luk_to_learn/Screens/paymentselect.dart';
@@ -74,6 +76,8 @@ class MyApp extends StatelessWidget {
         '/chatroomtutor': ((context) => ChatRoomTutor()),
         '/chatroom': ((context) => ChatRoom()),
         '/coursesdetails': ((context) => CoursesDetails()),
+        '/checkinfocourse': ((context) => CheckInfoCourse()),
+        '/infocourse': ((context) => InfoCourse()),
       },
     );
   }
