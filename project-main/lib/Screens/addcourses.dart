@@ -152,12 +152,24 @@ class _AddCoursesState extends State<AddCourses> {
                         SizedBox(
                           height: 20,
                         ),
-                        ...List.generate(coursesInfo.length, (index) => cartlistbuy(size: size, linkImage: coursesInfo[index].image!, nameCourse: coursesInfo[index].nameCourse!, level: coursesInfo[index].level!, name: coursesInfo[index].name!, price: coursesInfo[index].price! , rate: coursesInfo[index].rate!, detail: '', ),),
+                        ...List.generate(
+                          coursesInfo.length,
+                          (index) => cartlistbuy(
+                            size: size,
+                            linkImage: coursesInfo[index].image!,
+                            nameCourse: coursesInfo[index].nameCourse!,
+                            level: coursesInfo[index].level!,
+                            name: coursesInfo[index].name!,
+                            price: coursesInfo[index].price!,
+                            rate: coursesInfo[index].rate!,
+                            detail: coursesInfo[index].detail!,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

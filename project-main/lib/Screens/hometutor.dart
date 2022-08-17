@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
@@ -13,7 +11,6 @@ import '../model/courses.dart';
 
 class HomeTutor extends StatefulWidget {
   const HomeTutor({Key? key}) : super(key: key);
-  
 
   @override
   State<HomeTutor> createState() => _HomeTutorState();
@@ -24,7 +21,7 @@ class _HomeTutorState extends State<HomeTutor> {
   // Future <void> downloanImage() async {
   //   // firebaseStorage.ref().child('').getDownloadURL();
   // }
-  
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -229,7 +226,19 @@ class _HomeTutorState extends State<HomeTutor> {
                         SizedBox(
                           height: 20,
                         ),
-                        ...List.generate(coursesInfo.length, (index) => cartlistbuy(size: size, linkImage: coursesInfo[index].image!, nameCourse: coursesInfo[index].nameCourse!, level: coursesInfo[index].level!, name: coursesInfo[index].name!, price: coursesInfo[index].price! , rate: coursesInfo[index].rate!, detail: coursesInfo[index].detail!, ),),
+                        ...List.generate(
+                          coursesInfo.length,
+                          (index) => cartlistbuy(
+                            size: size,
+                            linkImage: coursesInfo[index].image!,
+                            nameCourse: coursesInfo[index].nameCourse!,
+                            level: coursesInfo[index].level!,
+                            name: coursesInfo[index].name!,
+                            price: coursesInfo[index].price!,
+                            rate: coursesInfo[index].rate!,
+                            detail: coursesInfo[index].detail!,
+                          ),
+                        ),
                       ],
                     ),
                   ),

@@ -7,9 +7,6 @@ import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
 import '../model/courses.dart';
 
-
-
-
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
 
@@ -116,7 +113,19 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       ],
                     ),
-                    ...List.generate(coursesBox.length, (index) => cartlistbuy(size: size, linkImage: coursesBox[index].image!, nameCourse: coursesBox[index].nameCourse!, level: coursesBox[index].level!, name: coursesBox[index].name!, price: coursesBox[index].price! , rate: coursesBox[index].rate!, detail: '', ),),
+                    ...List.generate(
+                      coursesBox.length,
+                      (index) => cartlistbuy(
+                        size: size,
+                        linkImage: coursesBox[index].image!,
+                        nameCourse: coursesBox[index].nameCourse!,
+                        level: coursesBox[index].level!,
+                        name: coursesBox[index].name!,
+                        price: coursesBox[index].price!,
+                        rate: coursesBox[index].rate!,
+                        detail: coursesBox[index].detail!,
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
