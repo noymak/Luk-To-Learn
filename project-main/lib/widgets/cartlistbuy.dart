@@ -7,7 +7,7 @@ import 'package:luk_to_learn/constants.dart';
 class cartlistbuy extends StatelessWidget {
   const cartlistbuy(
       {Key? key,
-      required this.size,
+      
       required this.linkImage,
       required this.nameCourse,
       required this.price,
@@ -19,7 +19,7 @@ class cartlistbuy extends StatelessWidget {
       })
       : super(key: key);
 
-  final Size size;
+  
   final String? linkImage;
   final String? nameCourse;
   final int? price;
@@ -32,6 +32,7 @@ class cartlistbuy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(profileTutors);
+    var size = MediaQuery.of(context).size;
     return Column(
       children: [
         GestureDetector(

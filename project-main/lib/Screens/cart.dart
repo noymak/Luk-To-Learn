@@ -116,7 +116,7 @@ class _CartScreenState extends State<CartScreen> {
                     ...List.generate(
                       coursesBox.length,
                       (index) => cartlistbuy(
-                        size: size,
+                        
                         linkImage: coursesBox[index].image!,
                         nameCourse: coursesBox[index].nameCourse!,
                         level: coursesBox[index].level!,

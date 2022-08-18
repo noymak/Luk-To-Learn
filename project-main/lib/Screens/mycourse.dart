@@ -86,7 +86,7 @@ class _MycoursesState extends State<Mycourses> {
                               ...List.generate(
                           coursesInfo.length,
                           (index) => cartlistbuy(
-                            size: size,
+                            
                             linkImage: coursesInfo[index].image!,
                             nameCourse: coursesInfo[index].nameCourse!,
                             level: coursesInfo[index].level!,
