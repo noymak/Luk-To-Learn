@@ -14,7 +14,9 @@ class cartlistbuy extends StatelessWidget {
       required this.rate,
       required this.name,
       required this.level,
-      required this.detail})
+      required this.detail,
+      required this.profileTutors,
+      })
       : super(key: key);
 
   final Size size;
@@ -25,19 +27,26 @@ class cartlistbuy extends StatelessWidget {
   final String? name;
   final String? level;
   final String? detail;
+  final String? profileTutors;
 
   @override
   Widget build(BuildContext context) {
-    print(detail);
+    print(profileTutors);
     return Column(
       children: [
         GestureDetector(
           onTap: (() {
-            Get.toNamed(('/coursesdetails'), arguments: nameCourse);
+            Get.toNamed(('/coursesdetails'), arguments: [
+              name,
+              linkImage,
+              detail,
+              profileTutors,
+            ]
+            );
           }),
           child: Container(
             width: size.width,
-            height: 150,
+            height: 135,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
               color: Colors.white,
@@ -78,7 +87,7 @@ class cartlistbuy extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 6,
+                        height: 4,
                       ),
                       Text(
                         '${price} BTH',

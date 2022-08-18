@@ -27,7 +27,7 @@ class _HomeTutorState extends State<HomeTutor> {
     var size = MediaQuery.of(context).size;
     // print(coursesInfo[0].name);
     return Scaffold(
-      backgroundColor: Color(0xff6360FF),
+      backgroundColor: kPrimaryColors,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -224,7 +224,7 @@ class _HomeTutorState extends State<HomeTutor> {
                           ],
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         ...List.generate(
                           coursesInfo.length,
@@ -237,6 +237,7 @@ class _HomeTutorState extends State<HomeTutor> {
                             price: coursesInfo[index].price!,
                             rate: coursesInfo[index].rate!,
                             detail: coursesInfo[index].detail!,
+                            profileTutors: coursesInfo[index].profileTutors!,
                           ),
                         ),
                       ],

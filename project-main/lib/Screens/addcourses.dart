@@ -163,6 +163,8 @@ class _AddCoursesState extends State<AddCourses> {
                             price: coursesInfo[index].price!,
                             rate: coursesInfo[index].rate!,
                             detail: coursesInfo[index].detail!,
+                            profileTutors: coursesInfo[index].profileTutors!,
+                            
                           ),
                         ),
                       ],

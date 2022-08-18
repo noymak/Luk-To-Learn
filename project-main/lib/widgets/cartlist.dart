@@ -24,7 +24,7 @@ class cartlist extends StatelessWidget {
                 color: Colors.white,
               ),
               child: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -37,7 +37,7 @@ class cartlist extends StatelessWidget {
                           style: GoogleFonts.kanit(fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
-                          height: 4,
+                          height: 2,
                         ),
                         Text(
                           "850.00 BTH",
@@ -51,6 +51,7 @@ class cartlist extends StatelessWidget {
                             Icon(
                               Icons.star,
                               color: Colors.amber,
+                              size: 10,
                             ),
                             Text(
                               "4.5",

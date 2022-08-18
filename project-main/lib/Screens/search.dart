@@ -3,6 +3,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/model/courses.dart';
+import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
 class ScearchScreen extends StatefulWidget {
   const ScearchScreen({Key? key}) : super(key: key);
@@ -143,11 +145,20 @@ class _ScearchScreenState extends State<ScearchScreen> {
                               SizedBox(
                                 height: 20,
                               ),
-                              coursebox(size),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              coursebox(size),
+                              ...List.generate(
+                          coursesBox.length,
+                          (index) => cartlistbuy(
+                            size: size,
+                            linkImage: coursesBox[index].image!,
+                            nameCourse: coursesBox[index].nameCourse!,
+                            level: coursesBox[index].level!,
+                            name: coursesBox[index].name!,
+                            price: coursesBox[index].price!,
+                            rate: coursesBox[index].rate!,
+                            detail: coursesBox[index].detail!,
+                            profileTutors: coursesBox[index].profileTutors!,
+                          ),
+                        ),
                             ],
                           ),
                         ),
@@ -156,82 +167,6 @@ class _ScearchScreenState extends State<ScearchScreen> {
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Container coursebox(Size size) {
-    return Container(
-      width: size.width,
-      height: 150,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        color: Colors.white,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  color: Color(0xffFF8181)),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Declarative interfaces for any Apple \nDevices",
-                  style: GoogleFonts.kanit(fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  "850.00 BTH",
-                  style: GoogleFonts.kanit(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    Text(
-                      "4.5",
-                      style: GoogleFonts.kanit(fontWeight: FontWeight.bold),
-                    ),
-                    Icon(
-                      Icons.circle,
-                      color: Colors.amber,
-                      size: 10,
-                    ),
-                    Text(
-                      "By SomChai Wong",
-                      style: GoogleFonts.kanit(color: Colors.grey),
-                    ),
-                    Icon(
-                      Icons.circle,
-                      color: Colors.amber,
-                      size: 10,
-                    ),
-                    Text(
-                      "All Level",
-                      style: GoogleFonts.kanit(color: Colors.grey),
-                    ),
-                  ],
-                ),
-              ],
             ),
           ],
         ),

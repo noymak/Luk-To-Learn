@@ -55,7 +55,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
             Container(
               width: size.width,
-              height: size.height,
+              height: size.height*2,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
@@ -124,6 +124,7 @@ class _CartScreenState extends State<CartScreen> {
                         price: coursesBox[index].price!,
                         rate: coursesBox[index].rate!,
                         detail: coursesBox[index].detail!,
+                        profileTutors: coursesBox[index].profileTutors,
                       ),
                     ),
                     Row(
