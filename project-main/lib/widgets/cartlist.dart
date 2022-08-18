@@ -80,12 +80,14 @@ class cartlist extends StatelessWidget {
                       ],
                     ),
                     Container(
-                      width: 75,
-                      height: 75,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(18),
-                        color: Color(0xffFF8181),
-                      ),
+                      width: 90,
+                      height: 90,
+                      clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18),
+                      
+                    ),
+                      child: Image.network('https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/eng1.jpg?alt=media&token=9a20f909-a922-40ac-8ec8-ed8ce6adb0c5',fit: BoxFit.cover,),
                     ),
                   ],
                 ),

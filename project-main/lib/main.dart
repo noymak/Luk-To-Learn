@@ -29,6 +29,7 @@ import 'package:luk_to_learn/route.dart';
 import 'package:luk_to_learn/Screens/welcome_screen.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/routetutor.dart';
+import 'package:splash_screen_view/SplashScreenView.dart';
 
 import 'Screens/Auth/auth.dart';
 import 'Screens/hometutor.dart';
@@ -46,13 +47,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // theme: ThemeData(
-      //   textTheme: GoogleFonts.acmeTextTheme(
-      //     Theme.of(context).textTheme,
-      //   ),
-      // ),
+      home: SplashScreenView(
+      navigateRoute: AuthScreen(),
+      duration: 3000,
+      imageSize: 130,
+      imageSrc: "https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/logo.png?alt=media&token=f9046186-043d-40eb-862f-85bd3bee8626",
+      text: "Luk to Learn",
+      textType: TextType.TyperAnimatedText,
+      textStyle: TextStyle(
+        fontSize: 30.0,
+      ),
+      backgroundColor: Colors.white,
+    ),
       debugShowCheckedModeBanner: false,
-      home: AuthScreen(),
+      
       routes: {
         '/register': ((context) => RegisterScreen()),
         '/route': ((context) => RouteScreen()),
