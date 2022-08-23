@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../constants.dart';
-import '../model/courses.dart';
+import '../../constants.dart';
+import '../../model/courses.dart';
 
 class HomeTutor extends StatefulWidget {
   const HomeTutor({Key? key}) : super(key: key);
@@ -229,7 +229,7 @@ class _HomeTutorState extends State<HomeTutor> {
                         ...List.generate(
                           coursesInfo.length,
                           (index) => cartlistbuy(
-                            size: size,
+                            
                             linkImage: coursesInfo[index].image!,
                             nameCourse: coursesInfo[index].nameCourse!,
                             level: coursesInfo[index].level!,

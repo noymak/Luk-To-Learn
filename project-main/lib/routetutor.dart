@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:luk_to_learn/Screens/addcourses.dart';
-import 'package:luk_to_learn/Screens/createchatroom.dart';
-import 'package:luk_to_learn/Screens/hometutor.dart';
-import 'package:luk_to_learn/Screens/profiletutor.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/addcourses.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/createchatroom.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/hometutor.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/profiletutor.dart';
 
 const TextStyle _textStyle = TextStyle(
   fontSize: 40,

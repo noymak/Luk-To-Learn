@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luk_to_learn/Screens/editprofiletutor.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/editprofiletutor.dart';
 import 'package:luk_to_learn/widgets/cartlist.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
-import '../model/courses.dart';
+import '../../model/courses.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);

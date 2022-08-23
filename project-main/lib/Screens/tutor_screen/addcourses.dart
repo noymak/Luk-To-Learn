@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
-import '../model/courses.dart';
+import '../../model/courses.dart';
 
 class AddCourses extends StatefulWidget {
   const AddCourses({Key? key}) : super(key: key);
@@ -178,7 +178,7 @@ class _AddCoursesState extends State<AddCourses> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/checkinfocourse');
+                          Navigator.pushNamed(context, '/addedcourses');
                         },
                         child: Container(
                           width: 260,

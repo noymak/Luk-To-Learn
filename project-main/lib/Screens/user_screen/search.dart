@@ -148,7 +148,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                               ...List.generate(
                           coursesBox.length,
                           (index) => cartlistbuy(
-                            size: size,
+                            
                             linkImage: coursesBox[index].image!,
                             nameCourse: coursesBox[index].nameCourse!,
                             level: coursesBox[index].level!,

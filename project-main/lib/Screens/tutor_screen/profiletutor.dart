@@ -4,7 +4,7 @@ import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 import 'package:luk_to_learn/widgets/coursebox.dart';
 
-import '../model/courses.dart';
+import '../../model/courses.dart';
 
 class ProfileTutor extends StatefulWidget {
   const ProfileTutor({Key? key}) : super(key: key);

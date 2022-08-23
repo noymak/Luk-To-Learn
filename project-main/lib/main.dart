@@ -2,29 +2,30 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luk_to_learn/Screens/about.dart';
-import 'package:luk_to_learn/Screens/cart.dart';
-import 'package:luk_to_learn/Screens/changepassword.dart';
-import 'package:luk_to_learn/Screens/chatroom.dart';
-import 'package:luk_to_learn/Screens/chatroomtutor.dart';
-import 'package:luk_to_learn/Screens/checkinfocourse.dart';
-import 'package:luk_to_learn/Screens/courses.dart';
-import 'package:luk_to_learn/Screens/addcourses.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/addedcourses.dart';
+import 'package:luk_to_learn/Screens/user_screen/about.dart';
+import 'package:luk_to_learn/Screens/user_screen/cart.dart';
+import 'package:luk_to_learn/Screens/user_screen/changepassword.dart';
+import 'package:luk_to_learn/Screens/user_screen/chatroom.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/chatroomtutor.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/checkinfocourse.dart';
+import 'package:luk_to_learn/Screens/user_screen/courses.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/addcourses.dart';
 import 'package:luk_to_learn/Screens/courses_screen/coursesdetail.dart';
 
-import 'package:luk_to_learn/Screens/coursesvideo.dart';
-import 'package:luk_to_learn/Screens/editprofile.dart';
-import 'package:luk_to_learn/Screens/editprofiletutor.dart';
-import 'package:luk_to_learn/Screens/forgotpass.dart';
-import 'package:luk_to_learn/Screens/forgotpassOTP.dart';
-import 'package:luk_to_learn/Screens/infocourse.dart';
-import 'package:luk_to_learn/Screens/orderhis.dart';
-import 'package:luk_to_learn/Screens/paymentqr.dart';
-import 'package:luk_to_learn/Screens/paymentselect.dart';
-import 'package:luk_to_learn/Screens/paymentvisa.dart';
-import 'package:luk_to_learn/Screens/profile.dart';
-import 'package:luk_to_learn/Screens/profiletutor.dart';
-import 'package:luk_to_learn/Screens/question.dart';
+import 'package:luk_to_learn/Screens/user_screen/coursesvideo.dart';
+import 'package:luk_to_learn/Screens/user_screen/editprofile.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/editprofiletutor.dart';
+import 'package:luk_to_learn/Screens/user_screen/forgotpass.dart';
+import 'package:luk_to_learn/Screens/user_screen/forgotpassOTP.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/infocourse.dart';
+import 'package:luk_to_learn/Screens/user_screen/orderhis.dart';
+import 'package:luk_to_learn/Screens/user_screen/paymentqr.dart';
+import 'package:luk_to_learn/Screens/user_screen/paymentselect.dart';
+import 'package:luk_to_learn/Screens/user_screen/paymentvisa.dart';
+import 'package:luk_to_learn/Screens/user_screen/profile.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/profiletutor.dart';
+import 'package:luk_to_learn/Screens/user_screen/question.dart';
 import 'package:luk_to_learn/route.dart';
 import 'package:luk_to_learn/Screens/welcome_screen.dart';
 import 'package:luk_to_learn/constants.dart';
@@ -32,8 +33,8 @@ import 'package:luk_to_learn/routetutor.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
 import 'Screens/Auth/auth.dart';
-import 'Screens/hometutor.dart';
-import 'Screens/register.dart';
+import 'Screens/tutor_screen/hometutor.dart';
+import 'Screens/user_screen/register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -86,6 +87,7 @@ class MyApp extends StatelessWidget {
         '/coursesdetails': ((context) => CoursesDetails()),
         '/checkinfocourse': ((context) => CheckInfoCourse()),
         '/infocourse': ((context) => InfoCourse()),
+        '/addedcourses': ((context) => AddedCourses()),
       },
     );
   }
