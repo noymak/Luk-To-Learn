@@ -6,13 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/controllers/auth_controller.dart';
 
 class WelcomeScreen extends StatelessWidget {
-
   var _controller = Get.put(AuthController());
   final formKey = GlobalKey<FormState>();
-  
 
-  void summit(){
-    if (!formKey.currentState!.validate()){
+
+  void summit() {
+    if (!formKey.currentState!.validate()) {
       return;
     }
     _controller.signIn();
@@ -32,7 +31,7 @@ class WelcomeScreen extends StatelessWidget {
             children: [
               Container(
                 height: size.height / 3,
-                width: size.width ,
+                width: size.width,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -83,12 +82,11 @@ class WelcomeScreen extends StatelessWidget {
                         child: TextFormField(
                           key: ValueKey('email'),
                           validator: (value) {
-                            if (value!.isEmpty || !value.contains('@')){
+                            if (value!.isEmpty || !value.contains('@')) {
                               return "กรุณากรอกข้อมูลให้ถูกต้อง";
                             }
                             return null;
                           },
-                          
                           keyboardType: TextInputType.emailAddress,
                           controller: _controller.emailController,
                           decoration: InputDecoration(
@@ -107,17 +105,17 @@ class WelcomeScreen extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10)),
                         child: Column(
-                          
                           children: [
                             TextFormField(
+                            
                               key: ValueKey('email'),
-                          validator: (value) {
-                            if (value!.isEmpty || value.length<6){
-                              return "กรุณากรอกพาสเวิร์ดให้ถูกต้อง";
-                            }
-                            return null;
-                          },
-                          
+                              validator: (value) {
+                                if (value!.isEmpty || value.length < 6) {
+                                  return "กรุณากรอกพาสเวิร์ดให้ถูกต้อง";
+                                }
+                                return null;
+                              },
+                              
                               keyboardType: TextInputType.visiblePassword,
                               controller: _controller.passwordController,
                               decoration: InputDecoration(
@@ -147,12 +145,13 @@ class WelcomeScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Sign In",
-                              style: GoogleFonts.kanit(fontSize: 17, color: Colors.white),
+                              style: GoogleFonts.kanit(
+                                  fontSize: 17, color: Colors.white),
                             ),
                           ),
                         ),
                       ),
-                      
+
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, '/register');
@@ -166,7 +165,8 @@ class WelcomeScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Register",
-                              style: GoogleFonts.kanit(fontSize: 17, color: Colors.white),
+                              style: GoogleFonts.kanit(
+                                  fontSize: 17, color: Colors.white),
                             ),
                           ),
                         ),
@@ -184,7 +184,8 @@ class WelcomeScreen extends StatelessWidget {
                           child: Center(
                             child: Text(
                               "Register Tutor",
-                              style: GoogleFonts.kanit(fontSize: 17, color: Colors.white),
+                              style: GoogleFonts.kanit(
+                                  fontSize: 17, color: Colors.white),
                             ),
                           ),
                         ),

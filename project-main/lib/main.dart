@@ -48,20 +48,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: SplashScreenView(
-      navigateRoute: AuthScreen(),
-      duration: 3000,
-      imageSize: 130,
-      imageSrc: "https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/logo.png?alt=media&token=f9046186-043d-40eb-862f-85bd3bee8626",
-      text: "Luk to Learn",
-      textType: TextType.TyperAnimatedText,
-      textStyle: TextStyle(
-        fontSize: 30.0,
+      theme: ThemeData(
+        dialogTheme: const DialogTheme(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+        ),
       ),
-      backgroundColor: Colors.white,
-    ),
+      home: SplashScreenView(
+        navigateRoute: AuthScreen(),
+        duration: 3000,
+        imageSize: 130,
+        imageSrc:
+            "https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/logo.png?alt=media&token=f9046186-043d-40eb-862f-85bd3bee8626",
+        text: "Luk to Learn",
+        textType: TextType.TyperAnimatedText,
+        textStyle: TextStyle(
+          fontSize: 30.0,
+        ),
+        backgroundColor: Colors.white,
+      ),
       debugShowCheckedModeBanner: false,
-      
       routes: {
         '/register': ((context) => RegisterScreen()),
         '/route': ((context) => RouteScreen()),
