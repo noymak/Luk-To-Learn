@@ -28,21 +28,20 @@ class _AddedCoursesState extends State<AddedCourses> {
               width: size.width,
               child: Stack(
                 children: [
-                  
                   Container(
                     width: size.width,
                     decoration: BoxDecoration(
                       color: kPrimaryColor1,
                       image: DecorationImage(
-                        image:fileBackgound != null
-                        ? Image.file(
-                            File(fileBackgound!.path.toString()),
-                            fit: BoxFit.cover,
-                          ).image
-                        : Image.network(
-                            'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/eng1.jpg?alt=media&token=9a20f909-a922-40ac-8ec8-ed8ce6adb0c5',
-                            fit: BoxFit.cover,
-                          ).image,
+                        image: fileBackgound != null
+                            ? Image.file(
+                                File(fileBackgound!.path.toString()),
+                                fit: BoxFit.cover,
+                              ).image
+                            : Image.network(
+                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/eng1.jpg?alt=media&token=9a20f909-a922-40ac-8ec8-ed8ce6adb0c5',
+                                fit: BoxFit.cover,
+                              ).image,
                       ),
                     ),
                   ),
@@ -52,7 +51,78 @@ class _AddedCoursesState extends State<AddedCourses> {
                       alignment: Alignment.bottomRight,
                       child: GestureDetector(
                         onTap: () {
-                          chooseBackgound(ImageSource.gallery);
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text(
+                                    'ChooseOption',
+                                    style: GoogleFonts.kanit(
+                                      textStyle: TextStyle(
+                                          fontSize: 26,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  content: SingleChildScrollView(
+                                    child: ListBody(children: [
+                                      InkWell(
+                                        onTap: () {
+                                          chooseBackgound(ImageSource.gallery);
+                                        },
+                                        splashColor: kPrimaryColor1,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Icon(
+                                                Icons.image,
+                                                color: kPrimaryColor1,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Gallery',
+                                              style: GoogleFonts.kanit(
+                                                textStyle: TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          fileBackgound = null;
+                                        });
+                                      },
+                                      splashColor: kPrimaryColor1,
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Icon(
+                                              Icons.remove_circle,
+                                              color: kPrimaryColor1,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Remove',
+                                            style: GoogleFonts.kanit(
+                                              textStyle: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    ]),
+                                  ),
+                                );
+                              });
                         },
                         child: Icon(
                           Icons.add_a_photo,
