@@ -29,8 +29,10 @@ class AuthController extends GetxController {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim());
-      addDetail(emailController.text.trim(), firstname.text.trim(),
-          lastname.text.trim(), phone.text.trim());
+      addDetail(emailController.text.trim(),
+          firstname.text.trim(),
+          lastname.text.trim(), 
+          phone.text.trim());
 
           
     } catch (e) {

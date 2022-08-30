@@ -1,10 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/controllers/auth_controller.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+
+  const RegisterScreen({
+    Key? key,
+
+    }) : super(key: key);
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -13,6 +18,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  
 
   @override
   void initState() {
@@ -22,9 +28,13 @@ class _RegisterScreenState extends State<RegisterScreen>
 
   @override
   void dispose() {
+  
     super.dispose();
     _controller.dispose();
   }
+
+  
+
 
   final formKey = GlobalKey<FormState>();
   var authController = Get.put(AuthController());
@@ -99,11 +109,11 @@ class _RegisterScreenState extends State<RegisterScreen>
                         SizedBox(
                           height: 20,
                         ),
-                        registerForm("Firstname", authController.firstname),
+                        registerForm("Firstname", authController.firstname,false),
                         SizedBox(
                           height: 20,
                         ),
-                        registerForm("Lastname", authController.lastname),
+                        registerForm("Lastname", authController.lastname,false),
                         SizedBox(
                           height: 20,
                         ),
@@ -113,17 +123,17 @@ class _RegisterScreenState extends State<RegisterScreen>
                         SizedBox(
                           height: 20,
                         ),
-                        registerForm("Email", authController.emailController),
+                        registerForm("Email", authController.emailController,false),
                         SizedBox(
                           height: 20,
                         ),
                         registerForm(
-                            "Password", authController.passwordController),
+                            "Password", authController.passwordController,true),
                         SizedBox(
                           height: 20,
                         ),
                         registerForm(
-                            "Confirm Password", authController.confirmpassword),
+                            "Confirm Password", authController.confirmpassword,true),
                         SizedBox(
                           height: 20,
                         ),
@@ -133,7 +143,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                         SizedBox(
                           height: 20,
                         ),
-                        registerForm("+66", authController.phone),
+                        registerForm("+66", authController.phone,false),
                         SizedBox(
                           height: 30,
                         ),
@@ -182,7 +192,7 @@ class _RegisterScreenState extends State<RegisterScreen>
         ));
   }
 
-  Container registerForm(String text, controller) {
+  Container registerForm(String text, controller, bool obscureText) {
     return Container(
       decoration: BoxDecoration(
           // border: Border.all(),
@@ -209,6 +219,7 @@ class _RegisterScreenState extends State<RegisterScreen>
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: TextFormField(
           controller: controller,
+          obscureText: obscureText,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: text,

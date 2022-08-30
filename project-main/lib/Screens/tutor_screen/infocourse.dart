@@ -21,7 +21,7 @@ class _InfoCourseState extends State<InfoCourse> {
           height: size.height,
           margin: EdgeInsets.only(top: 80),
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 230, 230, 236),
+            color: kPrimaryLightColor,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30),
               topRight: Radius.circular(30),

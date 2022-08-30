@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/controllers/courses_controller.dart';
 
 class AddedCourses extends StatefulWidget {
   const AddedCourses({Key? key}) : super(key: key);
@@ -18,9 +20,11 @@ class _AddedCoursesState extends State<AddedCourses> {
 
   @override
   Widget build(BuildContext context) {
+    var coursesController = Get.put(CoursesController());
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
+        
         child: Column(
           children: [
             Container(
@@ -39,7 +43,7 @@ class _AddedCoursesState extends State<AddedCourses> {
                                 fit: BoxFit.cover,
                               ).image
                             : Image.network(
-                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/eng1.jpg?alt=media&token=9a20f909-a922-40ac-8ec8-ed8ce6adb0c5',
+                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/thai.jpg?alt=media&token=b2029a01-0363-422c-8140-616383e4c558',
                                 fit: BoxFit.cover,
                               ).image,
                       ),
@@ -93,32 +97,34 @@ class _AddedCoursesState extends State<AddedCourses> {
                                         ),
                                       ),
                                       InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          fileBackgound = null;
-                                        });
-                                      },
-                                      splashColor: kPrimaryColor1,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Icon(
-                                              Icons.remove_circle,
-                                              color: kPrimaryColor1,
+                                        onTap: () {
+                                          setState(() {
+                                            fileBackgound = null;
+                                          });
+                                        },
+                                        splashColor: kPrimaryColor1,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Icon(
+                                                Icons.remove_circle,
+                                                color: kPrimaryColor1,
+                                              ),
                                             ),
-                                          ),
-                                          Text(
-                                            'Remove',
-                                            style: GoogleFonts.kanit(
-                                              textStyle: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
+                                            Text(
+                                              'Remove',
+                                              style: GoogleFonts.kanit(
+                                                textStyle: TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
                                     ]),
                                   ),
                                 );
@@ -271,87 +277,73 @@ class _AddedCoursesState extends State<AddedCourses> {
             SizedBox(
               height: 10,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'ชื่อผู้สอน',
-                  style: GoogleFonts.kanit(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Container(
-                  width: 300,
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.text,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'ชื่อผู้สอน',
+                    style: GoogleFonts.kanit(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  'ชื่อคอร์ส',
-                  style: GoogleFonts.kanit(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Container(
-                  width: 300,
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.text,
+                  addedForm(
+                      'ชื่อผู้สอน', coursesController.tutornameController),
+                  SizedBox(
+                    height: 6,
                   ),
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  'ราคา',
-                  style: GoogleFonts.kanit(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Container(
-                  width: 300,
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.number,
+                  Text(
+                    'ชื่อคอร์ส',
+                    style: GoogleFonts.kanit(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  'รายละเอียดคอร์ส',
-                  style: GoogleFonts.kanit(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Container(
-                  width: 300,
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.text,
+                  addedForm(
+                      'ชื่อคอร์ส', coursesController.coursenameController),
+                  SizedBox(
+                    height: 6,
                   ),
-                ),
-              ],
+                  
+                  Text(
+                    'E-mail',
+                    style: GoogleFonts.kanit(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  addedForm('E-mail', coursesController.emailController),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    'ราคา',
+                    style: GoogleFonts.kanit(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  addedForm('ราคา', coursesController.priceController),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    'รายละเอียดคอร์ส',
+                    style: GoogleFonts.kanit(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  addedForm('รายละเอียดคอร์ส',
+                      coursesController.detailcourseController),
+                ],
+              ),
             ),
             SizedBox(height: 15),
             GestureDetector(
               onTap: () {
+                coursesController.addDetail(
+                    coursesController.tutornameController.text,
+                    coursesController.coursenameController.text,
+                    coursesController.priceController.text,
+                    coursesController.detailcourseController.text,
+                    context,
+                    coursesController.emailController.text);
                 Navigator.pushNamed(context, '/checkinfocourse');
               },
               child: Container(
@@ -372,6 +364,42 @@ class _AddedCoursesState extends State<AddedCourses> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Container addedForm(String text, TextEditingController controller) {
+    return Container(
+      decoration: BoxDecoration(
+          // border: Border.all(),
+          color: Colors.grey.shade50,
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade400,
+              offset: const Offset(
+                5.0,
+                5.0,
+              ),
+              blurRadius: 10.0,
+              spreadRadius: 2.0,
+            ), //BoxShadow
+            BoxShadow(
+              color: Colors.white,
+              offset: const Offset(0.0, 0.0),
+              blurRadius: 0.0,
+              spreadRadius: 0.0,
+            ), //BoxShadow
+          ]),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: text,
+          ),
         ),
       ),
     );
