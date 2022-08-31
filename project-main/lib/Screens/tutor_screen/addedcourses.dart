@@ -24,7 +24,6 @@ class _AddedCoursesState extends State<AddedCourses> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
-        
         child: Column(
           children: [
             Container(
@@ -302,7 +301,6 @@ class _AddedCoursesState extends State<AddedCourses> {
                   SizedBox(
                     height: 6,
                   ),
-                  
                   Text(
                     'E-mail',
                     style: GoogleFonts.kanit(

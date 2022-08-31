@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/auth_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -12,9 +16,26 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   var _controller = Get.put(AuthController());
+  
   @override
   Widget build(BuildContext context) {
+
     var size = MediaQuery.of(context).size;
+    File? file;
+
+    Future<Null> chooseImage(ImageSource source) async {
+    try {
+      var result = await ImagePicker().getImage(
+        source: source,
+        maxWidth: 800,
+        maxHeight: 800,
+      );
+      setState(() {
+        file = File(result!.path);
+      });
+    } catch (e) {}
+  }
+
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
@@ -46,16 +67,137 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                     ),
-                    SafeArea(
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        child: CircleAvatar(
-                            radius: 55,
-                            backgroundImage:
-                                AssetImage('assets/images/profile.jpg')),
+                    Stack(
+              children: [
+                Container(
+                  width: 120,
+                  height: 120,
+                  child: CircleAvatar(
+                    radius: 100,
+                    backgroundImage: file != null
+                        ? Image.file(
+                            File(file!.path.toString()),
+                            fit: BoxFit.cover,
+                          ).image
+                        : Image.asset('assets/images/profile.jpg').image,
+                  ),
+                ),
+                Positioned(
+                  left: 55,
+                  top: 65,
+                  child: RawMaterialButton(
+                    elevation: 10,
+                    child: CircleAvatar(
+                      radius: 20,
+                      child: Icon(
+                        Icons.add_a_photo,
+                        color: kPrimaryLightColor,
                       ),
                     ),
+                    padding: EdgeInsets.all(15),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                'ChooseOption',
+                                style: GoogleFonts.kanit(
+                                  textStyle: TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        chooseImage(ImageSource.camera);
+                                      },
+                                      splashColor: kPrimaryColor1,
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Icon(
+                                              Icons.camera,
+                                              color: kPrimaryColor1,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Camera',
+                                            style: GoogleFonts.kanit(
+                                              textStyle: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        chooseImage(ImageSource.gallery);
+                                      },
+                                      splashColor: kPrimaryColor1,
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Icon(
+                                              Icons.image,
+                                              color: kPrimaryColor1,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Gallery',
+                                            style: GoogleFonts.kanit(
+                                              textStyle: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          file = null;
+                                        });
+                                      },
+                                      splashColor: kPrimaryColor1,
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Icon(
+                                              Icons.remove_circle,
+                                              color: kPrimaryColor1,
+                                            ),
+                                          ),
+                                          Text(
+                                            'Remove',
+                                            style: GoogleFonts.kanit(
+                                              textStyle: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
+                    },
+                  ),
+                ),
+              ],
+            ),
                     SizedBox(
                       height: 10,
                     ),
