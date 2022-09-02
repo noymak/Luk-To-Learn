@@ -342,7 +342,7 @@ class _AddedCoursesState extends State<AddedCourses> {
                     coursesController.detailcourseController.text,
                     context,
                     coursesController.emailController.text);
-                Navigator.pushNamed(context, '/checkinfocourse');
+                
               },
               child: Container(
                 width: 200,

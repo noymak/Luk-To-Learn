@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/controllers/courses_controller.dart';
 
 class CheckInfoCourse extends StatefulWidget {
   const CheckInfoCourse({Key? key}) : super(key: key);
@@ -10,9 +12,14 @@ class CheckInfoCourse extends StatefulWidget {
 }
 
 class _CheckInfoCourseState extends State<CheckInfoCourse> {
+
+  var coursesController = Get.find<CoursesController>();
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: kPrimaryColors,
       body: SingleChildScrollView(
@@ -49,134 +56,139 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: GetBuilder(
+                      id: 'Getdetail',
+                      builder: (_) {
+                        return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Column(
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'นาย กิต หวังทอง',
-                                  style: GoogleFonts.kanit(
-                                    fontSize: 15,
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      coursesController.listCourses[0]['tutorname'],
+                                      style: GoogleFonts.kanit(
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                    Text(
+                                      'ครูสอน ภาษาอังกฤษ',
+                                      style: GoogleFonts.kanit(
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  'ครูสอน ภาษาอังกฤษ',
-                                  style: GoogleFonts.kanit(
-                                    fontSize: 15,
+                                Container(
+                                  width: 75,
+                                  height: 75,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(18),
+                                    color: kPrimaryColor1,
                                   ),
                                 ),
                               ],
                             ),
-                            Container(
-                              width: 75,
-                              height: 75,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                color: kPrimaryColor1,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'E-mail',
-                              style: GoogleFonts.kanit(
-                                fontSize: 18,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Text(
-                              'git@gmail.com',
-                              style: GoogleFonts.kanit(
-                                fontSize: 18,
-                              ),
-                            )
-                          ],
-                        ),
-                        Text(
-                          'ข้อมูลคอร์ส',
-                          style: GoogleFonts.kanit(
-                            fontSize: 18,
-                          ),
-                        ),
-                        Text(
-                          'Pack สอบติด สุดคุ้ม คอร์ส เคมี TCAS พร้อมตะลุย โจทย์ UpScore โฉมใหม่ที่ดีที่่สุดจาก Panya Society มั่นใจ สอบติดชัวร์ การันตี เคมี 70 คะแนน ขึ้นไป',
-                          style: GoogleFonts.kanit(fontSize: 18),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          width: size.width,
-                          height: 120,
-                          decoration: BoxDecoration(
-                              color: kPrimaryColor1,
-                              borderRadius: BorderRadius.circular(20)),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          width: size.width,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Row(
                               children: [
                                 Text(
-                                  'Select category',
+                                  'E-mail',
                                   style: GoogleFonts.kanit(
-                                      fontSize: 18, color: kPrimaryLightColor),
+                                    fontSize: 18,
+                                  ),
                                 ),
-                                Icon(
-                                  Icons.arrow_drop_down,
-                                  color: kPrimaryLightColor,
+                                SizedBox(
+                                  width: 50,
+                                ),
+                                Text(
+                                  'git@gmail.com',
+                                  style: GoogleFonts.kanit(
+                                    fontSize: 18,
+                                  ),
                                 )
                               ],
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/infocourse');
-                            },
-                            child: Container(
-                              width: 120,
-                              height: 40,
+                            Text(
+                              'ข้อมูลคอร์ส',
+                              style: GoogleFonts.kanit(
+                                fontSize: 18,
+                              ),
+                            ),
+                            Text(
+                              'Pack สอบติด สุดคุ้ม คอร์ส เคมี TCAS พร้อมตะลุย โจทย์ UpScore โฉมใหม่ที่ดีที่่สุดจาก Panya Society มั่นใจ สอบติดชัวร์ การันตี เคมี 70 คะแนน ขึ้นไป',
+                              style: GoogleFonts.kanit(fontSize: 18),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: size.width,
+                              height: 120,
                               decoration: BoxDecoration(
                                   color: kPrimaryColor1,
                                   borderRadius: BorderRadius.circular(20)),
-                              child: Align(
-                                alignment: Alignment.topCenter,
-                                child: Text(
-                                  'Done',
-                                  style: GoogleFonts.kanit(
-                                      fontSize: 25,
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              width: size.width,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Select category',
+                                      style: GoogleFonts.kanit(
+                                          fontSize: 18, color: kPrimaryLightColor),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_drop_down,
                                       color: kPrimaryLightColor,
-                                      fontWeight: FontWeight.bold),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
-                          ),
-                        )
-                      ],
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Center(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/infocourse');
+                                },
+                                child: Container(
+                                  width: 120,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                      color: kPrimaryColor1,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Text(
+                                      'Done',
+                                      style: GoogleFonts.kanit(
+                                          fontSize: 25,
+                                          color: kPrimaryLightColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        );
+                      }
                     ),
                   ),
                 ),
