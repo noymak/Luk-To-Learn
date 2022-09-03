@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,13 +13,23 @@ class CheckInfoCourse extends StatefulWidget {
 }
 
 class _CheckInfoCourseState extends State<CheckInfoCourse> {
-
-  var coursesController = Get.find<CoursesController>();
-
+  var courseController = Get.find<CoursesController>();
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
+    final List<String> items = [
+      'Item1',
+      'Item2',
+      'Item3',
+      'Item4',
+      'Item5',
+      'Item6',
+      'Item7',
+      'Item8',
+    ];
+    String? selectedValue;
 
     return Scaffold(
       backgroundColor: kPrimaryColors,
@@ -56,140 +67,208 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: GetBuilder(
-                      id: 'Getdetail',
-                      builder: (_) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      coursesController.listCourses[0]['tutorname'],
-                                      style: GoogleFonts.kanit(
-                                        fontSize: 15,
-                                      ),
+                    child: GetBuilder<CoursesController>(builder: (_) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    (courseController.listCourses.length > 0
+                                        ? courseController.listCourses[0]
+                                            ['tutorname']
+                                        : 'no'),
+                                    style: GoogleFonts.kanit(
+                                      fontSize: 15,
                                     ),
-                                    Text(
-                                      'ครูสอน ภาษาอังกฤษ',
-                                      style: GoogleFonts.kanit(
-                                        fontSize: 15,
-                                      ),
+                                  ),
+                                  Text(
+                                    'ครูสอน ภาษาอังกฤษ',
+                                    style: GoogleFonts.kanit(
+                                      fontSize: 15,
                                     ),
-                                  ],
-                                ),
-                                Container(
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(18),
-                                    color: kPrimaryColor1,
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'E-mail',
-                                  style: GoogleFonts.kanit(
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 50,
-                                ),
-                                Text(
-                                  'git@gmail.com',
-                                  style: GoogleFonts.kanit(
-                                    fontSize: 18,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Text(
-                              'ข้อมูลคอร์ส',
-                              style: GoogleFonts.kanit(
-                                fontSize: 18,
+                                ],
                               ),
-                            ),
-                            Text(
-                              'Pack สอบติด สุดคุ้ม คอร์ส เคมี TCAS พร้อมตะลุย โจทย์ UpScore โฉมใหม่ที่ดีที่่สุดจาก Panya Society มั่นใจ สอบติดชัวร์ การันตี เคมี 70 คะแนน ขึ้นไป',
-                              style: GoogleFonts.kanit(fontSize: 18),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              width: size.width,
-                              height: 120,
-                              decoration: BoxDecoration(
+                              Container(
+                                width: 75,
+                                height: 75,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(18),
                                   color: kPrimaryColor1,
-                                  borderRadius: BorderRadius.circular(20)),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'E-mail',
+                                style: GoogleFonts.kanit(
+                                  fontSize: 18,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Text(
+                                (courseController.listCourses.length > 0
+                                    ? courseController.listCourses[0]['email']
+                                    : 'no'),
+                                style: GoogleFonts.kanit(
+                                  fontSize: 18,
+                                ),
+                              )
+                            ],
+                          ),
+                          Text(
+                            'ข้อมูลคอร์ส',
+                            style: GoogleFonts.kanit(
+                              fontSize: 18,
                             ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Container(
-                              width: size.width,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Select category',
-                                      style: GoogleFonts.kanit(
-                                          fontSize: 18, color: kPrimaryLightColor),
+                          ),
+                          Text(
+                            (courseController.listCourses.length > 0
+                                ? courseController.listCourses[0]
+                                    ['detailcourse']
+                                : 'no'),
+                            style: GoogleFonts.kanit(fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: size.width,
+                            height: 120,
+                            decoration: BoxDecoration(
+                                color: kPrimaryColor1,
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton2(
+                                  isExpanded: true,
+                                  hint: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.list,
+                                        size: 16,
+                                        color: Colors.yellow,
+                                      ),
+                                      SizedBox(
+                                        width: 4,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          'sadsa',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.yellow,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  items: items
+                                      .map((item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ))
+                                      .toList(),
+                                  value: selectedValue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedValue = value as String;
+                                    });
+                                    print(selectedValue);
+                                  },
+                                  icon: const Icon(
+                                    Icons.arrow_drop_down_circle,
+                                  ),
+                                  iconSize: 14,
+                                  iconEnabledColor: Colors.yellow,
+                                  iconDisabledColor: Colors.grey,
+                                  buttonHeight: 50,
+                                  buttonWidth: size.width,
+                                  buttonPadding: const EdgeInsets.only(
+                                      left: 14, right: 14),
+                                  buttonDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    border: Border.all(
+                                      color: Colors.black26,
                                     ),
-                                    Icon(
-                                      Icons.arrow_drop_down,
-                                      color: kPrimaryLightColor,
-                                    )
-                                  ],
+                                    color: kPrimaryColors,
+                                  ),
+                                  buttonElevation: 2,
+                                  itemHeight: 30,
+                                  itemPadding: const EdgeInsets.only(
+                                      left: 40, right: 14),
+                                  dropdownMaxHeight: 200,
+                                  dropdownWidth: size.width*0.9,
+                                  dropdownPadding: null,
+                                  dropdownDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    color: kPrimaryColors,
+                                  ),
+                                  dropdownElevation: 8,
+                                  scrollbarRadius: const Radius.circular(40),
+                                  scrollbarThickness: 6,
+                                  scrollbarAlwaysShow: true,
+                                  offset: const Offset(-20, 0),
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 50,
-                            ),
-                            Center(
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(context, '/infocourse');
-                                },
-                                child: Container(
-                                  width: 120,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                      color: kPrimaryColor1,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Text(
-                                      'Done',
-                                      style: GoogleFonts.kanit(
-                                          fontSize: 25,
-                                          color: kPrimaryLightColor,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                          ),
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/infocourse');
+                              },
+                              child: Container(
+                                width: 120,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: kPrimaryColor1,
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Text(
+                                    'Done',
+                                    style: GoogleFonts.kanit(
+                                        fontSize: 25,
+                                        color: kPrimaryLightColor,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
-                            )
-                          ],
-                        );
-                      }
-                    ),
+                            ),
+                          )
+                        ],
+                      );
+                    }),
                   ),
                 ),
               ],

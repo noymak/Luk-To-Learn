@@ -11,59 +11,79 @@ class CoursesController extends GetxController {
   final TextEditingController detailcourseController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
-  List listCourses = [];
+  late List listCourses = [];
+  
 
-  void onInit(){
+  void onInit() {
     super.onInit();
-    
   }
 
-  checkEmpty(){
-    if (tutornameController.text.isEmpty && coursenameController.text.isEmpty && priceController.text.isEmpty && detailcourseController.text.isEmpty && emailController.text.isEmpty) {
+  checkEmpty() {
+    if (tutornameController.text.isEmpty &&
+        coursenameController.text.isEmpty &&
+        priceController.text.isEmpty &&
+        detailcourseController.text.isEmpty &&
+        emailController.text.isEmpty) {
       return true;
     } else {
       return false;
     }
   }
 
-Future addDetail(
-      String tutorname, String coursename, String price, String detailcourse, BuildContext context, String email) async {
+  Future addDetail(String tutorname, String coursename, String price,
+      String detailcourse, BuildContext context, String email) async {
     if (checkEmpty()) {
-      return MotionToast.error(description: Text("Error"),
-        title: Text("กรอกข้อมูลให้ครบถ้วน",style: TextStyle(fontWeight: FontWeight.bold)),
-        ).show(context);
+      return MotionToast.error(
+        description: Text("Error"),
+        title: Text("กรอกข้อมูลให้ครบถ้วน",
+            style: TextStyle(fontWeight: FontWeight.bold)),
+      ).show(context);
     } else {
-      await FirebaseFirestore.instance
-        .collection('courses')
-        .add({
-      'tutorname': tutorname,
-      'coursename': coursename,
-      'price': price,
-      'detailcourse': detailcourse,
-      'email' : email,
-    }).then((value) { Get.toNamed('/checkinfocourse');
-    showDetail(email);
-    MotionToast.info(description: Text("การเพิ่มรายการ"),
-        title: Text("ทำรายการสำเร็จ",style: TextStyle(fontWeight: FontWeight.bold)),
+      await FirebaseFirestore.instance.collection('courses').add({
+        'tutorname': tutorname,
+        'coursename': coursename,
+        'price': price,
+        'detailcourse': detailcourse,
+        'email': email,
+      }).then((value) {
+        Get.toNamed('/checkinfocourse');
+        showDetail(email);
+        MotionToast.info(
+          description: Text("การเพิ่มรายการ"),
+          title: Text("ทำรายการสำเร็จ",
+              style: TextStyle(fontWeight: FontWeight.bold)),
         ).show(context);
-    });
+      });
     }
   }
 
-Future showDetail(String email,) async {
-    await FirebaseFirestore.instance
-        .collection('courses').where('email',isEqualTo: email)
-        .get().then((value) {
-          value.docs.forEach((element) {
-            listCourses.add(element.data());
-            
-            // print(listCourses.toString());
-          });
-           print(listCourses[0]['tutorname']);
-           update(['Getdetail']);
-          // print(value.docs[0]['tutorname']);
-        });
-    // print(email);
-      }
+  Future showDetail(
+    String email,
+  ) async {
+    // await FirebaseFirestore.instance
+    //     .collection('courses').where('email',isEqualTo: email)
+    //     .get().then((value) {
+    //       value.docs.forEach((element) {
+    //         listCourses.add(element.data());
+    //         listCourses.forEach((element) {
+    //           print(element['tutorname']);
+    //         });
 
+    //         // print(listCourses.toString());
+    //       });
+
+    //        update();
+    //       // print(value.docs[0]['tutorname']);
+    //     });
+    // print(email);
+    var data = await FirebaseFirestore.instance
+        .collection('courses')
+        .where('email', isEqualTo: email)
+        .get();
+    data.docs.forEach((element) {
+      print(element['tutorname']);
+      listCourses.add(element.data());
+      update();
+    });
   }
+}
