@@ -1,11 +1,14 @@
 import 'dart:io';
+import 'dart:math';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/courses_controller.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 class AddedCourses extends StatefulWidget {
   const AddedCourses({Key? key}) : super(key: key);
@@ -413,6 +416,7 @@ class _AddedCoursesState extends State<AddedCourses> {
       setState(() {
         file = File(result!.path);
       });
+      uploadPictureToStorage(file!.path.toString());
     } catch (e) {}
   }
 
@@ -428,4 +432,21 @@ class _AddedCoursesState extends State<AddedCourses> {
       });
     } catch (e) {}
   }
+
+  Future<void> uploadPictureToStorage(String imagePath) async{
+    var firebaseRef = await FirebaseStorage.instance
+    .ref()
+    .child('image/${imagePath.split('/').last}');
+    var uploadTask = firebaseRef.putFile(file!);
+    var taskSnapshot = await uploadTask.whenComplete(() async {
+      MotionToast.info(
+          description: Text("การเพิ่มรูป"),
+          title: Text("ทำรายการสำเร็จ",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+        ).show(context);
+    }).then((value) async{
+      var imageUrl = await value.ref.getDownloadURL();
+    });
+  }
+  
 }

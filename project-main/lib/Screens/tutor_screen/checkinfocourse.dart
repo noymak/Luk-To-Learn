@@ -79,6 +79,12 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
+                                    'ครูสอน ภาษาอังกฤษ',
+                                    style: GoogleFonts.kanit(
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Text(
                                     (courseController.listCourses.length > 0
                                         ? courseController.listCourses[0]
                                             ['tutorname']
@@ -87,12 +93,7 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                                       fontSize: 15,
                                     ),
                                   ),
-                                  Text(
-                                    'ครูสอน ภาษาอังกฤษ',
-                                    style: GoogleFonts.kanit(
-                                      fontSize: 15,
-                                    ),
-                                  ),
+                                  
                                 ],
                               ),
                               Container(
