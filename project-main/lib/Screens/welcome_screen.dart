@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +9,6 @@ import 'package:luk_to_learn/controllers/auth_controller.dart';
 class WelcomeScreen extends StatelessWidget {
   var _controller = Get.put(AuthController());
   final formKey = GlobalKey<FormState>();
-
 
   void summit() {
     if (!formKey.currentState!.validate()) {
@@ -20,6 +20,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -80,13 +81,7 @@ class WelcomeScreen extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10)),
                         child: TextFormField(
-                          key: ValueKey('email'),
-                          validator: (value) {
-                            if (value!.isEmpty || !value.contains('@')) {
-                              return "กรุณากรอกข้อมูลให้ถูกต้อง";
-                            }
-                            return null;
-                          },
+                          validator: validateEmail,
                           keyboardType: TextInputType.emailAddress,
                           controller: _controller.emailController,
                           decoration: InputDecoration(
@@ -107,15 +102,7 @@ class WelcomeScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             TextFormField(
-                            
-                              key: ValueKey('email'),
-                              validator: (value) {
-                                if (value!.isEmpty || value.length < 6) {
-                                  return "กรุณากรอกพาสเวิร์ดให้ถูกต้อง";
-                                }
-                                return null;
-                              },
-                              
+                              validator: validatePassword,
                               keyboardType: TextInputType.visiblePassword,
                               controller: _controller.passwordController,
                               decoration: InputDecoration(
@@ -203,4 +190,17 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+String? validateEmail(String? formEmail) {
+  if (formEmail == null || formEmail.isEmpty) return 'กรุุณากรอก E-mail ';
+  String pattern = r'\w+@\w+\.\w+';
+  RegExp regex = RegExp(pattern);
+  if (!regex.hasMatch(formEmail)) return 'กรุณากรอก E-mail ให้ถูกต้อง';
+  return null;
+}
+
+String? validatePassword(String? formPass) {
+  if (formPass == null || formPass.isEmpty) return 'กรุุณากรอก Password ';
+  return null;
 }
