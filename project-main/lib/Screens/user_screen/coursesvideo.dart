@@ -14,6 +14,7 @@ import '../../model/lesson.dart';
 
 class CoursesVideo extends StatefulWidget {
   final String title;
+  
   const CoursesVideo({Key? key, required this.title}) : super(key: key);
 
   @override

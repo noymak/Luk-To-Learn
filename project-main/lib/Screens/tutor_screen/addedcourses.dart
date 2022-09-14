@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +27,7 @@ class _AddedCoursesState extends State<AddedCourses> {
   Widget build(BuildContext context) {
     var coursesController = Get.put(CoursesController());
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -34,6 +37,7 @@ class _AddedCoursesState extends State<AddedCourses> {
               width: size.width,
               child: Stack(
                 children: [
+                  
                   Container(
                     width: size.width,
                     decoration: BoxDecoration(
@@ -44,8 +48,8 @@ class _AddedCoursesState extends State<AddedCourses> {
                                 File(fileBackgound!.path.toString()),
                                 fit: BoxFit.cover,
                               ).image
-                            : Image.network(
-                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/thai.jpg?alt=media&token=b2029a01-0363-422c-8140-616383e4c558',
+                            : Image.asset(
+                                'assets/images/eng1.jpg',
                                 fit: BoxFit.cover,
                               ).image,
                       ),
@@ -73,7 +77,8 @@ class _AddedCoursesState extends State<AddedCourses> {
                                     child: ListBody(children: [
                                       InkWell(
                                         onTap: () {
-                                          chooseBackgound(ImageSource.gallery);
+                                          coursesController.chooseBackground(
+                                              ImageSource.gallery, context);
                                         },
                                         splashColor: kPrimaryColor1,
                                         child: Row(
@@ -147,19 +152,21 @@ class _AddedCoursesState extends State<AddedCourses> {
             ),
             Stack(
               children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  child: CircleAvatar(
-                    radius: 55,
-                    backgroundImage: file != null
-                        ? Image.file(
-                            File(file!.path.toString()),
-                            fit: BoxFit.cover,
-                          ).image
-                        : Image.asset('assets/images/profile.jpg').image,
-                  ),
-                ),
+                GetBuilder<CoursesController>(builder: (_) {
+                  return Container(
+                    width: 100,
+                    height: 100,
+                    child: CircleAvatar(
+                      radius: 55,
+                      backgroundImage: file != null
+                          ? Image.file(
+                              File(coursesController.file!.path.toString()),
+                              fit: BoxFit.cover,
+                            ).image
+                          : Image.asset('assets/images/profile.jpg').image,
+                    ),
+                  );
+                }),
                 Positioned(
                   left: 35,
                   top: 45,
@@ -191,7 +198,8 @@ class _AddedCoursesState extends State<AddedCourses> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        chooseImage(ImageSource.camera);
+                                        coursesController.chooseImage(
+                                            ImageSource.camera, context);
                                       },
                                       splashColor: kPrimaryColor1,
                                       child: Row(
@@ -216,7 +224,8 @@ class _AddedCoursesState extends State<AddedCourses> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        chooseImage(ImageSource.gallery);
+                                        coursesController.chooseImage(
+                                            ImageSource.gallery, context);
                                       },
                                       splashColor: kPrimaryColor1,
                                       child: Row(
@@ -345,7 +354,6 @@ class _AddedCoursesState extends State<AddedCourses> {
                     coursesController.detailcourseController.text,
                     context,
                     coursesController.emailController.text);
-                
               },
               child: Container(
                 width: 200,
@@ -406,47 +414,77 @@ class _AddedCoursesState extends State<AddedCourses> {
     );
   }
 
-  Future<Null> chooseImage(ImageSource source) async {
-    try {
-      var result = await ImagePicker().getImage(
-        source: source,
-        maxWidth: 800,
-        maxHeight: 800,
-      );
-      setState(() {
-        file = File(result!.path);
-      });
-      uploadPictureToStorage(file!.path.toString());
-    } catch (e) {}
-  }
+  // Future<Null> chooseImage(ImageSource source) async {
+  //   try {
+  //     var result = await ImagePicker().getImage(
+  //       source: source,
+  //       maxWidth: 800,
+  //       maxHeight: 800,
+  //     );
+  //     setState(() {
+  //       file = File(result!.path);
+  //     });
+  //     uploadPictureToStorage(file!.path.toString());
+  //   } catch (e) {}
+  // }
 
-  Future<Null> chooseBackgound(ImageSource source) async {
-    try {
-      var result = await ImagePicker().getImage(
-        source: source,
-        maxWidth: 800,
-        maxHeight: 800,
-      );
-      setState(() {
-        fileBackgound = File(result!.path);
-      });
-    } catch (e) {}
-  }
+  // Future<Null> chooseBackgound(ImageSource source) async {
+  //   try {
+  //     var result = await ImagePicker().getImage(
+  //       source: source,
+  //       maxWidth: 800,
+  //       maxHeight: 800,
+  //     );
+  //     setState(() {
+  //       fileBackgound = File(result!.path);
+  //     });
+  //     uploadBackgoundToStorage(fileBackgound!.path.toString());
+  //   } catch (e) {}
+  // }
 
-  Future<void> uploadPictureToStorage(String imagePath) async{
-    var firebaseRef = await FirebaseStorage.instance
-    .ref()
-    .child('image/${imagePath.split('/').last}');
-    var uploadTask = firebaseRef.putFile(file!);
-    var taskSnapshot = await uploadTask.whenComplete(() async {
-      MotionToast.info(
-          description: Text("การเพิ่มรูป"),
-          title: Text("ทำรายการสำเร็จ",
-              style: TextStyle(fontWeight: FontWeight.bold)),
-        ).show(context);
-    }).then((value) async{
-      var imageUrl = await value.ref.getDownloadURL();
-    });
-  }
-  
+  // Future<void> updateImageProfile(String image) async {
+  //   try {
+  //     await FirebaseFirestore.instance
+  //     .collection('courses')
+  //     .doc(FirebaseAuth.instance.currentUser!.uid)
+  //     .update({'image': image,});
+  //   }catch (e) {
+
+  //   }
+  // }
+
+  // Future<void> uploadPictureToStorage(String imagePath) async{
+  //   var firebaseRef = await FirebaseStorage.instance
+  //   .ref()
+  //   .child('image/${imagePath.split('/').last}');
+  //   var uploadTask = firebaseRef.putFile(file!);
+  //   var taskSnapshot = await uploadTask.whenComplete(() async {
+  //     MotionToast.info(
+  //         description: Text("การเพิ่มรูป"),
+  //         title: Text("ทำรายการสำเร็จ",
+  //             style: TextStyle(fontWeight: FontWeight.bold)),
+  //       ).show(context);
+  //   }).then((value) async{
+  //     var imageUrl = await value.ref.getDownloadURL();
+  //     updateImageProfile(imageUrl.toString());
+  //   });
+  // }
+
+  // Future<void> uploadBackgoundToStorage(String imagePath) async{
+  //   var firebaseRef = await FirebaseStorage.instance
+  //   .ref()
+  //   .child('backgound/${imagePath.split('/').last}');
+  //   var uploadTask = firebaseRef.putFile(fileBackgound!);
+  //   var taskSnapshot = await uploadTask.whenComplete(() async {
+  //     MotionToast.info(
+  //         description: Text("การเพิ่มรูป"),
+  //         title: Text("ทำรายการสำเร็จ",
+  //             style: TextStyle(fontWeight: FontWeight.bold)),
+  //       ).show(context);
+  //   }).then((value) async{
+  //     var imageUrl = await value.ref.getDownloadURL();
+  //     print(imageUrl);
+  //   });
+  // }
+
 }

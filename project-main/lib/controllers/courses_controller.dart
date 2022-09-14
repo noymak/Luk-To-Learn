@@ -1,7 +1,11 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:motion_toast/motion_toast.dart';
 
 class CoursesController extends GetxController {
@@ -12,6 +16,11 @@ class CoursesController extends GetxController {
   final TextEditingController emailController = TextEditingController();
 
   late List listCourses = [];
+
+  File? file;
+  File? fileBackgound;
+
+  var selectedImagePath = ''.obs;
   
 
   void onInit() {
@@ -39,12 +48,17 @@ class CoursesController extends GetxController {
             style: TextStyle(fontWeight: FontWeight.bold)),
       ).show(context);
     } else {
-      await FirebaseFirestore.instance.collection('courses').add({
+      await FirebaseFirestore.instance
+      .collection('courses')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .set({
         'tutorname': tutorname,
         'coursename': coursename,
         'price': price,
         'detailcourse': detailcourse,
         'email': email,
+        'image' : ''
+
       }).then((value) {
         Get.toNamed('/checkinfocourse');
         showDetail(email);
@@ -86,4 +100,98 @@ class CoursesController extends GetxController {
       update();
     });
   }
+
+  
+
+ Future<Null> chooseImage(ImageSource source, BuildContext context) async {
+    try {
+      var result = await ImagePicker().getImage(
+        source: source,
+        maxWidth: 800,
+        maxHeight: 800,
+      );
+      (() {
+        file = File(result!.path);
+        update();
+      });
+      uploadPictureToStorage(file!.path.toString(),context);
+    } catch (e) {}
+  }
+
+  Future<Null> chooseBackground(ImageSource source, BuildContext context) async {
+    try {
+      var result = await ImagePicker().getImage(
+        source: source,
+        maxWidth: 800,
+        maxHeight: 800,
+      );
+      (() {
+        fileBackgound = File(result!.path);
+        update(['background']);
+      });
+      uploadBackgoundToStorage(fileBackgound!.path.toString(),context);
+    } catch (e) {}
+  }
+
+  Future<void> updateImageProfile(String image) async {
+    try {
+      await FirebaseFirestore.instance
+      .collection('courses')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .update({'image': image,});
+    }catch (e) {
+
+    }
+  }
+
+  Future<void> uploadPictureToStorage(String imagePath,BuildContext context) async{
+    var firebaseRef = await FirebaseStorage.instance
+    .ref()
+    .child('image/${imagePath.split('/').last}');
+    var uploadTask = firebaseRef.putFile(file!);
+    var taskSnapshot = await uploadTask.whenComplete(() async {
+      MotionToast.info(
+          description: Text("การเพิ่มรูป"),
+          title: Text("ทำรายการสำเร็จ",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+        ).show(context);
+    }).then((value) async{
+      var imageUrl = await value.ref.getDownloadURL();
+      updateImageProfile(imageUrl.toString());
+    });
+  }
+
+  Future<void> uploadBackgoundToStorage(String imagePath, BuildContext context) async{
+    var firebaseRef = await FirebaseStorage.instance
+    .ref()
+    .child('backgound/${imagePath.split('/').last}');
+    var uploadTask = firebaseRef.putFile(fileBackgound!);
+    var taskSnapshot = await uploadTask.whenComplete(() async {
+      MotionToast.info(
+          description: Text("การเพิ่มรูป"),
+          title: Text("ทำรายการสำเร็จ",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+        ).show(context);
+    }).then((value) async{
+      var imageUrl = await value.ref.getDownloadURL();
+      print(imageUrl);
+    });
+  }
+
+  // Future<void> getImage (ImageSource imageSource, BuildContext context) async {
+  //   final pickedFile = await ImagePicker().getImage(source: imageSource);
+  //   if (pickedFile != null) {
+  //     selectedImagePath.value = pickedFile.path;
+  //   } else {
+  //       MotionToast.error(
+  //         description: Text("การเพิ่มรูป"),
+  //         title: Text("ไม่ได้ทำรายการสำเร็จ",
+  //             style: TextStyle(fontWeight: FontWeight.bold)),
+  //       ).show(context);
+  //   }
+  // }
+
+
+
+
 }

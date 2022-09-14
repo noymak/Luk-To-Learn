@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
         duration: 3000,
         imageSize: 130,
         imageSrc:
-            "https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/logo.png?alt=media&token=f9046186-043d-40eb-862f-85bd3bee8626",
+            "https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Flogo.png?alt=media&token=1804964d-7195-41a1-90f1-66e941be28ff",
         text: "Luk to Learn",
         textType: TextType.TyperAnimatedText,
         textStyle: TextStyle(

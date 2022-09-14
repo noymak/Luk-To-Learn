@@ -53,70 +53,43 @@ class _PaymentSelectState extends State<PaymentSelect> {
                     SizedBox(
                       height: 50,
                     ),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/paymentqr');
-                        },
-                        child: Container(
-                          height: 100,
-                          width: 300,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Color(0xffFF8181),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 30, left: 100),
+                    Expanded(
+                        child: Column(
+                      children: [
+                        ListTile(
+                          onTap: () {Navigator.pushNamed(context, '/paymentqr');},
+                          leading: Container(
+                              height: 40, width: 40, child: Image.asset('')),
+                          title: Text('SCB QR'),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                        ),
+                        ListTile(
+                          onTap: () {Navigator.pushNamed(context, '/paymentvisa');},
+                          leading: Container(
+                              height: 40, width: 40, child: Image.asset('')),
+                          title: Text('Credit Card'),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                        ),
+                        
+                      ],
+                    ),),
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
                             child: Text(
-                              'Qrcode',
-                              style: GoogleFonts.kanit(fontSize: 30),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 100,
-                    ),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/paymentvisa');
-                        },
-                        child: Container(
-                          height: 100,
-                          width: 300,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Color(0xffFF8181),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 30, left: 70),
-                            child: Text(
-                              'Credit Card',
-                              style: GoogleFonts.kanit(fontSize: 30),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 150,
-                    ),
-                    Center(
-                      child: Container(
-                        height: 50,
-                        width: 300,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey[200],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10, left: 20),
-                          child: Text('กรุณาเลือกช่องทางการชำระ',
+                              'Total Amount',
                               style: GoogleFonts.kanit(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
-                        ),
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Text(
+                            '1500.00 ฿',
+                            style: GoogleFonts.kanit(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          )
+                        ],
                       ),
                     ),
                   ],

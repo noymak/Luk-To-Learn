@@ -20,14 +20,14 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
     var size = MediaQuery.of(context).size;
 
     final List<String> items = [
-      'Item1',
-      'Item2',
-      'Item3',
-      'Item4',
-      'Item5',
-      'Item6',
-      'Item7',
-      'Item8',
+      'ภาษาไทย',
+      'ภาษาอังกฤษ',
+      'คณิตศาสตร์',
+      'วิทยาศาสตร์',
+      'เคมี',
+      'ฟิสิกซ์',
+      'ศิลปะ',
+      'การออกกำลังกาย',
     ];
     String? selectedValue;
 
