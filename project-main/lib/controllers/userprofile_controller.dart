@@ -29,6 +29,10 @@ class UserProfileController extends GetxController {
 
   Future addDetail(String firstname, String lastname, String phone,
       BuildContext context, String email) async {
+        print(firstnameController.text);
+        print(lastnameController.text);
+        print(phoneController.text);
+        print(emailController.text);
     if (checkEmpty()) {
       return MotionToast.error(
         description: Text("Error"),

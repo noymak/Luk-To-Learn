@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,18 +19,6 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-
-    final List<String> items = [
-      'ภาษาไทย',
-      'ภาษาอังกฤษ',
-      'คณิตศาสตร์',
-      'วิทยาศาสตร์',
-      'เคมี',
-      'ฟิสิกซ์',
-      'ศิลปะ',
-      'การออกกำลังกาย',
-    ];
-    String? selectedValue;
 
     return Scaffold(
       backgroundColor: kPrimaryColors,
@@ -93,17 +82,17 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                                       fontSize: 15,
                                     ),
                                   ),
-                                  
                                 ],
                               ),
                               Container(
-                                width: 75,
-                                height: 75,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(18),
-                                  color: kPrimaryColor1,
-                                ),
-                              ),
+                                  width: 75,
+                                  height: 75,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(18),
+                                    color: kPrimaryColor1,
+                                  ),
+                                  child:
+                                      Image.asset('assets/images/profile.jpg')),
                             ],
                           ),
                           Row(
@@ -126,6 +115,21 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                                 ),
                               )
                             ],
+                          ),
+                          Text(
+                            'ราคาคอร์ส',
+                            style: GoogleFonts.kanit(
+                              fontSize: 18,
+                            ),
+                          ),
+                          Text(
+                            (courseController.listCourses.length > 0
+                                ? courseController.listCourses[0]['price']
+                                : 'no'),
+                            style: GoogleFonts.kanit(fontSize: 18),
+                          ),
+                          SizedBox(
+                            height: 10,
                           ),
                           Text(
                             'ข้อมูลคอร์ส',
@@ -153,92 +157,19 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                           SizedBox(
                             height: 30,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Center(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton2(
-                                  isExpanded: true,
-                                  hint: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.list,
-                                        size: 16,
-                                        color: Colors.yellow,
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          'sadsa',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.yellow,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  items: items
-                                      .map((item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: const TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ))
-                                      .toList(),
-                                  value: selectedValue,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      selectedValue = value as String;
-                                    });
-                                    print(selectedValue);
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_drop_down_circle,
-                                  ),
-                                  iconSize: 14,
-                                  iconEnabledColor: Colors.yellow,
-                                  iconDisabledColor: Colors.grey,
-                                  buttonHeight: 50,
-                                  buttonWidth: size.width,
-                                  buttonPadding: const EdgeInsets.only(
-                                      left: 14, right: 14),
-                                  buttonDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(14),
-                                    border: Border.all(
-                                      color: Colors.black26,
-                                    ),
-                                    color: kPrimaryColors,
-                                  ),
-                                  buttonElevation: 2,
-                                  itemHeight: 30,
-                                  itemPadding: const EdgeInsets.only(
-                                      left: 40, right: 14),
-                                  dropdownMaxHeight: 200,
-                                  dropdownWidth: size.width*0.9,
-                                  dropdownPadding: null,
-                                  dropdownDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(14),
-                                    color: kPrimaryColors,
-                                  ),
-                                  dropdownElevation: 8,
-                                  scrollbarRadius: const Radius.circular(40),
-                                  scrollbarThickness: 6,
-                                  scrollbarAlwaysShow: true,
-                                  offset: const Offset(-20, 0),
-                                ),
-                              ),
-                            ),
+                          DropdownSearch(
+                            items: ["ภาษาไทย", "ภาษาอังกฤษ", "คณิตศาสตร์", "วิทยาศาสตร์"],
+                            // InputDecoration(labelText: "Name"),
+                            onChanged: print,
+                            selectedItem: "เลือกประเภท",
+                            validator: (String? item) {
+                              if (item == null)
+                                return "Required field";
+                              else if (item == "ภาษาไทย")
+                                return "Invalid item";
+                              else
+                                return null;
+                            },
                           ),
                           SizedBox(
                             height: 50,

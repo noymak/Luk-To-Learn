@@ -75,140 +75,155 @@ class _EditProfileState extends State<EditProfile> {
                       height: 20,
                     ),
                     Stack(
-              children: [
-                GetBuilder<UserProfileController>(builder: (_) {
-                  return Container(
-                    width: 100,
-                    height: 100,
-                    child: CircleAvatar(
-                      radius: 55,
-                      backgroundImage: file != null
-                          ? Image.file(
-                              File(userprofileController.file!.path.toString()),
-                              fit: BoxFit.cover,
-                            ).image
-                          : Image.asset('assets/images/profile.jpg').image,
-                    ),
-                  );
-                }),
-                Positioned(
-                  left: 35,
-                  top: 45,
-                  child: RawMaterialButton(
-                    elevation: 10,
-                    child: CircleAvatar(
-                      radius: 20,
-                      child: Icon(
-                        Icons.add_a_photo,
-                        color: kPrimaryLightColor,
-                      ),
-                    ),
-                    padding: EdgeInsets.all(15),
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text(
-                                'ChooseOption',
-                                style: GoogleFonts.kanit(
-                                  textStyle: TextStyle(
-                                      fontSize: 26,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                      children: [
+                        GetBuilder<UserProfileController>(builder: (_) {
+                          return Container(
+                            width: 100,
+                            height: 100,
+                            child: CircleAvatar(
+                              radius: 55,
+                              backgroundImage: file != null
+                                  ? Image.file(
+                                      File(userprofileController.file!.path
+                                          .toString()),
+                                      fit: BoxFit.cover,
+                                    ).image
+                                  : Image.asset('assets/images/profile.jpg')
+                                      .image,
+                            ),
+                          );
+                        }),
+                        Positioned(
+                          left: 35,
+                          top: 45,
+                          child: RawMaterialButton(
+                            elevation: 10,
+                            child: CircleAvatar(
+                              radius: 20,
+                              child: Icon(
+                                Icons.add_a_photo,
+                                color: kPrimaryLightColor,
                               ),
-                              content: SingleChildScrollView(
-                                child: ListBody(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        userprofileController.chooseImages(
-                                            ImageSource.camera, context);
-                                      },
-                                      splashColor: kPrimaryColor1,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Icon(
-                                              Icons.camera,
-                                              color: kPrimaryColor1,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Camera',
-                                            style: GoogleFonts.kanit(
-                                              textStyle: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ],
+                            ),
+                            padding: EdgeInsets.all(15),
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        'ChooseOption',
+                                        style: GoogleFonts.kanit(
+                                          textStyle: TextStyle(
+                                              fontSize: 26,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        userprofileController.chooseImages(
-                                            ImageSource.gallery, context);
-                                      },
-                                      splashColor: kPrimaryColor1,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Icon(
-                                              Icons.image,
-                                              color: kPrimaryColor1,
+                                      content: SingleChildScrollView(
+                                        child: ListBody(
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                userprofileController
+                                                    .chooseImages(
+                                                        ImageSource.camera,
+                                                        context);
+                                              },
+                                              splashColor: kPrimaryColor1,
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Icon(
+                                                      Icons.camera,
+                                                      color: kPrimaryColor1,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Camera',
+                                                    style: GoogleFonts.kanit(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Text(
-                                            'Gallery',
-                                            style: GoogleFonts.kanit(
-                                              textStyle: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
+                                            InkWell(
+                                              onTap: () {
+                                                userprofileController
+                                                    .chooseImages(
+                                                        ImageSource.gallery,
+                                                        context);
+                                              },
+                                              splashColor: kPrimaryColor1,
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Icon(
+                                                      Icons.image,
+                                                      color: kPrimaryColor1,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Gallery',
+                                                    style: GoogleFonts.kanit(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                            InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  file = null;
+                                                });
+                                              },
+                                              splashColor: kPrimaryColor1,
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Icon(
+                                                      Icons.remove_circle,
+                                                      color: kPrimaryColor1,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Remove',
+                                                    style: GoogleFonts.kanit(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          file = null;
-                                        });
-                                      },
-                                      splashColor: kPrimaryColor1,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Icon(
-                                              Icons.remove_circle,
-                                              color: kPrimaryColor1,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Remove',
-                                            style: GoogleFonts.kanit(
-                                              textStyle: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          });
-                    },
-                  ),
-                ),
-              ],
-            ),
+                                    );
+                                  });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: 80,
                     ),
@@ -286,14 +301,17 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                               GestureDetector(
                                 onTap: () {
+                                  
                                   userprofileController.addDetail(
                                       userprofileController
                                           .firstnameController.text,
                                       userprofileController
                                           .lastnameController.text,
-                                      userprofileController.phoneController.text,
+                                      userprofileController
+                                          .phoneController.text,
                                       context,
-                                      userprofileController.emailController.text);
+                                      userprofileController
+                                          .emailController.text);
                                 },
                                 child: Container(
                                   height: 50,
@@ -344,8 +362,10 @@ Container EditPro(String text, TextEditingController controller) {
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           border: InputBorder.none,
+
           hintText: text,
         ),
       ),

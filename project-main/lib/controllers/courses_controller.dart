@@ -41,7 +41,14 @@ class CoursesController extends GetxController {
 
   Future addDetail(String tutorname, String coursename, String price,
       String detailcourse, BuildContext context, String email) async {
-    if (checkEmpty()) {
+        // print(email);
+        // print(tutorname);
+        // print(price);
+        // print(detailcourse);
+        // print(coursename);
+      
+   try {
+      if (checkEmpty()) {
       return MotionToast.error(
         description: Text("Error"),
         title: Text("กรอกข้อมูลให้ครบถ้วน",
@@ -50,16 +57,16 @@ class CoursesController extends GetxController {
     } else {
       await FirebaseFirestore.instance
       .collection('courses')
-      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .doc(email)
       .set({
         'tutorname': tutorname,
         'coursename': coursename,
         'price': price,
         'detailcourse': detailcourse,
         'email': email,
-        'image' : ''
-
+        'image' : '',
       }).then((value) {
+       
         Get.toNamed('/checkinfocourse');
         showDetail(email);
         MotionToast.info(
@@ -69,6 +76,9 @@ class CoursesController extends GetxController {
         ).show(context);
       });
     }
+   } catch (e) {
+      print(e);
+   }
   }
 
   Future showDetail(

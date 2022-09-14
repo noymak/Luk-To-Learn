@@ -59,14 +59,14 @@ class _PaymentSelectState extends State<PaymentSelect> {
                         ListTile(
                           onTap: () {Navigator.pushNamed(context, '/paymentqr');},
                           leading: Container(
-                              height: 40, width: 40, child: Image.asset('')),
+                              height: 60, width: 60, child: Image.asset('assets/images/9cRHWYxV_400x400.jpg')),
                           title: Text('SCB QR'),
                           trailing: Icon(Icons.arrow_forward_ios),
                         ),
                         ListTile(
                           onTap: () {Navigator.pushNamed(context, '/paymentvisa');},
                           leading: Container(
-                              height: 40, width: 40, child: Image.asset('')),
+                              height: 60, width: 60, child: Image.asset('assets/images/349221.png')),
                           title: Text('Credit Card'),
                           trailing: Icon(Icons.arrow_forward_ios),
                         ),
