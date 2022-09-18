@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/addedcourses.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/mycoursetutor.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/registertutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/about.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart.dart';
 import 'package:luk_to_learn/Screens/user_screen/changepassword.dart';
@@ -99,6 +100,7 @@ class MyApp extends StatelessWidget {
         '/infocourse': ((context) => InfoCourse()),
         '/addedcourses': ((context) => AddedCourses()),
         '/mycoursetutor': ((context) => MycourseTutor()),
+        '/registertutor': ((context) => RegistrationScreen()),
       },
     );
   }

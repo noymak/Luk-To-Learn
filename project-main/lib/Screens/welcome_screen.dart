@@ -160,7 +160,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/routetutor');
+                          Navigator.pushNamed(context, '/registertutor');
                         },
                         child: Container(
                           height: 50,
