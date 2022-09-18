@@ -3,23 +3,17 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:file_picker/file_picker.dart';
-
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../../controllers/auth_tutor_controller.dart';
-
-
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
 
-  
-
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
-  
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  
   var authTutorController = Get.put(AuthTutorController());
   @override
   Widget build(BuildContext context) {
@@ -133,27 +127,34 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       child: MaterialButton(
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
-        onPressed:() {
-          authTutorController.signUp();
+        onPressed: () {
+          authTutorController.signUp(context);
         },
-        child: Text('SignUp',textAlign: TextAlign.center,
-        style: GoogleFonts.kanit(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,),
-         ),),
+        child: Text(
+          'SignUp',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.kanit(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+      ),
     );
-    
+
     return Scaffold(
       backgroundColor: kPrimaryLightColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(icon: Icon(Icons.arrow_back_ios, color: kPrimaryColors,
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: kPrimaryColors,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
       ),
       body: Center(
@@ -162,62 +163,118 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             color: kPrimaryLightColor,
             child: Padding(
               padding: const EdgeInsets.all(36),
-              child: Form(child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    height: 200,
-                    child: Image.asset('assets/images/logo.png',fit: BoxFit.contain,),
-                  ),
-                  SizedBox(height: 35),
-                  firstNameField,
-                  SizedBox(height: 35),
-                  lastNameField,
-                  SizedBox(height: 35),
-                  emailField,
-                  SizedBox(height: 35),
-                  passwordField,
-                  SizedBox(height: 35),
-                  confirmPasswordField,
-                  SizedBox(height: 35),
-                  phoneField,
-                  SizedBox(height: 15),
-                  
-                  ElevatedButton(onPressed: () async {
-                   final results = await FilePicker.platform..pickFiles(
-                    allowMultiple: false,
-                    type: FileType.custom,
-                    allowedExtensions:['png','jpg'],
-                   );
+              child: Form(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 200,
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    SizedBox(height: 35),
+                    firstNameField,
+                    SizedBox(height: 35),
+                    lastNameField,
+                    SizedBox(height: 35),
+                    emailField,
+                    SizedBox(height: 35),
+                    passwordField,
+                    SizedBox(height: 35),
+                    confirmPasswordField,
+                    SizedBox(height: 35),
+                    phoneField,
+                    SizedBox(height: 15),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final results = await FilePicker.platform.pickFiles(
+                          allowMultiple: false,
+                          type: FileType.custom,
+                          allowedExtensions: ['png', 'jpg'],
+                        );
 
-                   if (results == null) {
-                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('No file selected.'),
-                        ),);
-                   return null;
-                     
-                   }
+                        if (results == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('No file selected.'),
+                            ),
+                          );
+                          return null;
+                        }
 
-                  //  final path = results.files.single.path!;
-                  //  final fileName = results.files.single.name;
+                        final path = results.files.single.path!;
+                        final fileName = results.files.single.name;
 
-                  //  print(path);
-                  //  print(fileName);
-                   
-                  }, child: Text('Upload File'),),
-                  SizedBox(height: 15),
-                  signUpButton,
-                  SizedBox(height: 15),
-
-                ],
+                        print(path);
+                        print(fileName);
+                      },
+                      child: Text('Upload File'),
+                    ),
+                    FutureBuilder(
+                        future: authTutorController.listFiles(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<firebase_storage.ListResult>
+                                snapshot) {
+                          if (snapshot.connectionState ==
+                                  ConnectionState.done &&
+                              snapshot.hasData) {
+                            return Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              height: 50,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data!.items.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                          snapshot.data!.items[index].name),
+                                    );
+                                  }),
+                            );
+                          }
+                          if (snapshot.connectionState ==
+                                  ConnectionState.waiting ||
+                              !snapshot.hasData) {
+                            return CircularProgressIndicator();
+                          }
+                          return Container();
+                        }),
+                        FutureBuilder(
+                        future: authTutorController.downloadURL('https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/imagetest%2FEng.jpg?alt=media&token=12e739dc-1f99-4a58-a082-e31c5ec489bd'),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<String>
+                                snapshot) {
+                          if (snapshot.connectionState ==
+                                  ConnectionState.done &&
+                              snapshot.hasData) {
+                            return Container(
+                              width: 300,
+                              height: 250,
+                              child: Image.network(snapshot.data!, fit: BoxFit.cover,
+                            ));
+                          }
+                          if (snapshot.connectionState ==
+                                  ConnectionState.waiting ||
+                              !snapshot.hasData) {
+                            return CircularProgressIndicator();
+                          }
+                          return Container();
+                        }),
+                    SizedBox(height: 15),
+                    signUpButton,
+                    SizedBox(height: 15),
+                  ],
+                ),
               ),
-              ),
-              ),
-          
+            ),
           ),
-          
         ),
       ),
     );
