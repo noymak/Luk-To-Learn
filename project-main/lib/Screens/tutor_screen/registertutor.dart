@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -188,86 +189,47 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(height: 35),
                     phoneField,
                     SizedBox(height: 15),
-                    ElevatedButton(
-                      onPressed: () async {
-                        final results = await FilePicker.platform.pickFiles(
-                          allowMultiple: false,
-                          type: FileType.custom,
-                          allowedExtensions: ['png', 'jpg'],
-                        );
-
-                        if (results == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('No file selected.'),
-                            ),
-                          );
-                          return null;
-                        }
-
-                        final path = results.files.single.path!;
-                        final fileName = results.files.single.name;
-
-                        print(path);
-                        print(fileName);
-                      },
-                      child: Text('Upload File'),
+                    Center(
+                      
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ElevatedButton(onPressed: () {
+                            authTutorController.chooseImages(ImageSource.gallery, context);
+                          }, child: Text('add'),),
+                          ElevatedButton(onPressed: () {
+                            setState(() {
+                              authTutorController.image = null;
+                            });
+                      }, child: Text('remove')),
+                        ],
+                      ),
                     ),
-                    FutureBuilder(
-                        future: authTutorController.listFiles(),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<firebase_storage.ListResult>
-                                snapshot) {
-                          if (snapshot.connectionState ==
-                                  ConnectionState.done &&
-                              snapshot.hasData) {
-                            return Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              height: 50,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.items.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return ElevatedButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                          snapshot.data!.items[index].name),
-                                    );
-                                  }),
-                            );
-                          }
-                          if (snapshot.connectionState ==
-                                  ConnectionState.waiting ||
-                              !snapshot.hasData) {
-                            return CircularProgressIndicator();
-                          }
-                          return Container();
-                        }),
-                        FutureBuilder(
-                        future: authTutorController.downloadURL('https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/imagetest%2FEng.jpg?alt=media&token=12e739dc-1f99-4a58-a082-e31c5ec489bd'),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<String>
-                                snapshot) {
-                          if (snapshot.connectionState ==
-                                  ConnectionState.done &&
-                              snapshot.hasData) {
-                            return Container(
-                              width: 300,
-                              height: 250,
-                              child: Image.network(snapshot.data!, fit: BoxFit.cover,
-                            ));
-                          }
-                          if (snapshot.connectionState ==
-                                  ConnectionState.waiting ||
-                              !snapshot.hasData) {
-                            return CircularProgressIndicator();
-                          }
-                          return Container();
-                        }),
+                    
                     SizedBox(height: 15),
+                    GetBuilder<AuthTutorController>(
+                      builder: (_) {
+                       if (authTutorController.image != null) {
+                          return Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(image: Image.file(authTutorController.image!).image),
+                          ),
+                        );
+                       }else{
+                         return Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(image: Image.asset('assets/images/placeholder.png').image),
+                          ),
+                        );
+                       }
+                      }
+                    ),
+                    
                     signUpButton,
                     SizedBox(height: 15),
                   ],

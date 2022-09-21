@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart' as firebase_core;
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:motion_toast/motion_toast.dart';
 
 
@@ -17,7 +18,8 @@ class AuthTutorController extends GetxController {
   final TextEditingController phonetutorController = TextEditingController();
   final TextEditingController forgotEmailTutorController = TextEditingController();
 
-  final firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
+
+  File? image;
 
   checkPassword() {
 
@@ -76,31 +78,42 @@ class AuthTutorController extends GetxController {
     }
   }
 
-  Future<void> UploadFile(
-    String filePath,
-    String fileName,
-  ) async {
-    File file = File(filePath);
+  Future<Null> chooseImages(ImageSource source, BuildContext context) async {
+    try {
+      final XFile? result = await ImagePicker().pickImage(
+        source: source,
+        maxWidth: 800,
+        maxHeight: 800,
+      );
+        if (result != null) {
+        final Rx<File> _imagePath = File(result.path).obs;
+        image = _imagePath.value;
+      }
 
-    try{
-      await storage.ref('imagetest/$fileName').putFile(file);
-    } on firebase_core.FirebaseException catch (e) {
-      print(e);
-    }
+        print(image);
+        update();
+      
+      uploadPictureToStorage(image!.path.toString(), context);
+    } catch (e) {}
   }
 
-  Future<firebase_storage.ListResult> listFiles() async {
-    firebase_storage.ListResult results = await storage.ref('imagetest').listAll();
 
-    results.items.forEach((firebase_storage.Reference ref) {
-      print('Found file: $ref');
-     });
-     return results;
-  } 
-
-  Future<String> downloadURL(String imageName) async {
-    String downloadURL = await storage.ref('imagetest/$imageName').getDownloadURL();
-    return downloadURL;
+   Future<void> uploadPictureToStorage(
+      String imagePath, BuildContext context) async {
+    var firebaseRef = await FirebaseStorage.instance
+        .ref()
+        .child('imagetest/${imagePath.split('/').last}');
+    var uploadTask = firebaseRef.putFile(image!);
+    var taskSnapshot = await uploadTask.whenComplete(() async {
+      MotionToast.info(
+        description: Text("การเพิ่มรูป"),
+        title: Text("ทำรายการสำเร็จ",
+            style: TextStyle(fontWeight: FontWeight.bold)),
+      ).show(context);
+    }).then((value) async {
+      var imageUrl = await value.ref.getDownloadURL();
+      // updateImageProfile(imageUrl.toString());
+    });
   }
 
 }
