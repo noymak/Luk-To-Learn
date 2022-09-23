@@ -73,6 +73,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       autofocus: false,
       controller: authTutorController.passwordTutorController,
       keyboardType: TextInputType.visiblePassword,
+      obscureText: true,
       onSaved: (value) {
         authTutorController.passwordTutorController.text = value!;
       },
@@ -90,6 +91,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       autofocus: false,
       controller: authTutorController.confirmPassword,
       keyboardType: TextInputType.visiblePassword,
+      obscureText: true,
       onSaved: (value) {
         authTutorController.confirmPassword.text = value!;
       },
@@ -129,7 +131,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
-          authTutorController.signUp(context);
+          authTutorController.signUp(
+              context,
+              authTutorController.emailTutorController.text.trim(),
+              authTutorController.passwordTutorController.text.trim(),
+              authTutorController.firstnameController.text.trim(),
+              authTutorController.lastnameController.text.trim(),
+              authTutorController.phonetutorController.text.trim(),
+              authTutorController.imageUrl.toString());
         },
         child: Text(
           'SignUp',
@@ -189,47 +198,74 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(height: 35),
                     phoneField,
                     SizedBox(height: 15),
+                    Text(
+                      'เพิ่มรูปประกาศนียบัตรของท่าน',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.kanit(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    GetBuilder<AuthTutorController>(builder: (_) {
+                      if (authTutorController.image != null) {
+                        return Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: Image.file(authTutorController.image!)
+                                    .image),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          width: 250,
+                          height: 250,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    Image.asset('assets/images/placeholder.png')
+                                        .image),
+                          ),
+                        );
+                      }
+                    }),
+                    SizedBox(height: 15),
                     Center(
-                      
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ElevatedButton(onPressed: () {
-                            authTutorController.chooseImages(ImageSource.gallery, context);
-                          }, child: Text('add'),),
-                          ElevatedButton(onPressed: () {
-                            setState(() {
-                              authTutorController.image = null;
-                            });
-                      }, child: Text('remove')),
+                          ElevatedButton(
+                            onPressed: () {
+                              authTutorController.chooseImages(
+                                  ImageSource.camera, context);
+                            },
+                            child: Text('add'),
+                            style: ElevatedButton.styleFrom(
+                              primary: kPrimaryColors,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18)),
+                            ),
+                          ),
+                          SizedBox(width: 15),
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                authTutorController.image = null;
+                              });
+                            },
+                            child: Text('remove'),
+                            style: ElevatedButton.styleFrom(
+                              primary: kPrimaryColors,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18)),
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    
-                    SizedBox(height: 15),
-                    GetBuilder<AuthTutorController>(
-                      builder: (_) {
-                       if (authTutorController.image != null) {
-                          return Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: Image.file(authTutorController.image!).image),
-                          ),
-                        );
-                       }else{
-                         return Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: Image.asset('assets/images/placeholder.png').image),
-                          ),
-                        );
-                       }
-                      }
-                    ),
-                    
                     signUpButton,
                     SizedBox(height: 15),
                   ],

@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/controllers/show_course_controller.dart';
 
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -17,6 +19,7 @@ class HomeTutor extends StatefulWidget {
 }
 
 class _HomeTutorState extends State<HomeTutor> {
+  var _showCourseController = Get.put(showCourse());
   // FirebaseFirestore firebaseStorage = FirebaseFirestore.instance;
   // Future <void> downloanImage() async {
   //   // firebaseStorage.ref().child('').getDownloadURL();

@@ -1,16 +1,13 @@
 import 'dart:io';
-import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/courses_controller.dart';
-import 'package:motion_toast/motion_toast.dart';
+
 
 class AddedCourses extends StatefulWidget {
   const AddedCourses({Key? key}) : super(key: key);
@@ -20,13 +17,14 @@ class AddedCourses extends StatefulWidget {
 }
 
 class _AddedCoursesState extends State<AddedCourses> {
-  File? file;
-  File? fileBackgound;
+  
 
   @override
   Widget build(BuildContext context) {
     var coursesController = Get.put(CoursesController());
     var size = MediaQuery.of(context).size;
+    File? file;
+    File? fileBackgound;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -38,23 +36,30 @@ class _AddedCoursesState extends State<AddedCourses> {
               child: Stack(
                 children: [
                   
-                  Container(
-                    width: size.width,
-                    decoration: BoxDecoration(
-                      color: kPrimaryColor1,
-                      image: DecorationImage(
-                        image: fileBackgound != null
-                            ? Image.file(
-                                File(fileBackgound!.path.toString()),
-                                fit: BoxFit.cover,
-                              ).image
-                            : Image.asset(
-                                'assets/images/eng1.jpg',
-                                fit: BoxFit.cover,
-                              ).image,
-                      ),
-                    ),
-                  ),
+                 GetBuilder<CoursesController>(builder: (_) {
+                      if (coursesController.fileBackgound != null) {
+                        return Container(
+                          width: size.width,
+                          height: size.width,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: Image.file(coursesController.fileBackgound!)
+                                    .image),
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          width: size.width,
+                          height: size.width,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    Image.asset('assets/images/placeholder.png',fit: BoxFit.cover,)
+                                        .image),
+                          ),
+                        );
+                      }
+                    }),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Align(
@@ -78,7 +83,7 @@ class _AddedCoursesState extends State<AddedCourses> {
                                       InkWell(
                                         onTap: () {
                                           coursesController.chooseBackground(
-                                              ImageSource.gallery, context);
+                                              ImageSource.camera, context);
                                         },
                                         splashColor: kPrimaryColor1,
                                         child: Row(
@@ -106,7 +111,7 @@ class _AddedCoursesState extends State<AddedCourses> {
                                       InkWell(
                                         onTap: () {
                                           setState(() {
-                                            fileBackgound = null;
+                                            coursesController.fileBackgound = null;
                                           });
                                         },
                                         splashColor: kPrimaryColor1,
@@ -153,23 +158,23 @@ class _AddedCoursesState extends State<AddedCourses> {
             Stack(
               children: [
                 GetBuilder<CoursesController>(builder: (_) {
-                  return Container(
-                    width: 100,
-                    height: 100,
-                    child: CircleAvatar(
-                      radius: 55,
-                      backgroundImage: file != null
-                          ? Image.file(
-                              File(coursesController.file!.path.toString()),
-                              fit: BoxFit.cover,
-                            ).image
-                          : Image.asset('assets/images/profile.jpg').image,
-                    ),
-                  );
-                }),
+                      if (coursesController.file != null) {
+                        return CircleAvatar(
+                          radius: 80,
+                              backgroundImage: Image.file(coursesController.file!)
+                                  .image
+                        );
+                      } else {
+                        return CircleAvatar(
+                          radius: 80,
+                            backgroundImage: 
+                                    Image.asset('assets/images/Portrait_Placeholder.png',fit: BoxFit.cover,)
+                                        .image);
+                      }
+                    }),
                 Positioned(
-                  left: 35,
-                  top: 45,
+                  left: 75,
+                  top: 95,
                   child: RawMaterialButton(
                     elevation: 10,
                     child: CircleAvatar(
@@ -251,7 +256,7 @@ class _AddedCoursesState extends State<AddedCourses> {
                                     InkWell(
                                       onTap: () {
                                         setState(() {
-                                          file = null;
+                                          coursesController.file = null;
                                         });
                                       },
                                       splashColor: kPrimaryColor1,
@@ -353,7 +358,9 @@ class _AddedCoursesState extends State<AddedCourses> {
                     coursesController.priceController.text,
                     coursesController.detailcourseController.text,
                     context,
-                    coursesController.emailController.text);
+                    coursesController.emailController.text,
+                    coursesController.imageUrl.toString(),
+                    coursesController.imageUrlBackground.toString(),);
               },
               child: Container(
                 width: 200,

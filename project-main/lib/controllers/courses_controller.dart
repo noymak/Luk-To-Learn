@@ -19,9 +19,8 @@ class CoursesController extends GetxController {
 
   File? file;
   File? fileBackgound;
-
-  var selectedImagePath = ''.obs;
-  
+  String? imageUrlBackground;
+  String? imageUrl;
 
   void onInit() {
     super.onInit();
@@ -40,12 +39,14 @@ class CoursesController extends GetxController {
   }
 
   Future addDetail(String tutorname, String coursename, String price,
-      String detailcourse, BuildContext context, String email) async {
-        // print(email);
-        // print(tutorname);
-        // print(price);
-        // print(detailcourse);
-        // print(coursename);
+      String detailcourse, BuildContext context, String email ,String image, String imageBackground) async {
+        print(email);
+        print(tutorname);
+        print(price);
+        print(detailcourse);
+        print(coursename);
+        print(image);
+        print(imageUrlBackground);
       
    try {
       if (checkEmpty()) {
@@ -64,7 +65,8 @@ class CoursesController extends GetxController {
         'price': price,
         'detailcourse': detailcourse,
         'email': email,
-        'image' : '',
+        'image' : image,
+        'backgroudTutor': imageBackground,
       }).then((value) {
        
         Get.toNamed('/checkinfocourse');
@@ -84,22 +86,22 @@ class CoursesController extends GetxController {
   Future showDetail(
     String email,
   ) async {
-    // await FirebaseFirestore.instance
-    //     .collection('courses').where('email',isEqualTo: email)
-    //     .get().then((value) {
-    //       value.docs.forEach((element) {
-    //         listCourses.add(element.data());
-    //         listCourses.forEach((element) {
-    //           print(element['tutorname']);
-    //         });
+    await FirebaseFirestore.instance
+        .collection('courses').where('email',isEqualTo: email)
+        .get().then((value) {
+          value.docs.forEach((element) {
+            listCourses.add(element.data());
+            listCourses.forEach((element) {
+              print(element['tutorname']);
+            });
 
-    //         // print(listCourses.toString());
-    //       });
+            // print(listCourses.toString());
+          });
 
-    //        update();
-    //       // print(value.docs[0]['tutorname']);
-    //     });
-    // print(email);
+           update();
+          // print(value.docs[0]['tutorname']);
+        });
+    print(email);
     var data = await FirebaseFirestore.instance
         .collection('courses')
         .where('email', isEqualTo: email)
@@ -120,10 +122,10 @@ class CoursesController extends GetxController {
         maxWidth: 800,
         maxHeight: 800,
       );
-      (() {
-        file = File(result!.path);
-        update();
-      });
+      if (result != null) {
+        final Rx<File> _imagePath = File(result.path).obs;
+        file = _imagePath.value;
+      }
       uploadPictureToStorage(file!.path.toString(),context);
     } catch (e) {}
   }
@@ -135,10 +137,11 @@ class CoursesController extends GetxController {
         maxWidth: 800,
         maxHeight: 800,
       );
-      (() {
-        fileBackgound = File(result!.path);
-        update(['background']);
-      });
+     if (result != null) {
+        final Rx<File> _imagePath = File(result.path).obs;
+        fileBackgound = _imagePath.value;
+      }
+      update();
       uploadBackgoundToStorage(fileBackgound!.path.toString(),context);
     } catch (e) {}
   }
@@ -166,7 +169,7 @@ class CoursesController extends GetxController {
               style: TextStyle(fontWeight: FontWeight.bold)),
         ).show(context);
     }).then((value) async{
-      var imageUrl = await value.ref.getDownloadURL();
+      imageUrl = await value.ref.getDownloadURL();
       updateImageProfile(imageUrl.toString());
     });
   }
@@ -183,7 +186,7 @@ class CoursesController extends GetxController {
               style: TextStyle(fontWeight: FontWeight.bold)),
         ).show(context);
     }).then((value) async{
-      var imageUrl = await value.ref.getDownloadURL();
+      imageUrlBackground = await value.ref.getDownloadURL();
       print(imageUrl);
     });
   }

@@ -21,6 +21,21 @@ class AuthTutorController extends GetxController {
 
   File? image;
 
+  String? imageUrl;
+
+  checkEmpty() {
+    if (firstnameController.text.isEmpty &&
+        lastnameController.text.isEmpty &&
+        emailTutorController.text.isEmpty &&
+        phonetutorController.text.isEmpty &&
+        passwordTutorController.text.isEmpty &&
+        confirmPassword.text.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   checkPassword() {
 
     if (passwordTutorController.text.trim() == confirmPassword.text.trim()) {
@@ -32,7 +47,7 @@ class AuthTutorController extends GetxController {
   }
 
   Future addDetail(
-      String emailtutor, String firstname, String lastname, String phone) async {
+      String emailtutor, String firstname, String lastname, String phone, String image) async {
     await FirebaseFirestore.instance
         .collection('tutor')
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -40,7 +55,8 @@ class AuthTutorController extends GetxController {
       'email': emailtutor,
       'firstname': firstname,
       'lastname': lastname,
-      'phone': phonetutorController,
+      'phone': phone,
+      'image': image,
     });
   }
 
@@ -55,22 +71,39 @@ class AuthTutorController extends GetxController {
     await FirebaseAuth.instance.signOut();
   }
 
-  Future signUp(BuildContext context) async {
+  Future signUp(BuildContext context, String email, String password, String firstname, String lastname, String phone, String image) async {
+    // print(email);
+    // print(firstname);
+    // print(password);
+    // print(lastname);
+    // print(phone);
+    // print(image);
     try {
-      if (checkPassword()) {
+      if (!checkPassword()) {
       return MotionToast.error(
         description: Text("Error"),
-        title: Text("กรอกข้อมูลให้ครบถ้วน",
+        title: Text("กรุณากรอก Password ให้เหมือนกัน",
             style: TextStyle(fontWeight: FontWeight.bold)),
       ).show(context);
-    } else {
+    } if(checkEmpty()){
+      return MotionToast.error(
+        description: Text("Error"),
+        title: Text("กรุณากรอกข้อมูลให้ครบถ้วน",
+            style: TextStyle(fontWeight: FontWeight.bold)),
+      ).show(context);
+    }
+    else {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailTutorController.text.trim(),
-          password: passwordTutorController.text.trim());
-      addDetail(emailTutorController.text.trim(),
-          firstnameController.text.trim(),
-          lastnameController.text.trim(), 
-          phonetutorController.text.trim());
+          email: email,
+          password: password);
+      addDetail(
+          email,
+          firstname,
+          lastname, 
+          phone,
+          image,).then((value) {
+            Get.toNamed('/routetutor');
+          });
 
     }
     } catch (e) {
@@ -111,7 +144,7 @@ class AuthTutorController extends GetxController {
             style: TextStyle(fontWeight: FontWeight.bold)),
       ).show(context);
     }).then((value) async {
-      var imageUrl = await value.ref.getDownloadURL();
+      imageUrl = await value.ref.getDownloadURL();
       // updateImageProfile(imageUrl.toString());
     });
   }
