@@ -199,17 +199,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text(
                       "Por Lazuardi",
                       style: GoogleFonts.kanit(
-                          fontSize: 30,
+                          fontSize: 24,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Text(
                       "por.lazuardi@gmail.com",
@@ -220,7 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Container(
-              height: size.height * 0.58,
+              height: size.height * 0.6,
               decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.only(
@@ -242,27 +242,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(
                               height: 15,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, '/forgotpass');
-                                  },
-                                  child: Text(
-                                    "Change Password",
-                                    style: GoogleFonts.kanit(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.black,
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //   //   GestureDetector(
+                            //   //     onTap: () {
+                            //   //       Navigator.pushNamed(context, '/forgotpass');
+                            //   //     },
+                            //   //     child: Text(
+                            //   //       "Change Password",
+                            //   //       style: GoogleFonts.kanit(
+                            //   //         fontSize: 20,
+                            //   //         fontWeight: FontWeight.w500,
+                            //   //       ),
+                            //   //     ),
+                            //   //   ),
+                            //   //   Icon(
+                            //   //     Icons.arrow_forward_ios,
+                            //   //     color: Colors.black,
+                            //   //   ),
+                            //   // ],
+                            // ),
                             SizedBox(
                               height: 15,
                             ),

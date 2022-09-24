@@ -158,27 +158,66 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/registertutor');
-                        },
-                        child: Container(
-                          height: 50,
-                          width: size.width,
-                          decoration: BoxDecoration(
-                              color: Color(0xffFF8181),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     Navigator.pushNamed(context, '/registertutor');
+                      //   },
+                      //   child: Container(
+                      //     height: 50,
+                      //     width: size.width,
+                      //     decoration: BoxDecoration(
+                      //         color: Color(0xffFF8181),
+                      //         borderRadius: BorderRadius.circular(10)),
+                      //     child: Center(
+                      //       child: Text(
+                      //         "Register Tutor",
+                      //         style: GoogleFonts.kanit(
+                      //             fontSize: 17, color: Colors.white),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                                    Navigator.pushNamed(context, '/forgotpass');
+                                  },
                             child: Text(
-                              "Register Tutor",
+                              'Forgot password ?',
                               style: GoogleFonts.kanit(
-                                  fontSize: 17, color: Colors.white),
+                                  fontSize: 14, color: Colors.black),
                             ),
                           ),
-                        ),
+                          SizedBox(width: 20),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/registertutor');
+                            },
+                            child: Text(
+                              'Register Tutor ?',
+                              style: GoogleFonts.kanit(
+                                  fontSize: 14, color: Colors.black),
+                            ),
+                          ),
+                          SizedBox(width: 30),
+                          GestureDetector(
+                             onTap: () {
+                              Navigator.pushNamed(context, '/login_tutor');
+                            },
+                            child: Text(
+                              'Login Tutor ?',
+                              style: GoogleFonts.kanit(
+                                  fontSize: 14, color: Colors.black),
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 20,
+                       SizedBox(
+                        height: 5,
                       ),
                     ],
                   ),

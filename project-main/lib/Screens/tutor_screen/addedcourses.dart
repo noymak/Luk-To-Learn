@@ -35,7 +35,6 @@ class _AddedCoursesState extends State<AddedCourses> {
               width: size.width,
               child: Stack(
                 children: [
-                  
                  GetBuilder<CoursesController>(builder: (_) {
                       if (coursesController.fileBackgound != null) {
                         return Container(
