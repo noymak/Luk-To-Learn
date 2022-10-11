@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/controllers/auth_tutor_controller.dart';
 
 class LoginTutor extends StatefulWidget {
   const LoginTutor({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class _LoginTutorState extends State<LoginTutor> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var _controllerTutor = Get.put(AuthTutorController());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -37,7 +39,8 @@ class _LoginTutorState extends State<LoginTutor> {
               alignment: Alignment.topLeft,
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Text('Tutor-login'),
+                child: Text('Tutor-login.',style: GoogleFonts.kanit(
+                                    fontSize: 28, color: Colors.black),),
               )),
             Form(
               // key: formKey,
@@ -95,20 +98,26 @@ class _LoginTutorState extends State<LoginTutor> {
                       ),
                     ),
                     SizedBox(height: 10,),
-                    Container(
-                            height: 50,
-                            width: size.width/2,
-                            decoration: BoxDecoration(
-                                color: kPrimaryColors,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Center(
-                              child: Text(
-                                "Sign In",
-                                style: GoogleFonts.kanit(
-                                    fontSize: 17, color: Colors.white),
+                    GestureDetector(
+                      onTap: (() {
+                        FocusScope.of(context).unfocus();
+                          _controllerTutor.signIn();
+                      }),
+                      child: Container(
+                              height: 50,
+                              width: size.width/2,
+                              decoration: BoxDecoration(
+                                  color: kPrimaryColors,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Center(
+                                child: Text(
+                                  "Sign In",
+                                  style: GoogleFonts.kanit(
+                                      fontSize: 17, color: Colors.white),
+                                ),
                               ),
                             ),
-                          ),
+                    ),
                   ],
                 ),
               ),

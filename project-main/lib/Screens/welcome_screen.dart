@@ -184,12 +184,15 @@ class WelcomeScreen extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                                    Navigator.pushNamed(context, '/forgotpass');
-                                  },
+                              Navigator.pushNamed(context, '/forgotpass');
+                            },
                             child: Text(
                               'Forgot password ?',
                               style: GoogleFonts.kanit(
-                                  fontSize: 14, color: Colors.black),
+                                  fontSize: 14,
+                                  color: Colors.black54,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.black54,),
                             ),
                           ),
                           SizedBox(width: 20),
@@ -200,23 +203,29 @@ class WelcomeScreen extends StatelessWidget {
                             child: Text(
                               'Register Tutor ?',
                               style: GoogleFonts.kanit(
-                                  fontSize: 14, color: Colors.black),
+                                  fontSize: 14,
+                                  color: Colors.black54,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.black54,),
                             ),
                           ),
                           SizedBox(width: 30),
                           GestureDetector(
-                             onTap: () {
+                            onTap: () {
                               Navigator.pushNamed(context, '/login_tutor');
                             },
                             child: Text(
                               'Login Tutor ?',
                               style: GoogleFonts.kanit(
-                                  fontSize: 14, color: Colors.black),
+                                  fontSize: 14,
+                                  color: Colors.black54,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Colors.black54,),
                             ),
                           ),
                         ],
                       ),
-                       SizedBox(
+                      SizedBox(
                         height: 5,
                       ),
                     ],
