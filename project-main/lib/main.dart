@@ -21,7 +21,7 @@ import 'package:luk_to_learn/Screens/tutor_screen/editprofiletutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/forgotpass.dart';
 import 'package:luk_to_learn/Screens/user_screen/forgotpassOTP.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/infocourse.dart';
-import 'package:luk_to_learn/Screens/user_screen/login_tutor.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/login_tutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/orderhis.dart';
 import 'package:luk_to_learn/Screens/user_screen/paymentqr.dart';
 import 'package:luk_to_learn/Screens/user_screen/paymentselect.dart';

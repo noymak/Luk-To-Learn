@@ -89,10 +89,10 @@ class _MycoursesState extends State<Mycourses> {
                             
                             linkImage: coursesInfo[index].image!,
                             nameCourse: coursesInfo[index].nameCourse!,
-                            level: coursesInfo[index].level!,
+                            // level: coursesInfo[index].level!,
                             name: coursesInfo[index].name!,
                             price: coursesInfo[index].price!,
-                            rate: coursesInfo[index].rate!,
+                            // rate: coursesInfo[index].rate!,
                             detail: coursesInfo[index].detail!,
                             profileTutors: coursesInfo[index].profileTutors!,
                           ),

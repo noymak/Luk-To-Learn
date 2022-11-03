@@ -15,15 +15,18 @@ class CoursesController extends GetxController {
   final TextEditingController detailcourseController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
-  late List listCourses = [];
+  late List listCoursesId = [];
 
   File? file;
   File? fileBackgound;
   String? imageUrlBackground;
   String? imageUrl;
 
+  List listCourse = [];
+
   void onInit() {
     super.onInit();
+    fetchCourse();
   }
 
   checkEmpty() {
@@ -90,8 +93,8 @@ class CoursesController extends GetxController {
         .collection('courses').where('email',isEqualTo: email)
         .get().then((value) {
           value.docs.forEach((element) {
-            listCourses.add(element.data());
-            listCourses.forEach((element) {
+            listCoursesId.add(element.data());
+            listCoursesId.forEach((element) {
               print(element['tutorname']);
             });
 
@@ -108,9 +111,28 @@ class CoursesController extends GetxController {
         .get();
     data.docs.forEach((element) {
       print(element['tutorname']);
-      listCourses.add(element.data());
+      listCoursesId.add(element.data());
       update();
     });
+  }
+
+  Future<void> fetchCourse () async {
+    listCourse.clear();
+    await FirebaseFirestore.instance
+        .collection('courses')
+        .get().then((value) {
+          value.docs.forEach((element) {
+            listCourse.add(element.data());
+            listCourse.forEach((element) {
+              print('++ ' + element['tutorname']);
+            });
+
+            // print(listCourses.toString());
+          });
+
+           update();
+          // print(value.docs[0]['tutorname']);
+        });
   }
 
   
@@ -171,6 +193,7 @@ class CoursesController extends GetxController {
     }).then((value) async{
       imageUrl = await value.ref.getDownloadURL();
       updateImageProfile(imageUrl.toString());
+      // insertValueToFireStore();
     });
   }
 
@@ -188,8 +211,11 @@ class CoursesController extends GetxController {
     }).then((value) async{
       imageUrlBackground = await value.ref.getDownloadURL();
       print(imageUrl);
+      // insertValueToFireStore();
     });
   }
+
+  
 
   // Future<void> getImage (ImageSource imageSource, BuildContext context) async {
   //   final pickedFile = await ImagePicker().getImage(source: imageSource);

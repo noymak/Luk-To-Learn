@@ -11,9 +11,9 @@ class cartlistbuy extends StatelessWidget {
       required this.linkImage,
       required this.nameCourse,
       required this.price,
-      required this.rate,
+      // required this.rate,
       required this.name,
-      required this.level,
+      // required this.level,
       required this.detail,
       required this.profileTutors,
       })
@@ -23,9 +23,9 @@ class cartlistbuy extends StatelessWidget {
   final String? linkImage;
   final String? nameCourse;
   final int? price;
-  final String? rate;
+  // final String? rate;
   final String? name;
-  final String? level;
+  // final String? level;
   final String? detail;
   final String? profileTutors;
 
@@ -105,12 +105,12 @@ class cartlistbuy extends StatelessWidget {
                             Icons.star,
                             color: Colors.amber,
                           ),
-                          Text(
-                            rate!,
-                            style: GoogleFonts.kanit(
-                              textStyle: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
+                          // Text(
+                          //   rate!,
+                          //   style: GoogleFonts.kanit(
+                          //     textStyle: TextStyle(fontWeight: FontWeight.bold),
+                          //   ),
+                          // ),
                           Icon(
                             Icons.circle,
                             color: Colors.amber,
@@ -127,12 +127,12 @@ class cartlistbuy extends StatelessWidget {
                             color: Colors.amber,
                             size: 10,
                           ),
-                          Text(
-                            level!,
-                            style: GoogleFonts.kanit(
-                              textStyle: TextStyle(color: Colors.grey),
-                            ),
-                          ),
+                          // Text(
+                          //   level!,
+                          //   style: GoogleFonts.kanit(
+                          //     textStyle: TextStyle(color: Colors.grey),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],

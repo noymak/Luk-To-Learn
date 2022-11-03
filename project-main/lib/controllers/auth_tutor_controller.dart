@@ -61,14 +61,31 @@ class AuthTutorController extends GetxController {
   }
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+    print(passwordTutorController.text);
+    print(emailTutorController.text);
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: emailTutorController.text.trim(),
       password: passwordTutorController.text.trim(),
     );
+    
+    Get.toNamed('/routetutor');
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+      switch (e.code) {
+        case "user-not-found":
+          return Get.snackbar('เกิดข้อผิดพลาด', 'ไม่พบข้อมูลในระบบ');
+        case "wrong-password":
+          return Get.snackbar('เกิดข้อผิดพลาด', 'บัญชีหรือรหัสผ่านผิดพลาด');
+        case "invalid-email":
+          return Get.snackbar('เกิดข้อผิดพลาด', 'บัญชีหรือรหัสผ่านผิดพลาด');
+        default:
+      }
+    }
   }
 
   Future signOut() async {
-    await FirebaseAuth.instance.signOut();
+    await FirebaseAuth.instance.signOut().then((value) => Get.toNamed('/login_tutor'));
   }
 
   Future signUp(BuildContext context, String email, String password, String firstname, String lastname, String phone, String image) async {
@@ -106,8 +123,12 @@ class AuthTutorController extends GetxController {
           });
 
     }
-    } catch (e) {
-      print(e);
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case "email-already-in-use":
+          return Get.snackbar(
+              'เกิดข้อผิดพลาด', 'มีอีเมลนี้เชื่อมโยงกับบัญชีอื่นแล้ว');
+      }
     }
   }
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/controllers/courses_controller.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
 import '../../model/courses.dart';
@@ -16,6 +18,7 @@ class _AddCoursesState extends State<AddCourses> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var _controllerCourse = Get.put(CoursesController());
     return Scaffold(
       backgroundColor: kPrimaryColors,
       body: SingleChildScrollView(
@@ -50,10 +53,13 @@ class _AddCoursesState extends State<AddCourses> {
               width: size.width,
               child: Row(
                 children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('assets/images/profile.jpg'),
-                  ),
+                  Hero(
+                      tag: 'image',
+                      child: CircleAvatar(
+                        radius: 40,
+                        backgroundImage: NetworkImage(
+                            'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
+                      )),
                   SizedBox(
                     width: 20,
                   ),
@@ -141,7 +147,7 @@ class _AddCoursesState extends State<AddCourses> {
                               ),
                             ),
                             Text(
-                              "Total 4",
+                              "Total  ${_controllerCourse.listCourse.length}",
                               style: GoogleFonts.kanit(
                                 fontSize: 26,
                                 fontWeight: FontWeight.bold,
@@ -150,23 +156,36 @@ class _AddCoursesState extends State<AddCourses> {
                           ],
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 5,
                         ),
-                        ...List.generate(
-                          coursesInfo.length,
-                          (index) => cartlistbuy(
-                            
-                            linkImage: coursesInfo[index].image!,
-                            nameCourse: coursesInfo[index].nameCourse!,
-                            level: coursesInfo[index].level!,
-                            name: coursesInfo[index].name!,
-                            price: coursesInfo[index].price!,
-                            rate: coursesInfo[index].rate!,
-                            detail: coursesInfo[index].detail!,
-                            profileTutors: coursesInfo[index].profileTutors!,
-                            
-                          ),
-                        ),
+                        StreamBuilder(
+                            stream: _controllerCourse.fetchCourse().asStream(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Text('process');
+                              } else {
+                                return Container(
+                                  width: size.width,
+                                  height: size.height * 0.6,
+                                  child: ListView.builder(
+                                      physics: BouncingScrollPhysics(),
+                                      itemCount:
+                                          _controllerCourse.listCourse.length,
+                                      itemBuilder: (context, index) {
+                                        return cartlistbuy(
+                                            linkImage: _controllerCourse.listCourse[index]['backgroudTutor'],
+                                            nameCourse: _controllerCourse.listCourse[index]['coursename'],
+                                            price: int.parse(_controllerCourse.listCourse[index]['price']),
+                                            // rate: _controllerCourse.listCourse[index]['coursename'],
+                                            name: _controllerCourse.listCourse[index]['tutorname'],
+                                            // level: _controllerCourse.listCourse[index]['coursename'],
+                                            detail: _controllerCourse.listCourse[index]['detailcourse'],
+                                            profileTutors:_controllerCourse.listCourse[index]['image']);
+                                      }),
+                                );
+                              }
+                            })
                       ],
                     ),
                   ),

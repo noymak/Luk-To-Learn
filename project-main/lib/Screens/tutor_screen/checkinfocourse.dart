@@ -74,8 +74,8 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                                     ),
                                   ),
                                   Text(
-                                    (courseController.listCourses.length > 0
-                                        ? courseController.listCourses[0]
+                                    (courseController.listCoursesId.length > 0
+                                        ? courseController.listCoursesId[0]
                                             ['tutorname']
                                         : 'no'),
                                     style: GoogleFonts.kanit(
@@ -84,15 +84,13 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                                   ),
                                 ],
                               ),
-                              Container(
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(18),
-                                    color: kPrimaryColor1,
-                                  ),
-                                  child:
-                                      Image.asset('assets/images/profile.jpg')),
+                              Hero(
+                          tag: 'image',
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundImage: NetworkImage(
+                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
+                          )),
                             ],
                           ),
                           Row(
@@ -107,8 +105,8 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                                 width: 50,
                               ),
                               Text(
-                                (courseController.listCourses.length > 0
-                                    ? courseController.listCourses[0]['email']
+                                (courseController.listCoursesId.length > 0
+                                    ? courseController.listCoursesId[0]['email']
                                     : 'no'),
                                 style: GoogleFonts.kanit(
                                   fontSize: 18,
@@ -122,12 +120,12 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                               fontSize: 18,
                             ),
                           ),
-                          Text(
-                            (courseController.listCourses.length > 0
-                                ? courseController.listCourses[0]['price']
-                                : 'no'),
-                            style: GoogleFonts.kanit(fontSize: 18),
-                          ),
+                          // Text(
+                          //   (courseController.listCoursesId.length > 0
+                          //       ? courseController.listCoursesId[0]['price']
+                          //       : 'no'),
+                          //   style: GoogleFonts.kanit(fontSize: 18),
+                          // ),
                           SizedBox(
                             height: 10,
                           ),
@@ -138,8 +136,8 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                             ),
                           ),
                           Text(
-                            (courseController.listCourses.length > 0
-                                ? courseController.listCourses[0]
+                            (courseController.listCoursesId.length > 0
+                                ? courseController.listCoursesId[0]
                                     ['detailcourse']
                                 : 'no'),
                             style: GoogleFonts.kanit(fontSize: 18),

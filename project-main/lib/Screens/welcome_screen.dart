@@ -242,9 +242,9 @@ class WelcomeScreen extends StatelessWidget {
 
 String? validateEmail(String? formEmail) {
   if (formEmail == null || formEmail.isEmpty) return 'กรุุณากรอก E-mail ';
-  String pattern = r'\w+@\w+\.\w+';
-  RegExp regex = RegExp(pattern);
-  if (!regex.hasMatch(formEmail)) return 'กรุณากรอก E-mail ให้ถูกต้อง';
+  // String pattern = r'\w+@\w+\.\w+';
+  // RegExp regex = RegExp(pattern);
+  // if (!regex.hasMatch(formEmail)) return 'กรุณากรอก E-mail ให้ถูกต้อง';
   return null;
 }
 

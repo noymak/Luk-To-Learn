@@ -76,14 +76,13 @@ class _HomeTutorState extends State<HomeTutor> {
                           children: [
                             Row(
                               children: [
-                                Container(
-                                  width: 80,
-                                  height: 80,
-                                  child: CircleAvatar(
-                                      radius: 55,
-                                      backgroundImage: AssetImage(
-                                          'assets/images/profile.jpg')),
-                                ),
+                                Hero(
+                          tag: 'image',
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundImage: NetworkImage(
+                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
+                          )),
                                 Padding(
                                   padding: const EdgeInsets.all(20),
                                   child: Column(
@@ -235,10 +234,10 @@ class _HomeTutorState extends State<HomeTutor> {
                             
                             linkImage: coursesInfo[index].image!,
                             nameCourse: coursesInfo[index].nameCourse!,
-                            level: coursesInfo[index].level!,
+                            // level: coursesInfo[index].level!,
                             name: coursesInfo[index].name!,
                             price: coursesInfo[index].price!,
-                            rate: coursesInfo[index].rate!,
+                            // rate: coursesInfo[index].rate!,
                             detail: coursesInfo[index].detail!,
                             profileTutors: coursesInfo[index].profileTutors!,
                           ),

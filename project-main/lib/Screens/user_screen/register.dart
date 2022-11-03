@@ -129,7 +129,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                             height: 20,
                           ),
                           registerFormPass("Password",
-                              authController.passwordController, true),
+                              authController.passwordController, true,),
                           SizedBox(
                             height: 20,
                           ),
@@ -358,7 +358,7 @@ String? validateEmail(String? formEmail) {
 String? validatePassword(String? formPass) {
   if (formPass == null || formPass.isEmpty) return 'กรุุณากรอก Password ';
 
-  if (formPass.length < 6) return ' Password ของคุณง่ายเกินไป ';
+  if (formPass.length < 8) return ' Password ของคุณง่ายเกินไป ';
   return null;
 }
 

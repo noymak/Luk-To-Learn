@@ -14,8 +14,8 @@ class _MycourseTutorState extends State<MycourseTutor> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    // courseController.listCourses[0]['tutorname'];
-    // print(courseController.listCourses[0]['tutorname']);
+    // courseController.listCoursesId[0]['tutorname'];
+    // print(courseController.listCoursesId[0]['tutorname']);
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
@@ -23,13 +23,13 @@ class _MycourseTutorState extends State<MycourseTutor> {
           child: Column(
             children: [
               Container(
-                child: GetBuilder<CoursesController>(
-                  builder: (_) {
-                    return Text( (courseController.listCourses.length > 0 ? courseController.listCourses[0]['tutorname'] : 'no') );
-                    // return Text('${courseController.listCourses[0]['tutorname']}');
-                    // return Text('data');
-                  }
-                ),
+                // child: GetBuilder<CoursesController>(
+                //   builder: (_) {
+                //     // return Text( (courseController.listCoursesId.length > 0 ? courseController.listCoursesId[0]['tutorname'] : 'no') );
+                //     // return Text('${courseController.listCoursesId[0]['tutorname']}');
+                //     // return Text('data');
+                //   }
+                // ),
               )
             ],
           ),

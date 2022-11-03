@@ -178,14 +178,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Hero(
-                        tag: 'logo',
-                        child: Image.asset(
-                          "assets/images/logo.png",
-                          fit: BoxFit.cover,
-                          width: 300,
-                          height: 150,
-                        )),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/welcome_screen');
+                      },
+                      child: Hero(
+                          tag: 'logo',
+                          child: Image.asset(
+                            "assets/images/logo.png",
+                            fit: BoxFit.cover,
+                            width: 300,
+                            height: 150,
+                          )),
+                    ),
                     SizedBox(height: 35),
                     firstNameField,
                     SizedBox(height: 35),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/controllers/auth_tutor_controller.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 import 'package:luk_to_learn/widgets/coursebox.dart';
 
@@ -14,6 +16,7 @@ class ProfileTutor extends StatefulWidget {
 }
 
 class _ProfileTutorState extends State<ProfileTutor> {
+  var authTutorController = Get.put(AuthTutorController());
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -32,15 +35,13 @@ class _ProfileTutorState extends State<ProfileTutor> {
                 child: Container(
                   child: Row(
                     children: [
-                      Container(
-                        width: 50,
-                        height: 50,
-                        child: CircleAvatar(
-                          radius: 15,
-                          backgroundImage:
-                              AssetImage('assets/images/profile.jpg'),
-                        ),
-                      ),
+                      Hero(
+                          tag: 'image',
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundImage: NetworkImage(
+                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
+                          )),
                       SizedBox(
                         width: 15,
                       ),
@@ -67,9 +68,29 @@ class _ProfileTutorState extends State<ProfileTutor> {
                               ),
                             ),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  authTutorController.signOut();
+
+                                },
+                                child: Text(
+                                  "Logout",
+                                  style: GoogleFonts.kanit(
+                                    fontSize: 16,
+                                    color: kPrimaryLightColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
-                      SizedBox(width: 150,),
+                      SizedBox(
+                        width: 120,
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, '/editprofiletutor');
@@ -87,7 +108,7 @@ class _ProfileTutorState extends State<ProfileTutor> {
               SizedBox(height: 20),
               Container(
                 width: size.width,
-                height: size.height*2,
+                height: size.height * 2,
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.only(
@@ -213,13 +234,12 @@ class _ProfileTutorState extends State<ProfileTutor> {
                       ...List.generate(
                         coursesInfo.length,
                         (index) => cartlistbuy(
-                          
                           linkImage: coursesInfo[index].image!,
                           nameCourse: coursesInfo[index].nameCourse!,
-                          level: coursesInfo[index].level!,
+                          // level: coursesInfo[index].level!,
                           name: coursesInfo[index].name!,
                           price: coursesInfo[index].price!,
-                          rate: coursesInfo[index].rate!,
+                          // rate: coursesInfo[index].rate!,
                           detail: coursesInfo[index].detail!,
                           profileTutors: coursesInfo[index].profileTutors!,
                         ),

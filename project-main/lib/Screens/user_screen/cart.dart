@@ -119,10 +119,10 @@ class _CartScreenState extends State<CartScreen> {
                         
                         linkImage: coursesBox[index].image!,
                         nameCourse: coursesBox[index].nameCourse!,
-                        level: coursesBox[index].level!,
+                        // level: coursesBox[index].level!,
                         name: coursesBox[index].name!,
                         price: coursesBox[index].price!,
-                        rate: coursesBox[index].rate!,
+                        // rate: coursesBox[index].rate!,
                         detail: coursesBox[index].detail!,
                         profileTutors: coursesBox[index].profileTutors,
                       ),

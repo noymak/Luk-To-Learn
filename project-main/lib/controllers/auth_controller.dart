@@ -14,10 +14,23 @@ class AuthController extends GetxController {
   final TextEditingController forgotEmailController = TextEditingController();
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
     );
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+      switch (e.code) {
+        case "user-not-found":
+          return Get.snackbar('เกิดข้อผิดพลาด', 'ไม่พบข้อมูลในระบบ');
+        case "wrong-password":
+          return Get.snackbar('เกิดข้อผิดพลาด', 'บัญชีหรือรหัสผ่านผิดพลาด');
+        case "invalid-email":
+          return Get.snackbar('เกิดข้อผิดพลาด', 'บัญชีหรือรหัสผ่านผิดพลาด');
+        default:
+      }
+    }
   }
 
   Future signOut() async {
@@ -35,8 +48,12 @@ class AuthController extends GetxController {
           phone.text.trim());
 
           
-    } catch (e) {
-      print(e);
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case "email-already-in-use":
+          return Get.snackbar(
+              'เกิดข้อผิดพลาด', 'อีเมลนี้เชื่อมโยงกับบัญชีอื่นแล้ว');
+      }
     }
   }
 

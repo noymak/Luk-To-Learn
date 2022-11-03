@@ -26,14 +26,19 @@ class _LoginTutorState extends State<LoginTutor> {
           child: Column(children: [
             
             SizedBox(height: 200),
-            Hero(
-                tag: 'logo',
-                child: Image.asset(
-                  "assets/images/logo.png",
-                  fit: BoxFit.cover,
-                  width: 300,
-                  height: 150,
-                )),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/welcome_screen');
+              },
+              child: Hero(
+                  tag: 'logo',
+                  child: Image.asset(
+                    "assets/images/logo.png",
+                    fit: BoxFit.cover,
+                    width: 300,
+                    height: 150,
+                  )),
+            ),
             SizedBox(height: 20),
             Align(
               alignment: Alignment.topLeft,
@@ -62,7 +67,7 @@ class _LoginTutorState extends State<LoginTutor> {
                       child: TextFormField(
                         // validator: validateEmail,
                         keyboardType: TextInputType.emailAddress,
-                        // controller: _controller.emailController,
+                        controller: _controllerTutor.emailTutorController,
                         decoration: InputDecoration(
                           icon: Icon(
                             Icons.email,
@@ -84,7 +89,7 @@ class _LoginTutorState extends State<LoginTutor> {
                           TextFormField(
                             // validator: validatePassword,
                             keyboardType: TextInputType.visiblePassword,
-                            // controller: _controller.passwordController,
+                            controller: _controllerTutor.passwordTutorController,
                             decoration: InputDecoration(
                               icon: Icon(
                                 Icons.lock,
@@ -100,7 +105,6 @@ class _LoginTutorState extends State<LoginTutor> {
                     SizedBox(height: 10,),
                     GestureDetector(
                       onTap: (() {
-                        FocusScope.of(context).unfocus();
                           _controllerTutor.signIn();
                       }),
                       child: Container(
