@@ -33,7 +33,7 @@ class cartlist extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Declarative interfaces for any Apple \nDevices",
+                          "Declarative interfaces \nfor any Apple Devices",
                           style: GoogleFonts.kanit(fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
@@ -80,14 +80,14 @@ class cartlist extends StatelessWidget {
                       ],
                     ),
                     Container(
-                      width: 90,
-                      height: 90,
+                      width: 70,
+                      height: 70,
                       clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(18),
                       
                     ),
-                      child: Image.network('https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/eng1.jpg?alt=media&token=9a20f909-a922-40ac-8ec8-ed8ce6adb0c5',fit: BoxFit.cover,),
+                      child: Image.network('https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2FEng.jpg?alt=media&token=d8a39576-4d45-422c-bd9e-600bf2ddef36',fit: BoxFit.cover,),
                     ),
                   ],
                 ),

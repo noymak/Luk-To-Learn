@@ -181,21 +181,21 @@ class _ScearchScreenState extends State<ScearchScreen> {
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  ListView.builder(
-                                      physics: BouncingScrollPhysics(),
-                                      itemCount:
-                                          _controllerCourse.listCourse.length,
-                                      itemBuilder: (context, index) {
-                                        return cartlistbuy(
-                                            linkImage: _controllerCourse.listCourse[index]['backgroudTutor'],
-                                            nameCourse: _controllerCourse.listCourse[index]['coursename'],
-                                            price: int.parse(_controllerCourse.listCourse[index]['price']),
-                                            // rate: _controllerCourse.listCourse[index]['coursename'],
-                                            name: _controllerCourse.listCourse[index]['tutorname'],
-                                            // level: _controllerCourse.listCourse[index]['coursename'],
-                                            detail: _controllerCourse.listCourse[index]['detailcourse'],
-                                            profileTutors:_controllerCourse.listCourse[index]['image']);
-                                      }),
+                                  // ListView.builder(
+                                  //     physics: BouncingScrollPhysics(),
+                                  //     itemCount:
+                                  //         _controllerCourse.listCourse.length,
+                                  //     itemBuilder: (context, index) {
+                                  //       return cartlistbuy(
+                                  //           linkImage: _controllerCourse.listCourse[index]['backgroudTutor'],
+                                  //           nameCourse: _controllerCourse.listCourse[index]['coursename'],
+                                  //           price: int.parse(_controllerCourse.listCourse[index]['price']),
+                                  //           // rate: _controllerCourse.listCourse[index]['coursename'],
+                                  //           name: _controllerCourse.listCourse[index]['tutorname'],
+                                  //           // level: _controllerCourse.listCourse[index]['coursename'],
+                                  //           detail: _controllerCourse.listCourse[index]['detailcourse'],
+                                  //           profileTutors:_controllerCourse.listCourse[index]['image']);
+                                  //     }),
                                 ],
                               ),
                             ),
