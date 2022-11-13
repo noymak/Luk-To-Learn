@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -215,7 +216,13 @@ class CoursesController extends GetxController {
     });
   }
 
-  
+  Future<void> updateCategoryToStorage() async {
+    await FirebaseFirestore.instance
+    .collection('/category')
+    .doc(FirebaseAuth.instance.currentUser!.uid)
+      .set({'category': Category,});
+
+  }
 
   // Future<void> getImage (ImageSource imageSource, BuildContext context) async {
   //   final pickedFile = await ImagePicker().getImage(source: imageSource);

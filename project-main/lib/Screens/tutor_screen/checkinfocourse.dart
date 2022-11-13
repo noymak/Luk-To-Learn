@@ -1,10 +1,10 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/courses_controller.dart';
+import 'package:luk_to_learn/widgets/appbar.dart';
 
 class CheckInfoCourse extends StatefulWidget {
   const CheckInfoCourse({Key? key}) : super(key: key);
@@ -22,6 +22,7 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
 
     return Scaffold(
       backgroundColor: kPrimaryColors,
+      // appBar: Themeappbar(),
       body: SingleChildScrollView(
         child: Container(
           width: size.width,
@@ -67,17 +68,37 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  Container(
+                                    width: 250,
+                                    height: 120,
+                                    color: kPrimaryLightColor,
+                                    child: Image.network(
+                                        courseController.listCoursesId.length >
+                                                0
+                                            ? courseController.listCoursesId[0]
+                                                ['backgroudTutor']
+                                            : 'no'),
+                                  ),
                                   Text(
-                                    'ครูสอน ภาษาอังกฤษ',
+                                    'ครูประจำวิชา' +
+                                        ' ' +
+                                        (courseController.listCoursesId.length >
+                                                0
+                                            ? courseController.listCoursesId[0]
+                                                ['coursename']
+                                            : 'no'),
                                     style: GoogleFonts.kanit(
                                       fontSize: 15,
                                     ),
                                   ),
                                   Text(
-                                    (courseController.listCoursesId.length > 0
-                                        ? courseController.listCoursesId[0]
-                                            ['tutorname']
-                                        : 'no'),
+                                    'ชื่อผู้สอน' +
+                                        ' ' +
+                                        (courseController.listCoursesId.length >
+                                                0
+                                            ? courseController.listCoursesId[0]
+                                                ['tutorname']
+                                            : 'no'),
                                     style: GoogleFonts.kanit(
                                       fontSize: 15,
                                     ),
@@ -85,12 +106,16 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                                 ],
                               ),
                               Hero(
-                          tag: 'image',
-                          child: CircleAvatar(
-                            radius: 40,
-                            backgroundImage: NetworkImage(
-                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
-                          )),
+                                  tag: 'image',
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: NetworkImage(
+                                        courseController.listCoursesId.length >
+                                                0
+                                            ? courseController.listCoursesId[0]
+                                                ['image']
+                                            : 'no'),
+                                  )),
                             ],
                           ),
                           Row(
@@ -120,12 +145,12 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                               fontSize: 18,
                             ),
                           ),
-                          // Text(
-                          //   (courseController.listCoursesId.length > 0
-                          //       ? courseController.listCoursesId[0]['price']
-                          //       : 'no'),
-                          //   style: GoogleFonts.kanit(fontSize: 18),
-                          // ),
+                          Text(
+                            (courseController.listCoursesId.length > 0
+                                ? courseController.listCoursesId[0]['price']
+                                : 'no'),
+                            style: GoogleFonts.kanit(fontSize: 18),
+                          ),
                           SizedBox(
                             height: 10,
                           ),
@@ -145,18 +170,19 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                            width: size.width,
-                            height: 120,
-                            decoration: BoxDecoration(
-                                color: kPrimaryColor1,
-                                borderRadius: BorderRadius.circular(20)),
-                          ),
                           SizedBox(
                             height: 30,
                           ),
                           DropdownSearch(
-                            items: ["ภาษาไทย", "ภาษาอังกฤษ", "คณิตศาสตร์", "วิทยาศาสตร์"],
+                            items: [
+                              "ภาษาไทย",
+                              "ภาษาอังกฤษ",
+                              "คณิตศาสตร์",
+                              "วิทยาศาสตร์",
+                              "ศิลปะ",
+                              "พละศึกษา",
+                              "เทคโนโลยี"
+                            ],
                             // InputDecoration(labelText: "Name"),
                             onChanged: print,
                             selectedItem: "เลือกประเภท",
@@ -177,20 +203,26 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                               onTap: () {
                                 Navigator.pushNamed(context, '/infocourse');
                               },
-                              child: Container(
-                                width: 120,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    color: kPrimaryColor1,
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Text(
-                                    'Done',
-                                    style: GoogleFonts.kanit(
-                                        fontSize: 25,
-                                        color: kPrimaryLightColor,
-                                        fontWeight: FontWeight.bold),
+                              child: GestureDetector(
+                                                   onTap: () {
+                                  courseController.updateCategoryToStorage(
+                                      );
+                                },
+                                child: Container(
+                                  width: 120,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                      color: kPrimaryColor1,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Text(
+                                      'Done',
+                                      style: GoogleFonts.kanit(
+                                          fontSize: 25,
+                                          color: kPrimaryLightColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
                               ),

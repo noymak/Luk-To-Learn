@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/Screens/user_screen/info.demo.dart';
 import 'package:luk_to_learn/model/banner.dart';
 
 import '../../widgets/Indicator.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late final String? linkImage;
+  late final String? nameCourse;
+  late final int? price;
+  // final String? rate;
+  late final String? name;
+  // final String? level;
+  late final String? detail;
+  late final String? profileTutors;
+
   var _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -111,25 +124,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                 scrollDirection: Axis.horizontal,
                                 itemCount: banner.length,
                                 itemBuilder: (context, index) {
-                                  return Container(
-                                    width: 300,
-                                    margin: EdgeInsetsDirectional.all(10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          '${banner[index].image}',
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed('/info.demo');
+                                    },
+                                    child: Container(
+                                      width: 300,
+                                      margin: EdgeInsetsDirectional.all(10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                            '${banner[index].image}',
+                                          ),
+                                          fit: BoxFit.cover,
                                         ),
-                                        fit: BoxFit.cover,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            spreadRadius: 3,
+                                            blurRadius: 7,
+                                            color: Colors.black26,
+                                            offset: Offset(-1, 5),
+                                          ),
+                                        ],
                                       ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          spreadRadius: 3,
-                                          blurRadius: 7,
-                                          color: Colors.black26,
-                                          offset: Offset(-1, 5),
-                                        ),
-                                      ],
                                     ),
                                   );
                                 },
@@ -153,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget Banner(Size size) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/courses');
+        Get.toNamed('/courses');
       },
       child: Container(
         width: size.width,
