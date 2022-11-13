@@ -1,8 +1,4 @@
-import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
@@ -14,7 +10,7 @@ import '../../model/lesson.dart';
 
 class CoursesVideo extends StatefulWidget {
   final String title;
-  
+
   const CoursesVideo({Key? key, required this.title}) : super(key: key);
 
   @override
@@ -22,6 +18,9 @@ class CoursesVideo extends StatefulWidget {
 }
 
 class _CoursesVideoState extends State<CoursesVideo> {
+  late String video_url2 = 'test';
+  late String video_url =
+      'https://res.cloudinary.com/dtdhnrtir/video/upload/v1659454145/video/y2mate.com_-_STAYC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_BEAUTIFUL_MONSTER_Dance_Practice_1080p_rskuzt.mp4';
   late VideoPlayerController _controller;
   int _selectedTag = 0;
   void changeTab(int index) {
@@ -33,8 +32,8 @@ class _CoursesVideoState extends State<CoursesVideo> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller = VideoPlayerController.network(
-        'https://res.cloudinary.com/dtdhnrtir/video/upload/v1659454145/video/y2mate.com_-_STAYC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_BEAUTIFUL_MONSTER_Dance_Practice_1080p_rskuzt.mp4')
+    print(video_url2);
+    _controller = VideoPlayerController.network(video_url)
       ..initialize().then((_) {
         setState(() {});
       });
@@ -90,11 +89,9 @@ class _CoursesVideoState extends State<CoursesVideo> {
                       child: Text(
                         'Introduction',
                         style: GoogleFonts.kanit(
-                            
-                              fontSize: 26,
-                              color: kPrimaryColors,
-                            
-                          ),
+                          fontSize: 26,
+                          color: kPrimaryColors,
+                        ),
                       ),
                     ),
                   ],
@@ -116,7 +113,7 @@ class _CoursesVideoState extends State<CoursesVideo> {
                 index: _selectedTag,
                 changeTab: changeTab,
               ),
-              _selectedTag == 0 ? const PlayList() : const Description(),
+              _selectedTag == 0 ? PlayList() : const Description(),
             ],
           ),
         ),
@@ -134,13 +131,8 @@ class _CoursesVideoState extends State<CoursesVideo> {
       //   ),
     );
   }
-}
 
-class PlayList extends StatelessWidget {
-  const PlayList({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  PlayList() {
     return Expanded(
       child: ListView.separated(
         separatorBuilder: (_, __) {
@@ -152,7 +144,20 @@ class PlayList extends StatelessWidget {
         shrinkWrap: true,
         itemCount: lessonList.length,
         itemBuilder: (_, index) {
-          return LessonCard(lesson: lessonList[index]);
+          return GestureDetector(
+              onTap: () {
+                print(index);
+                if (index == 1) {
+                  setState(() {
+                    _controller = VideoPlayerController.network('https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4')
+                      ..initialize().then((_) {
+                        setState(() {});
+                      });
+                  });
+                  // print('test');
+                }
+              },
+              child: LessonCard(lesson: lessonList[index]));
         },
       ),
     );
