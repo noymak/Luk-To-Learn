@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/widgets/lessoncard.dart';
-
+import 'package:luk_to_learn/model/video.demo.dart';
+import 'package:collection/collection.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../model/lesson.dart';
@@ -18,11 +19,24 @@ class CoursesVideo extends StatefulWidget {
 }
 
 class _CoursesVideoState extends State<CoursesVideo> {
-  late String video_url2 = 'test';
-  late String video_url =
-      'https://res.cloudinary.com/dtdhnrtir/video/upload/v1659454145/video/y2mate.com_-_STAYC%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_BEAUTIFUL_MONSTER_Dance_Practice_1080p_rskuzt.mp4';
+  var courseName = Get.arguments[0];
   late VideoPlayerController _controller;
   int _selectedTag = 0;
+
+  var video = 'https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4';
+ var showList = [];
+  void _playVideo() {
+    var newList = test!.firstWhere(
+      (element) => element.c_id == courseName,
+    );
+
+    showList.add(newList);
+    print('asdasdasasdasddas '+showList.toString());
+    //print(newList.titleName)
+    _controller = VideoPlayerController.network(video)
+      ..addListener(() => setState(() {}))..initialize();
+  }
+
   void changeTab(int index) {
     setState(() {
       _selectedTag = index;
@@ -32,11 +46,13 @@ class _CoursesVideoState extends State<CoursesVideo> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print(video_url2);
-    _controller = VideoPlayerController.network(video_url)
-      ..initialize().then((_) {
-        setState(() {});
-      });
+    ;
+    _playVideo();
+    // _controller = VideoPlayerController.network(
+    //     'https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4')
+    //   ..initialize().then((_) {
+    //     setState(() {});
+    //   });
   }
 
   @override
@@ -48,6 +64,7 @@ class _CoursesVideoState extends State<CoursesVideo> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: kPrimaryLightColor,
       floatingActionButton: Row(
@@ -147,17 +164,35 @@ class _CoursesVideoState extends State<CoursesVideo> {
           return GestureDetector(
               onTap: () {
                 print(index);
-                if (index == 1) {
-                  setState(() {
-                    _controller = VideoPlayerController.network('https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4')
-                      ..initialize().then((_) {
-                        setState(() {});
-                      });
-                  });
-                  // print('test');
-                }
+                // if (index == 1) {
+                //   setState(() {
+                //     _controller = VideoPlayerController.network('https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4')
+                //       ..initialize().then((_) {
+                //         setState(() {});
+                //       });
+                //   });
+                //   // print('test');
+                // }
               },
-              child: LessonCard(lesson: lessonList[index]));
+              // child: LessonCard(lesson: lessonList[index]),
+              child: Container(
+                width: double.infinity,
+                height: 20,
+                child: ListView.builder(
+                  itemCount: showList.length,
+                  itemBuilder: (context,index){
+                    print(showList.length);
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        video = showList[index].fileUrl;
+                        print(video);
+                      });
+                    },
+                    child: Text(showList[index].c_id));
+                }),
+              ),
+              );
         },
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/controllers/show_course_controller.dart';
 import 'package:luk_to_learn/model/banner.dart';
 
 import '../../widgets/Indicator.dart';
@@ -16,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var _controllerShowCourse = Get.put(showCourse());
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
@@ -65,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
 
                     //Banner
-                    Banner(size),
+                    Banner(size, _controllerShowCourse),
                     SizedBox(
                       height: 10,
                     ),
@@ -75,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ...List.generate(
-                          banner.length,
+                          _controllerShowCourse.dataFromFirebase.length,
                           (index) => Indicator(
                             isActive: _selectedIndex == index ? true : false,
                           ),
@@ -109,7 +112,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 200,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: banner.length,
+                                itemCount:
+                                    _controllerShowCourse.dataShow.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                     width: 300,
@@ -117,8 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       image: DecorationImage(
-                                        image: AssetImage(
-                                          '${banner[index].image}',
+                                        image: NetworkImage(
+                                          '${_controllerShowCourse.dataShow[index]['image']}',
                                         ),
                                         fit: BoxFit.cover,
                                       ),
@@ -150,32 +154,39 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // Banner
-  Widget Banner(Size size) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/courses');
-      },
-      child: Container(
-        width: size.width,
-        height: size.height / 4,
-        child: PageView.builder(
-          controller: PageController(),
-          onPageChanged: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-            //test
-            // print(_selectedIndex);
-          },
-          itemCount: banner.length,
-          itemBuilder: (context, index) {
-            return Padding(
+  Widget Banner(Size size, showCourse controller) {
+    return Container(
+      width: size.width,
+      height: size.height / 4,
+      child: PageView.builder(
+        controller: PageController(),
+        onPageChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+          //test
+          // print(_selectedIndex);
+        },
+        itemCount: controller.dataFromFirebase.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Get.toNamed('/courses',
+              arguments: [
+                controller.dataFromFirebase[index]['coursename'],
+                controller.dataFromFirebase[index]['detailcourse'],
+                controller.dataFromFirebase[index]['tutorname'],
+              ]);
+              //print('${controller.dataFromFirebase[index]['tutorname']}');
+            },
+            child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: AssetImage('${banner[index].image}'),
+                    image: NetworkImage(
+                        '${controller.dataFromFirebase[index]['image']}'),
                     fit: BoxFit.cover,
                   ),
                   boxShadow: [
@@ -188,9 +199,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

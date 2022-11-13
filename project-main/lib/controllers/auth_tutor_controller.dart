@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:motion_toast/motion_toast.dart';
 
-
 class AuthTutorController extends GetxController {
   final TextEditingController emailTutorController = TextEditingController();
   final TextEditingController passwordTutorController = TextEditingController();
@@ -16,8 +15,10 @@ class AuthTutorController extends GetxController {
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController phonetutorController = TextEditingController();
-  final TextEditingController forgotEmailTutorController = TextEditingController();
+  final TextEditingController forgotEmailTutorController =
+      TextEditingController();
 
+  List imageTutor = [];
 
   File? image;
 
@@ -37,17 +38,15 @@ class AuthTutorController extends GetxController {
   }
 
   checkPassword() {
-
     if (passwordTutorController.text.trim() == confirmPassword.text.trim()) {
       return true;
     } else {
       return false;
     }
-    
   }
 
-  Future addDetail(
-      String emailtutor, String firstname, String lastname, String phone, String image) async {
+  Future addDetail(String emailtutor, String firstname, String lastname,
+      String phone, String image) async {
     await FirebaseFirestore.instance
         .collection('tutor')
         .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -65,11 +64,11 @@ class AuthTutorController extends GetxController {
     print(emailTutorController.text);
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailTutorController.text.trim(),
-      password: passwordTutorController.text.trim(),
-    );
-    
-    Get.toNamed('/routetutor');
+        email: emailTutorController.text.trim(),
+        password: passwordTutorController.text.trim(),
+      );
+
+      Get.toNamed('/routetutor');
     } on FirebaseAuthException catch (e) {
       print(e.code);
       switch (e.code) {
@@ -85,10 +84,13 @@ class AuthTutorController extends GetxController {
   }
 
   Future signOut() async {
-    await FirebaseAuth.instance.signOut().then((value) => Get.toNamed('/login_tutor'));
+    await FirebaseAuth.instance
+        .signOut()
+        .then((value) => Get.toNamed('/login_tutor'));
   }
 
-  Future signUp(BuildContext context, String email, String password, String firstname, String lastname, String phone, String image) async {
+  Future signUp(BuildContext context, String email, String password,
+      String firstname, String lastname, String phone, String image) async {
     // print(email);
     // print(firstname);
     // print(password);
@@ -97,32 +99,31 @@ class AuthTutorController extends GetxController {
     // print(image);
     try {
       if (!checkPassword()) {
-      return MotionToast.error(
-        description: Text("Error"),
-        title: Text("กรุณากรอก Password ให้เหมือนกัน",
-            style: TextStyle(fontWeight: FontWeight.bold)),
-      ).show(context);
-    } if(checkEmpty()){
-      return MotionToast.error(
-        description: Text("Error"),
-        title: Text("กรุณากรอกข้อมูลให้ครบถ้วน",
-            style: TextStyle(fontWeight: FontWeight.bold)),
-      ).show(context);
-    }
-    else {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: email,
-          password: password);
-      addDetail(
+        return MotionToast.error(
+          description: Text("Error"),
+          title: Text("กรุณากรอก Password ให้เหมือนกัน",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+        ).show(context);
+      }
+      if (checkEmpty()) {
+        return MotionToast.error(
+          description: Text("Error"),
+          title: Text("กรุณากรอกข้อมูลให้ครบถ้วน",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+        ).show(context);
+      } else {
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+        addDetail(
           email,
           firstname,
-          lastname, 
+          lastname,
           phone,
-          image,).then((value) {
-            Get.toNamed('/routetutor');
-          });
-
-    }
+          image,
+        ).then((value) {
+          Get.toNamed('/routetutor');
+        });
+      }
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case "email-already-in-use":
@@ -139,20 +140,19 @@ class AuthTutorController extends GetxController {
         maxWidth: 800,
         maxHeight: 800,
       );
-        if (result != null) {
+      if (result != null) {
         final Rx<File> _imagePath = File(result.path).obs;
         image = _imagePath.value;
       }
 
-        print(image);
-        update();
-      
+      print(image);
+      update();
+
       uploadPictureToStorage(image!.path.toString(), context);
     } catch (e) {}
   }
 
-
-   Future<void> uploadPictureToStorage(
+  Future<void> uploadPictureToStorage(
       String imagePath, BuildContext context) async {
     var firebaseRef = await FirebaseStorage.instance
         .ref()
@@ -170,6 +170,20 @@ class AuthTutorController extends GetxController {
     });
   }
 
-}
+  Future<void> fetchTutor(String tutorName) async {
+    var data = await FirebaseFirestore.instance
+        .collection('tutor')
+        .where('firstname', isEqualTo: tutorName)
+        .get();
+    data.docs.forEach((element) {
+      //print(element.data());
+      imageTutor.add(element.data());
+      print(imageTutor[0]['image']);
+    });
 
-  
+    // var filter =
+    //     data.docs.firstWhere((element) => element['firstname'] == 'doggo');
+
+    // print(filter);
+  }
+}

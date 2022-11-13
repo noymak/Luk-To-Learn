@@ -16,6 +16,7 @@ import 'package:luk_to_learn/Screens/tutor_screen/addcourses.dart';
 import 'package:luk_to_learn/Screens/courses_screen/coursesdetail.dart';
 
 import 'package:luk_to_learn/Screens/user_screen/coursesvideo.dart';
+import 'package:luk_to_learn/Screens/user_screen/coursevideo.new.dart';
 import 'package:luk_to_learn/Screens/user_screen/editprofile.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/editprofiletutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/forgotpass.dart';
@@ -103,6 +104,7 @@ class MyApp extends StatelessWidget {
         '/mycoursetutor': ((context) => MycourseTutor()),
         '/registertutor': ((context) => RegistrationScreen()),
         '/login_tutor': ((context) => LoginTutor()),
+         '/coursesvideonew': ((context) => CourseVideoNew()),
       },
     );
   }

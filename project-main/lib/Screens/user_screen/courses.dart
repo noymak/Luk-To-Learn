@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/controllers/auth_tutor_controller.dart';
+import 'package:luk_to_learn/controllers/video_controller.dart';
 
 class CoursesScreen extends StatefulWidget {
   const CoursesScreen({Key? key}) : super(key: key);
@@ -14,7 +17,17 @@ class CoursesScreen extends StatefulWidget {
 class _CoursesScreenState extends State<CoursesScreen> {
   @override
   Widget build(BuildContext context) {
+    var courseName = Get.arguments[0];
+    var detailCourse = Get.arguments[1];
+    var tutorName = Get.arguments[2];
+ 
     var size = MediaQuery.of(context).size;
+
+    var controller = Get.put(AuthTutorController());
+    var videoController = Get.put(VideoController());
+
+    controller.fetchTutor(tutorName);
+
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
@@ -95,7 +108,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Declarative interface for nany Apple Devices",
+                              "${courseName}",
                               style: GoogleFonts.kanit(
                                   fontSize: 32,
                                   color: kPrimaryLightColor,
@@ -155,7 +168,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                       height: 10,
                     ),
                     Text(
-                      'อาจารย์พิเศษในมหาวิทยาลัยชั้นนำและองค์กรต่างๆเช่นมหาวิทยาลัยศรีนครินทรวิโรฒวิทยาลัยปัญญาภิวัฒน์ (หลักสูตรปริญญาโท)และอื่นๆอีกมากมายปริญญาโทศิลปศาสตรมหาบัณฑิตภาษาอังกฤษเพื่ออาชีพสถาบันภาษามหาวิทยาลัยธรรมศาสตร์',
+                      '${detailCourse}',
                       style: GoogleFonts.kanit(
                         fontSize: 16,
                       ),
@@ -187,8 +200,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                         children: [
                           CircleAvatar(
                             radius: 28,
-                            backgroundImage:
-                                AssetImage('assets/images/profile.jpg'),
+                             backgroundImage:
+                                 NetworkImage('${controller.imageTutor[0]['image']}'),
                           ),
                           SizedBox(
                             width: 20,
@@ -197,7 +210,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Sarah William',
+                                '${tutorName}',
                                 style: GoogleFonts.kanit(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -246,7 +259,12 @@ class _CoursesScreenState extends State<CoursesScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/coursesvideo');
+                            Get.toNamed('/coursesvideonew',
+                            arguments: [
+                              courseName,
+                            ]);
+
+                            videoController.getCourseVideo(courseName);
                           },
                           child: Container(
                             width: 150,
