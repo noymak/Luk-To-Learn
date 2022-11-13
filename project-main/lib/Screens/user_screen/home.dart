@@ -7,13 +7,24 @@ import 'package:luk_to_learn/model/banner.dart';
 import '../../widgets/Indicator.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late final String? linkImage;
+  late final String? nameCourse;
+  late final int? price;
+  // final String? rate;
+  late final String? name;
+  // final String? level;
+  late final String? detail;
+  late final String? profileTutors;
+
   var _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -124,7 +135,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         image: NetworkImage(
                                           '${_controllerShowCourse.dataShow[index]['image']}',
                                         ),
-                                        fit: BoxFit.cover,
                                       ),
                                       boxShadow: [
                                         BoxShadow(
@@ -171,8 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Get.toNamed('/courses',
-              arguments: [
+              Get.toNamed('/courses', arguments: [
                 controller.dataFromFirebase[index]['coursename'],
                 controller.dataFromFirebase[index]['detailcourse'],
                 controller.dataFromFirebase[index]['tutorname'],

@@ -82,7 +82,7 @@ class _AddedCoursesState extends State<AddedCourses> {
                                       InkWell(
                                         onTap: () {
                                           coursesController.chooseBackground(
-                                              ImageSource.camera, context);
+                                              ImageSource.gallery, context);
                                         },
                                         splashColor: kPrimaryColor1,
                                         child: Row(

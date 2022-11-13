@@ -23,6 +23,7 @@ import 'package:luk_to_learn/Screens/user_screen/forgotpass.dart';
 import 'package:luk_to_learn/Screens/user_screen/forgotpassOTP.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/infocourse.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/login_tutor.dart';
+import 'package:luk_to_learn/Screens/user_screen/info.demo.dart';
 import 'package:luk_to_learn/Screens/user_screen/orderhis.dart';
 import 'package:luk_to_learn/Screens/user_screen/paymentqr.dart';
 import 'package:luk_to_learn/Screens/user_screen/paymentselect.dart';
@@ -105,6 +106,7 @@ class MyApp extends StatelessWidget {
         '/registertutor': ((context) => RegistrationScreen()),
         '/login_tutor': ((context) => LoginTutor()),
          '/coursesvideonew': ((context) => CourseVideoNew()),
+        '/info.demo': ((context) => Infodemo(linkImage: '', nameCourse: '', price: null, name: '', detail: '', profileTutors: '')),
       },
     );
   }
