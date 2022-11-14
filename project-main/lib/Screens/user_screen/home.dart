@@ -79,23 +79,38 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
 
                     //Banner
-                    Banner(size, _controllerShowCourse),
+                    GetBuilder<showCourse>(
+                        init: showCourse(),
+                        builder: (_) {
+                          return _controllerShowCourse.isLoading
+                              ? Center(child: CircularProgressIndicator())
+                              : Banner(size, _controllerShowCourse);
+                        }),
                     SizedBox(
                       height: 10,
                     ),
 
                     // Indicator
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ...List.generate(
-                          _controllerShowCourse.dataFromFirebase.length,
-                          (index) => Indicator(
-                            isActive: _selectedIndex == index ? true : false,
-                          ),
-                        ),
-                      ],
-                    ),
+                    GetBuilder<showCourse>(
+                        init: showCourse(),
+                        builder: (context) {
+                          return _controllerShowCourse.isLoading
+                              ? Container()
+                              : Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ...List.generate(
+                                      _controllerShowCourse
+                                          .dataFromFirebase.length,
+                                      (index) => Indicator(
+                                        isActive: _selectedIndex == index
+                                            ? true
+                                            : false,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                        }),
                     Container(
                       width: size.width,
                       // เพิ่มขนาด scroll
@@ -118,37 +133,48 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             // ListView
-                            Container(
-                              width: size.width,
-                              height: 200,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount:
-                                    _controllerShowCourse.dataShow.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    width: 300,
-                                    margin: EdgeInsetsDirectional.all(10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          '${_controllerShowCourse.dataShow[index]['image']}',
-                                        ),
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          spreadRadius: 3,
-                                          blurRadius: 7,
-                                          color: Colors.black26,
-                                          offset: Offset(-1, 5),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
+                            GetBuilder<showCourse>(
+                                init: showCourse(),
+                                builder: (context) {
+                                  return _controllerShowCourse.isLoading
+                                      ? Center(
+                                          child: CircularProgressIndicator())
+                                      : Container(
+                                          width: size.width,
+                                          height: 200,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: _controllerShowCourse
+                                                .dataShow.length,
+                                            itemBuilder: (context, index) {
+                                              return Container(
+                                                width: 300,
+                                                margin:
+                                                    EdgeInsetsDirectional.all(
+                                                        10),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                      '${_controllerShowCourse.dataShow[index]['image']}',
+                                                    ),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      spreadRadius: 3,
+                                                      blurRadius: 7,
+                                                      color: Colors.black26,
+                                                      offset: Offset(-1, 5),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        );
+                                }),
                           ],
                         ),
                       ),

@@ -4,29 +4,28 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class showCourse extends GetxController{
-
+class showCourse extends GetxController {
+  bool isLoading = false;
   List courseData = [];
   List dataShow = [];
   List dataFromFirebase = [];
 
-
-  void onInit(){
+  void onInit() {
     super.onInit();
     fetchDataFromFirebase();
   }
 
- Future<void> fetchDataFromFirebase() async {
-    final data = await FirebaseFirestore.instance
-        .collection('courses')
-        .get();
-        
+  Future<void> fetchDataFromFirebase() async {
+    isLoading = true;
+    final data = await FirebaseFirestore.instance.collection('courses').get();
+    update();
     data.docs.forEach((element) {
-      print(element.data());
+      //print(element.data());
       dataShow.add(element.data());
       dataFromFirebase.add(element.data());
-      update();
     });
+    isLoading = false;
+    update();
   }
 
   void onSearch(keyword) {
@@ -35,5 +34,4 @@ class showCourse extends GetxController{
     }).toList();
     update();
   }
-
 }

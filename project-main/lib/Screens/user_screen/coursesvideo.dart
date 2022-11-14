@@ -23,18 +23,20 @@ class _CoursesVideoState extends State<CoursesVideo> {
   late VideoPlayerController _controller;
   int _selectedTag = 0;
 
-  var video = 'https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4';
- var showList = [];
+  var video =
+      'https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4';
+  var showList = [];
   void _playVideo() {
-    var newList = test!.firstWhere(
+    var newList = test.firstWhere(
       (element) => element.c_id == courseName,
     );
 
     showList.add(newList);
-    print('asdasdasasdasddas '+showList.toString());
+    print('asdasdasasdasddas ' + showList.toString());
     //print(newList.titleName)
     _controller = VideoPlayerController.network(video)
-      ..addListener(() => setState(() {}))..initialize();
+      ..addListener(() => setState(() {}))
+      ..initialize();
   }
 
   void changeTab(int index) {
@@ -162,37 +164,37 @@ class _CoursesVideoState extends State<CoursesVideo> {
         itemCount: lessonList.length,
         itemBuilder: (_, index) {
           return GestureDetector(
-              onTap: () {
-                print(index);
-                // if (index == 1) {
-                //   setState(() {
-                //     _controller = VideoPlayerController.network('https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4')
-                //       ..initialize().then((_) {
-                //         setState(() {});
-                //       });
-                //   });
-                //   // print('test');
-                // }
-              },
-              // child: LessonCard(lesson: lessonList[index]),
-              child: Container(
-                width: double.infinity,
-                height: 20,
-                child: ListView.builder(
+            onTap: () {
+              print(index);
+              // if (index == 1) {
+              //   setState(() {
+              //     _controller = VideoPlayerController.network('https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4')
+              //       ..initialize().then((_) {
+              //         setState(() {});
+              //       });
+              //   });
+              //   // print('test');
+              // }
+            },
+            // child: LessonCard(lesson: lessonList[index]),
+            child: Container(
+              width: double.infinity,
+              height: 20,
+              child: ListView.builder(
                   itemCount: showList.length,
-                  itemBuilder: (context,index){
+                  itemBuilder: (context, index) {
                     print(showList.length);
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        video = showList[index].fileUrl;
-                        print(video);
-                      });
-                    },
-                    child: Text(showList[index].c_id));
-                }),
-              ),
-              );
+                    return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            video = showList[index].fileUrl;
+                            print(video);
+                          });
+                        },
+                        child: Text(showList[index].c_id));
+                  }),
+            ),
+          );
         },
       ),
     );

@@ -13,6 +13,8 @@ class AuthController extends GetxController {
   final TextEditingController phone = TextEditingController();
   final TextEditingController forgotEmailController = TextEditingController();
 
+
+
   Future signIn() async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(

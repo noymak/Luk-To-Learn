@@ -20,6 +20,8 @@ class AuthTutorController extends GetxController {
 
   List imageTutor = [];
 
+  bool isLoading = false;
+
   File? image;
 
   String? imageUrl;
@@ -171,15 +173,22 @@ class AuthTutorController extends GetxController {
   }
 
   Future<void> fetchTutor(String tutorName) async {
+    isLoading = true;
     var data = await FirebaseFirestore.instance
         .collection('tutor')
         .where('firstname', isEqualTo: tutorName)
         .get();
+
+    update();
     data.docs.forEach((element) {
       //print(element.data());
       imageTutor.add(element.data());
       print(imageTutor[0]['image']);
     });
+
+    isLoading = false;
+
+    update();
 
     // var filter =
     //     data.docs.firstWhere((element) => element['firstname'] == 'doggo');
