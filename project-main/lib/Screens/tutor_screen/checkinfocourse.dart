@@ -6,6 +6,9 @@ import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/courses_controller.dart';
 import 'package:luk_to_learn/widgets/appbar.dart';
 
+import '../../constants.dart';
+
+
 class CheckInfoCourse extends StatefulWidget {
   const CheckInfoCourse({Key? key}) : super(key: key);
 
@@ -173,6 +176,27 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                           SizedBox(
                             height: 30,
                           ),
+                          // DropdownButton<String>(
+                          //   value: catagoryValue,
+                          //   icon: Icon(Icons.arrow_drop_down),
+                          //   iconSize: 24,
+                          //   elevation: 18,
+                          //   underline: Container(height: 2,color: Colors.pink,),
+                          //   style: ("ภาษาไทย",
+                          //     "ภาษาอังกฤษ",
+                          //     "คณิตศาสตร์",
+                          //     "วิทยาศาสตร์",
+                          //     "ศิลปะ",
+                          //     "พละศึกษา",
+                          //     "เทคโนโลยี").map<DropdownMenuItem<String>>((String value){
+                          //       return DropdownMenuItem<String>(child: Text(value),value: value,);
+                          //     }).toList(),
+                          //     onChanged: (newvalue) {
+                          //       catagoryValue = newvalue;
+                          //     },
+
+                          
+                          // ),
                           DropdownSearch(
                             items: [
                               "ภาษาไทย",
@@ -205,8 +229,7 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                               },
                               child: GestureDetector(
                                                    onTap: () {
-                                  courseController.updateCategoryToStorage(
-                                      );
+                                  courseController.updateCategoryToStorage(context);
                                 },
                                 child: Container(
                                   width: 120,

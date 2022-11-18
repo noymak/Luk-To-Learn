@@ -216,11 +216,16 @@ class CoursesController extends GetxController {
     });
   }
 
-  Future<void> updateCategoryToStorage() async {
+  Future<void> updateCategoryToStorage(context) async {
     await FirebaseFirestore.instance
     .collection('/category')
     .doc(FirebaseAuth.instance.currentUser!.uid)
       .set({'category': Category,});
+      MotionToast.info(
+          description: Text("เพิ่มข้อมูล"),
+          title: Text("ทำรายการสำเร็จ",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+        ).show(context);
 
   }
 

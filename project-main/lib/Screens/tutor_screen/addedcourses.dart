@@ -1,6 +1,8 @@
 import 'dart:io';
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +19,8 @@ class AddedCourses extends StatefulWidget {
 }
 
 class _AddedCoursesState extends State<AddedCourses> {
+  get selectedcategory => null;
+
   
 
   @override
@@ -25,6 +29,11 @@ class _AddedCoursesState extends State<AddedCourses> {
     var size = MediaQuery.of(context).size;
     File? file;
     File? fileBackgound;
+    final List<String> categoryItems = ['math','eng','thai','art'];
+
+    String _currentName;
+    String? _currentCategory;
+    int _currentStrength;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -345,6 +354,65 @@ class _AddedCoursesState extends State<AddedCourses> {
                   ),
                   addedForm('รายละเอียดคอร์ส',
                       coursesController.detailcourseController),
+                      SizedBox(height: 20,),
+                  DropdownButtonFormField(items: categoryItems.map((category){
+                    return DropdownMenuItem(
+                        value: category,
+                        child: Text('$category category'),
+                      );
+                  }).toList(), 
+                  onChanged: (val) => setState(() => _currentCategory = val as String?),
+                  )
+                  //      StreamBuilder<QuerySnapshot>(
+                  // stream: FirebaseFirestore.instance.collection("category").snapshots(),
+                  // builder: (context, snapshot) {
+                  //   if (!snapshot.hasData)
+                  //     const Text("Loading.....");
+                  //   else {
+                  //     List<DropdownMenuItem> categoryItems = [];
+                  //     for (int i = 0; i < snapshot.data.documents.length; i++) {
+                  //       DocumentSnapshot snap = snapshot.data.documents[i];
+                  //       categoryItems.add(
+                  //         DropdownMenuItem(
+                  //           child: Text(
+                  //             snap.documentID,
+                  //             style: TextStyle(color: Color(0xff11b719)),
+                  //           ),
+                  //           value: "${snap.documentID}",
+                  //         ),
+                  //       );
+                  //     }
+                  //     return Row(
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: <Widget>[
+                  //         Icon(Icons.control_point_sharp,
+                  //             size: 25.0, color: Color(0xff11b719)),
+                  //         SizedBox(width: 50.0),
+                  //         DropdownButton(
+                  //           items: categoryItems,
+                  //           onChanged: (categoryValue) {
+                  //             final snackBar = SnackBar(
+                  //               content: Text(
+                  //                 'Selected category value is $categoryValue',
+                  //                 style: TextStyle(color: Color(0xff11b719)),
+                  //               ),
+                  //             );
+                  //             Scaffold.of(context).showSnackBar(snackBar);
+                  //             setState(() {
+                  //               var selectedcategory = categoryValue;
+                  //             });
+                  //           },
+                  //           value: selectedcategory,
+                  //           isExpanded: false,
+                  //           hint: new Text(
+                  //             "Choose category Type",
+                  //             style: TextStyle(color: Color(0xff11b719)),
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     );
+                  //   }
+                  // }),
                 ],
               ),
             ),
@@ -419,78 +487,4 @@ class _AddedCoursesState extends State<AddedCourses> {
       ),
     );
   }
-
-  // Future<Null> chooseImage(ImageSource source) async {
-  //   try {
-  //     var result = await ImagePicker().getImage(
-  //       source: source,
-  //       maxWidth: 800,
-  //       maxHeight: 800,
-  //     );
-  //     setState(() {
-  //       file = File(result!.path);
-  //     });
-  //     uploadPictureToStorage(file!.path.toString());
-  //   } catch (e) {}
-  // }
-
-  // Future<Null> chooseBackgound(ImageSource source) async {
-  //   try {
-  //     var result = await ImagePicker().getImage(
-  //       source: source,
-  //       maxWidth: 800,
-  //       maxHeight: 800,
-  //     );
-  //     setState(() {
-  //       fileBackgound = File(result!.path);
-  //     });
-  //     uploadBackgoundToStorage(fileBackgound!.path.toString());
-  //   } catch (e) {}
-  // }
-
-  // Future<void> updateImageProfile(String image) async {
-  //   try {
-  //     await FirebaseFirestore.instance
-  //     .collection('courses')
-  //     .doc(FirebaseAuth.instance.currentUser!.uid)
-  //     .update({'image': image,});
-  //   }catch (e) {
-
-  //   }
-  // }
-
-  // Future<void> uploadPictureToStorage(String imagePath) async{
-  //   var firebaseRef = await FirebaseStorage.instance
-  //   .ref()
-  //   .child('image/${imagePath.split('/').last}');
-  //   var uploadTask = firebaseRef.putFile(file!);
-  //   var taskSnapshot = await uploadTask.whenComplete(() async {
-  //     MotionToast.info(
-  //         description: Text("การเพิ่มรูป"),
-  //         title: Text("ทำรายการสำเร็จ",
-  //             style: TextStyle(fontWeight: FontWeight.bold)),
-  //       ).show(context);
-  //   }).then((value) async{
-  //     var imageUrl = await value.ref.getDownloadURL();
-  //     updateImageProfile(imageUrl.toString());
-  //   });
-  // }
-
-  // Future<void> uploadBackgoundToStorage(String imagePath) async{
-  //   var firebaseRef = await FirebaseStorage.instance
-  //   .ref()
-  //   .child('backgound/${imagePath.split('/').last}');
-  //   var uploadTask = firebaseRef.putFile(fileBackgound!);
-  //   var taskSnapshot = await uploadTask.whenComplete(() async {
-  //     MotionToast.info(
-  //         description: Text("การเพิ่มรูป"),
-  //         title: Text("ทำรายการสำเร็จ",
-  //             style: TextStyle(fontWeight: FontWeight.bold)),
-  //       ).show(context);
-  //   }).then((value) async{
-  //     var imageUrl = await value.ref.getDownloadURL();
-  //     print(imageUrl);
-  //   });
-  // }
-
 }
