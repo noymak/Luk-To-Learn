@@ -15,6 +15,7 @@ class CoursesController extends GetxController {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController detailcourseController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final DropdownButtonFormField catagoryController = DropdownButtonFormField(items: [], onChanged: (value) { },);
 
   late List listCoursesId = [];
 
@@ -22,6 +23,8 @@ class CoursesController extends GetxController {
   File? fileBackgound;
   String? imageUrlBackground;
   String? imageUrl;
+
+  var categoryValue = '';
 
   List listCourse = [];
 
@@ -35,7 +38,8 @@ class CoursesController extends GetxController {
         coursenameController.text.isEmpty &&
         priceController.text.isEmpty &&
         detailcourseController.text.isEmpty &&
-        emailController.text.isEmpty) {
+        emailController.text.isEmpty 
+        ) {
       return true;
     } else {
       return false;
@@ -220,7 +224,7 @@ class CoursesController extends GetxController {
     await FirebaseFirestore.instance
     .collection('/category')
     .doc(FirebaseAuth.instance.currentUser!.uid)
-      .set({'category': Category,});
+      .set({'category': DropdownButtonFormField,});
       MotionToast.info(
           description: Text("เพิ่มข้อมูล"),
           title: Text("ทำรายการสำเร็จ",

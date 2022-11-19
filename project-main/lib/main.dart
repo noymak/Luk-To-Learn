@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/Screens/courses_screen/video_info.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/addedcourses.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/mycoursetutor.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/registertutor.dart';
@@ -105,7 +106,8 @@ class MyApp extends StatelessWidget {
         '/mycoursetutor': ((context) => MycourseTutor()),
         '/registertutor': ((context) => RegistrationScreen()),
         '/login_tutor': ((context) => LoginTutor()),
-         '/coursesvideonew': ((context) => CourseVideoNew()),
+        '/coursesvideonew': ((context) => CourseVideoNew()),
+        '/video_info': ((context) => VideoInfo()),
         '/info.demo': ((context) => Infodemo(linkImage: '', nameCourse: '', price: null, name: '', detail: '', profileTutors: '')),
       },
     );

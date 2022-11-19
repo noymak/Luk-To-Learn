@@ -8,7 +8,6 @@ import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 import '../../model/courses.dart';
 
 class CoursesDetails extends StatefulWidget {
-
   @override
   State<CoursesDetails> createState() => _CoursesdetailState();
 
@@ -38,7 +37,7 @@ class _CoursesdetailState extends State<CoursesDetails>
     var bannerImage = Get.arguments[1];
     var detailCourse = Get.arguments[2];
     var profileImages = Get.arguments[3];
-    
+
     var size = MediaQuery.of(context).size;
     print(profileImages);
     return Scaffold(
@@ -71,7 +70,9 @@ class _CoursesdetailState extends State<CoursesDetails>
                         shape: BoxShape.circle,
                       ),
                       child: Image.network(
-                          profileImages,fit: BoxFit.cover,),
+                        profileImages,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     SizedBox(
                       width: 20,
@@ -84,12 +85,41 @@ class _CoursesdetailState extends State<CoursesDetails>
                   ],
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                    detailCourse,style: GoogleFonts.kanit(
-                          fontSize: 18,),),
+                  detailCourse,
+                  style: GoogleFonts.kanit(
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 120,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed('/video_info');
+                },
+                child: Container(
+                  height: 60,
+                  width: 260,
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor1,
+                    
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    
+                  ),
+                  child: Center(child: Text('add video',style: GoogleFonts.kanit(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w500,
+                  ),),),
+                ),
               ),
             ],
           ),

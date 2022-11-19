@@ -197,28 +197,7 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
 
                           
                           // ),
-                          DropdownSearch(
-                            items: [
-                              "ภาษาไทย",
-                              "ภาษาอังกฤษ",
-                              "คณิตศาสตร์",
-                              "วิทยาศาสตร์",
-                              "ศิลปะ",
-                              "พละศึกษา",
-                              "เทคโนโลยี"
-                            ],
-                            // InputDecoration(labelText: "Name"),
-                            onChanged: print,
-                            selectedItem: "เลือกประเภท",
-                            validator: (String? item) {
-                              if (item == null)
-                                return "Required field";
-                              else if (item == "ภาษาไทย")
-                                return "Invalid item";
-                              else
-                                return null;
-                            },
-                          ),
+                         
                           SizedBox(
                             height: 50,
                           ),

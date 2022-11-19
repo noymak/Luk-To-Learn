@@ -31,9 +31,9 @@ class _AddedCoursesState extends State<AddedCourses> {
     File? fileBackgound;
     final List<String> categoryItems = ['math','eng','thai','art'];
 
-    String _currentName;
+    
     String? _currentCategory;
-    int _currentStrength;
+    
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -361,7 +361,12 @@ class _AddedCoursesState extends State<AddedCourses> {
                         child: Text('$category category'),
                       );
                   }).toList(), 
-                  onChanged: (val) => setState(() => _currentCategory = val as String?),
+                  onChanged: (val){
+                    setState(() {
+                      coursesController.categoryValue = val as String;
+                      print(coursesController.categoryValue);
+                    });
+                  }
                   )
                   //      StreamBuilder<QuerySnapshot>(
                   // stream: FirebaseFirestore.instance.collection("category").snapshots(),
