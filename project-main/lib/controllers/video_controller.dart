@@ -6,6 +6,7 @@ class VideoController extends GetxController{
 RxString video = ''.obs;
 
 
+
   void getCourseVideo(String courseName){
      var newList = videoDemo.where(
       (element) => element.c_id == courseName,

@@ -15,7 +15,7 @@ class CoursesController extends GetxController {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController detailcourseController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final DropdownButtonFormField catagoryController = DropdownButtonFormField(items: [], onChanged: (value) { },);
+  final TextEditingController namevideoController = TextEditingController();
 
   late List listCoursesId = [];
 
@@ -222,9 +222,9 @@ class CoursesController extends GetxController {
 
   Future<void> updateCategoryToStorage(context) async {
     await FirebaseFirestore.instance
-    .collection('/category')
+    .collection('category')
     .doc(FirebaseAuth.instance.currentUser!.uid)
-      .set({'category': DropdownButtonFormField,});
+      .set({'category': categoryValue,});
       MotionToast.info(
           description: Text("เพิ่มข้อมูล"),
           title: Text("ทำรายการสำเร็จ",
