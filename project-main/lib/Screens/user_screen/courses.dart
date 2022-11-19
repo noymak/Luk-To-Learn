@@ -28,6 +28,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
 
     controller.fetchTutor(tutorName);
 
+    print(courseName);
+
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(

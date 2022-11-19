@@ -7,7 +7,7 @@ RxString video = ''.obs;
 
 
   void getCourseVideo(String courseName){
-     var newList = test.where(
+     var newList = videoDemo.where(
       (element) => element.c_id == courseName,
     );
 

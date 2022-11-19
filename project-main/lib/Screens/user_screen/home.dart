@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,10 +28,46 @@ class _HomeScreenState extends State<HomeScreen> {
   late final String? profileTutors;
 
   var _selectedIndex = 0;
+
+  int _currentPage = 0;
+
+    var _controllerShowCourse = Get.put(showCourse());
+late Timer _timer;
+PageController _pageController = PageController(
+  initialPage: 0,
+);
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+     _timer = Timer.periodic(Duration(seconds: 5), (Timer timer) {
+    if (_currentPage < _controllerShowCourse.dataFromFirebase.length) {
+      _currentPage++;
+      setState(() {
+      });
+    } else {
+      _currentPage = 0;
+    }
+
+    _pageController.animateToPage(
+      _currentPage,
+      duration: Duration(milliseconds: 350),
+      curve: Curves.easeIn,
+    );
+  });
+  }
+
+   void dispose() {
+    super.dispose();
+    _timer.cancel();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var _controllerShowCourse = Get.put(showCourse());
+    
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
@@ -84,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         builder: (_) {
                           return _controllerShowCourse.isLoading
                               ? Center(child: CircularProgressIndicator())
-                              : Banner(size, _controllerShowCourse);
+                              : Banner(size, _controllerShowCourse,_pageController);
                         }),
                     SizedBox(
                       height: 10,
@@ -190,12 +228,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // Banner
-  Widget Banner(Size size, showCourse controller) {
+  Widget Banner(Size size, showCourse controller, PageController _pageController) {
     return Container(
       width: size.width,
       height: size.height / 4,
       child: PageView.builder(
-        controller: PageController(),
+        controller: _pageController,
         onPageChanged: (index) {
           setState(() {
             _selectedIndex = index;

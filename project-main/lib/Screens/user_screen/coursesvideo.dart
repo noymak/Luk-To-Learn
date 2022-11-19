@@ -27,7 +27,7 @@ class _CoursesVideoState extends State<CoursesVideo> {
       'https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4';
   var showList = [];
   void _playVideo() {
-    var newList = test.firstWhere(
+    var newList = videoDemo.firstWhere(
       (element) => element.c_id == courseName,
     );
 
