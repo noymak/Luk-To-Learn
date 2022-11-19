@@ -9,7 +9,7 @@ List<VideoDemo> videoDemo = [
     c_id: 'art',
     titleName: 'video 1',
     fileUrl:
-        'https://res.cloudinary.com/dtdhnrtir/video/upload/v1668323007/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_ASAP_MV_olqai5.mp4',
+        "https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/videotest%2FSTAYC(%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8)%20'ASAP'%20MV.mp4?alt=media&token=7e123232-eb9f-45d4-8bc6-6ef4cc9d6777",
   ),
    VideoDemo(
     c_id: 'manybath',

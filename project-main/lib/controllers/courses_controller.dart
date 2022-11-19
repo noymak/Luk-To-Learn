@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,7 +48,7 @@ class CoursesController extends GetxController {
   }
 
   Future addDetail(String tutorname, String coursename, String price,
-      String detailcourse, BuildContext context, String email ,String image, String imageBackground) async {
+      String detailcourse, BuildContext context, String email ,String image, String imageBackground,) async {
         print(email);
         print(tutorname);
         print(price);
@@ -55,6 +56,7 @@ class CoursesController extends GetxController {
         print(coursename);
         print(image);
         print(imageUrlBackground);
+        // print(dropdownValue);
       
    try {
       if (checkEmpty()) {
@@ -220,18 +222,25 @@ class CoursesController extends GetxController {
     });
   }
 
-  Future<void> updateCategoryToStorage(context) async {
-    await FirebaseFirestore.instance
-    .collection('category')
-    .doc(FirebaseAuth.instance.currentUser!.uid)
-      .set({'category': categoryValue,});
-      MotionToast.info(
-          description: Text("เพิ่มข้อมูล"),
-          title: Text("ทำรายการสำเร็จ",
-              style: TextStyle(fontWeight: FontWeight.bold)),
-        ).show(context);
+  // Future<void> updateCategoryToStorage(context) async {
+  //   await FirebaseFirestore.instance
+  //   .collection('category')
+  //   .doc(FirebaseAuth.instance.currentUser!.uid)
+  //   .collection('')
+  //   .add({'category': categoryValue,});
+  //     MotionToast.info(
+  //         description: Text("เพิ่มข้อมูล"),
+  //         title: Text("ทำรายการสำเร็จ",
+  //             style: TextStyle(fontWeight: FontWeight.bold)),
+  //       ).show(context);
 
-  }
+  // }
+
+  // Future<void> selectFile () async {
+  //   final result = await FilePicker.platform.pickFiles();
+  //   if (result == null) return;
+        
+  // }
 
   // Future<void> getImage (ImageSource imageSource, BuildContext context) async {
   //   final pickedFile = await ImagePicker().getImage(source: imageSource);

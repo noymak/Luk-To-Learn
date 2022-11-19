@@ -44,11 +44,13 @@ class VideoUi extends StatelessWidget {
             height: 20,
           ),
           Container(
+            
             height: 120,
             width: 220,
             decoration: BoxDecoration(
               color: kPrimaryColor1,
               borderRadius: BorderRadius.circular(26),
+              
             ),
           ),
           SizedBox(

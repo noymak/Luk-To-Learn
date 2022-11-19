@@ -208,7 +208,7 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                               },
                               child: GestureDetector(
                                                    onTap: () {
-                                  courseController.updateCategoryToStorage(context);
+                                  // courseController.updateCategoryToStorage(context);
                                 },
                                 child: Container(
                                   width: 120,
