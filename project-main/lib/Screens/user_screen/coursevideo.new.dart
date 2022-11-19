@@ -40,6 +40,11 @@ class _CourseVideoNewState extends State<CourseVideoNew> {
           });
 
     _chewieController = ChewieController(
+      showOptions: false,
+      materialProgressColors: ChewieProgressColors(
+        backgroundColor: Colors.white,
+        bufferedColor: Colors.red,
+      ),
       allowedScreenSleep: false,
       allowFullScreen: true,
       deviceOrientationsAfterFullScreen: [
@@ -53,7 +58,9 @@ class _CourseVideoNewState extends State<CourseVideoNew> {
       autoInitialize: true,
       autoPlay: true,
       showControls: true,
+      fullScreenByDefault: true,
     );
+
     _chewieController.addListener(() {
       if (_chewieController.isFullScreen) {
         SystemChrome.setPreferredOrientations([
@@ -98,49 +105,22 @@ class _CourseVideoNewState extends State<CourseVideoNew> {
                         : _videoPlayController.play();
                   });
                 },
-                child: Stack(
+                child: Column(
                   children: [
-                    // AspectRatio(
-                    //   aspectRatio: _videoPlayController.value.aspectRatio,
-                    //   child: VideoPlayer(_videoPlayController),
-                    // ),
                     Container(
-                        width: size.width,
-                        height: 300,
-                        child: Chewie(controller: _chewieController)),
-                    // Positioned(
-                    //   bottom: 0,
-                    //   left: 0,
-                    //   right: 0,
-                    //   child: Row(
-                    //     crossAxisAlignment: CrossAxisAlignment.center,
-                    //     children: [
-                    //       ValueListenableBuilder(
-                    //           valueListenable: _videoPlayController,
-                    //           builder: (context, VideoPlayerValue value, child) {
-                    //             return Text(_videoDuration(value.position));
-                    //           }),
-                    //       Expanded(
-                    //         child: SizedBox(
-                    //           height: 14,
-                    //           child: VideoProgressIndicator(
-                    //             _videoPlayController,
-                    //             padding: const EdgeInsets.symmetric(vertical: 0),
-                    //             allowScrubbing: true,
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       Text(
-                    //           _videoDuration(_videoPlayController.value.duration))
-                    //     ],
-                    //   ),
-                    // )
+                      width: size.width,
+                      height: 300,
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.red)),
+                      child: SafeArea(
+                        child: Chewie(controller: _chewieController),
+                      ),
+                    ),
                   ],
                 ),
               )
             : AspectRatio(
-              aspectRatio: _aspectRatio,
-              child: onMyLoad(size, Colors.amber)),
+                aspectRatio: _aspectRatio, child: onMyLoad(size, Colors.amber)),
         Expanded(
           child: ListView.builder(
             itemCount: videoDemo.length,
