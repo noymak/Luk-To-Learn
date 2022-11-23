@@ -432,7 +432,8 @@ class _AddedCoursesState extends State<AddedCourses> {
                     context,
                     coursesController.emailController.text,
                     coursesController.imageUrl.toString(),
-                    coursesController.imageUrlBackground.toString(),);
+                    coursesController.imageUrlBackground.toString(),
+                    );
               },
               child: Container(
                 width: 200,

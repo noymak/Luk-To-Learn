@@ -91,18 +91,7 @@ class _VideoInfoState extends State<VideoInfo> {
           child: Column(
             children: [
               Column(children: extractedChildren),
-              ElevatedButton(
-                onPressed: selectFile,
-                child: const Text('Selected File'),
-              ),
-              SizedBox(
-                height: 32,
-              ),
-              ElevatedButton(
-                onPressed: uploadFile,
-                child: const Text('Upload File'),
-              ),
-              SizedBox(height: 32,),
+              
               buildProgress(),
             ],
           ),
