@@ -103,6 +103,7 @@ class _VideoInfoState extends State<VideoInfo> {
 
    
   }
+  
 
    Widget buildProgress() => StreamBuilder<TaskSnapshot>(
       stream: uploadTask?.snapshotEvents,

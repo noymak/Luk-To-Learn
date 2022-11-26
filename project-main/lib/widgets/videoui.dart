@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -27,6 +31,38 @@ class VideoUi extends StatelessWidget {
       ),
     );
 
+     PlatformFile? pickedFile;
+  UploadTask? uploadTask;
+
+  // Future uploadFile() async {
+  //   final path = 'videos/${pickedFile!.name}';
+  //   final file = File(pickedFile!.path!);
+
+  //   final ref = FirebaseStorage.instance.ref().child(path);
+  //   setState(() {
+  //     uploadTask = ref.putFile(file);
+  //   });
+
+  //   final snapshot = await uploadTask!.whenComplete(() {});
+
+  //   final urlDownloand = await snapshot.ref.getDownloadURL();
+  //   print('Download Link: $urlDownloand');
+
+  //   setState(() {
+  //     uploadTask = null;
+  //   });
+  // }
+
+  // Future selectFile() async {
+  //   final result = await FilePicker.platform.pickFiles();
+  //   if (result == null) return;
+  //   setState(() {
+  //     pickedFile = result.files.first;
+  //   });
+  // }
+
+    var selectFile;
+    var uploadFile;
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -63,10 +99,19 @@ class VideoUi extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
+          ElevatedButton(
+                onPressed: selectFile,
+                child: const Text('Selected File'),
+              ),
+              SizedBox(
+                height: 32,
+              ),
           nameVideoField,
+          ElevatedButton(
+                onPressed: uploadFile,
+                child: const Text('Upload File'),
+              ),
+              SizedBox(height: 32,),
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.end,
           //   children: [
