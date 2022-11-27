@@ -27,6 +27,15 @@ class VideoInfo extends StatefulWidget {
 
 class _VideoInfoState extends State<VideoInfo> {
   @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   _videoPlayerController = VideoPlayerController.file(_video!)
+  //     ..initialize().then((_) {
+  //       // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+  //       setState(() {});
+  //     });
+  // }
   var videoController = Get.put(CoursesController());
 
   final nameVideoField = TextFormField(
@@ -51,8 +60,8 @@ class _VideoInfoState extends State<VideoInfo> {
   UploadTask? uploadTask;
 
   final picker = ImagePicker();
-  late VideoPlayerController _videoPlayerController;
-  late File _video;
+  VideoPlayerController? _videoPlayerController;
+  File? _video;
 
   // late final dynamic uint8list;
 
@@ -87,16 +96,16 @@ class _VideoInfoState extends State<VideoInfo> {
   Future selectFile() async {
     // ignore: deprecated_member_use
     final result = await picker.getVideo(source: ImageSource.gallery);
-    _videoPlayerController = VideoPlayerController.file(_video)
+    _videoPlayerController = VideoPlayerController.file(_video!)
       ..initialize().then((_) {
-        if (result == null) return;
-        setState(() {
-          
-        });
-        _videoPlayerController.play();
+        // if (result == null) return;
+        setState(() {});
+
+        _videoPlayerController!.play();
       });
-    
   }
+
+  
 
   List<Widget> extractedChildren = <Widget>[VideoUi()];
 
@@ -148,11 +157,11 @@ class _VideoInfoState extends State<VideoInfo> {
                     height: 20,
                   ),
                   if (pickedFile != null)
-                    _videoPlayerController.value.isInitialized
+                    _videoPlayerController!.value.isInitialized
                         ? AspectRatio(
                             aspectRatio:
-                                _videoPlayerController.value.aspectRatio,
-                            child: VideoPlayer(_videoPlayerController),
+                                _videoPlayerController!.value.aspectRatio,
+                            child: VideoPlayer(_videoPlayerController!),
                           )
                         : Container(
                             // height: 120,
@@ -161,17 +170,17 @@ class _VideoInfoState extends State<VideoInfo> {
                             //   color: kPrimaryColor1,
                             //   borderRadius: BorderRadius.circular(26),
                             // ),
-                          )
-                          else
-                            Container(
-                            height: 120,
-                            width: 220,
-                            decoration: BoxDecoration(
-                              color: kPrimaryColor1,
-                              borderRadius: BorderRadius.circular(26),
-                            ),
-                            child: Center(child: Text('Pick video')),
-                          ),
+                            )
+                  else
+                    Container(
+                      height: 120,
+                      width: 220,
+                      decoration: BoxDecoration(
+                        color: kPrimaryColor1,
+                        borderRadius: BorderRadius.circular(26),
+                      ),
+                      child: Center(child: Text('Pick video')),
+                    ),
                   // SizedBox(
                   //   height: 200,
                   //   child: Container(
@@ -206,14 +215,12 @@ class _VideoInfoState extends State<VideoInfo> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  
+
                   SizedBox(
                     height: 20,
                   ),
                   nameVideoField,
-                  SizedBox(
-                    height: 20
-                  ),
+                  SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: uploadFile,
                     child: const Text('Upload File'),
