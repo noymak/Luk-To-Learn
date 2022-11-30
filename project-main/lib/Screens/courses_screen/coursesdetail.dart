@@ -109,16 +109,19 @@ class _CoursesdetailState extends State<CoursesDetails>
                   width: 260,
                   decoration: BoxDecoration(
                     color: kPrimaryColor1,
-                    
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
                     ),
-                    
                   ),
-                  child: Center(child: Text('add video',style: GoogleFonts.kanit(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),),),
+                  child: Center(
+                    child: Text(
+                      'add video',
+                      style: GoogleFonts.kanit(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],

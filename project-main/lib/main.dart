@@ -69,12 +69,12 @@ class MyApp extends StatelessWidget {
         imageSize: 130,
         imageSrc:
             "https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Flogo.png?alt=media&token=1804964d-7195-41a1-90f1-66e941be28ff",
-        text: "Luk to Learn",
+        text: "Luk to Learn.",
         textType: TextType.TyperAnimatedText,
         textStyle: TextStyle(
           fontSize: 30.0,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: kPrimaryLightColor,
       ),
       debugShowCheckedModeBanner: false,
       routes: {

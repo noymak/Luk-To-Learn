@@ -3,20 +3,14 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
+
+import 'package:luk_to_learn/api/firebase_api.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/courses_controller.dart';
-import 'package:luk_to_learn/controllers/video_controller.dart';
-import 'package:luk_to_learn/model/media_source.dart';
-import 'package:luk_to_learn/widgets/appbar.dart';
-import 'package:luk_to_learn/widgets/videoui.dart';
-import 'package:video_player/video_player.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
+
 
 class VideoInfo extends StatefulWidget {
   const VideoInfo({Key? key}) : super(key: key);
@@ -26,16 +20,10 @@ class VideoInfo extends StatefulWidget {
 }
 
 class _VideoInfoState extends State<VideoInfo> {
+  PlatformFile? pickedFile;
+  UploadTask? uploadTask;
+  File? _video;
   @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   _videoPlayerController = VideoPlayerController.file(_video!)
-  //     ..initialize().then((_) {
-  //       // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-  //       setState(() {});
-  //     });
-  // }
   var videoController = Get.put(CoursesController());
 
   final nameVideoField = TextFormField(
@@ -56,37 +44,27 @@ class _VideoInfoState extends State<VideoInfo> {
     ),
   );
 
-  PlatformFile? pickedFile;
-  UploadTask? uploadTask;
-
-  final picker = ImagePicker();
-  VideoPlayerController? _videoPlayerController;
-  File? _video;
-
-  // late final dynamic uint8list;
-
-//   Future thumbnail () async {
-//   uint8list = await VideoThumbnail.thumbnailData(
-//   video: pickedFile!.path!,
-//   imageFormat: ImageFormat.JPEG,
-//   maxWidth: 128, // specify the width of the thumbnail, let the height auto-scaled to keep the source aspect ratio
-//   quality: 25,
-// );
-//   }
+  
 
   Future uploadFile() async {
-    final path = 'videos/${pickedFile!.name}';
-    final file = File(pickedFile!.path!);
+    if (_video == null) return;
 
-    final ref = FirebaseStorage.instance.ref().child(path);
-    setState(() {
-      uploadTask = ref.putFile(file);
-    });
+    final videoName = basename(_video!.path);
+    final destination = 'videotest/$videoName';
+
+    // final ref = FirebaseStorage.instance.ref().child('path');
+    // setState(() {
+    //   uploadTask = ref.putFile(_video!);
+    // });
+
+    uploadTask = FirebaseApi.uploadFile(destination, _video!);
+
+    if (uploadTask == null) return;
 
     final snapshot = await uploadTask!.whenComplete(() {});
+    final urlDownload = await snapshot.ref.getDownloadURL();
 
-    final urlDownloand = await snapshot.ref.getDownloadURL();
-    print('Download Link: $urlDownloand');
+    print('Download-Link: $urlDownload');
 
     setState(() {
       uploadTask = null;
@@ -94,22 +72,19 @@ class _VideoInfoState extends State<VideoInfo> {
   }
 
   Future selectFile() async {
-    // ignore: deprecated_member_use
-    final result = await picker.getVideo(source: ImageSource.gallery);
-    _videoPlayerController = VideoPlayerController.file(_video!)
-      ..initialize().then((_) {
-        // if (result == null) return;
-        setState(() {});
+    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
 
-        _videoPlayerController!.play();
-      });
+    if (result == null) return;
+    final path = result.files.single.path!;
+
+    setState(() {
+      _video = File(path);
+    });
+
   }
 
-  
-
-  List<Widget> extractedChildren = <Widget>[VideoUi()];
-
   Widget build(BuildContext context) {
+    final fileName = _video != null ? basename(_video!.path) : 'no selected video';
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -117,21 +92,13 @@ class _VideoInfoState extends State<VideoInfo> {
           backgroundColor: kPrimaryColors,
           actions: [
             IconButton(
-                onPressed: () {
-                  setState(() {
-                    extractedChildren.add(VideoUi());
-                  });
-                },
+                onPressed: () {},
                 icon: Icon(
                   Icons.add_circle,
                   color: Colors.greenAccent,
                 )),
             IconButton(
-                onPressed: () {
-                  setState(() {
-                    extractedChildren.removeLast();
-                  });
-                },
+                onPressed: () {},
                 icon: Icon(
                   Icons.remove_circle,
                   color: Colors.redAccent,
@@ -156,51 +123,11 @@ class _VideoInfoState extends State<VideoInfo> {
                   SizedBox(
                     height: 20,
                   ),
-                  if (pickedFile != null)
-                    _videoPlayerController!.value.isInitialized
-                        ? AspectRatio(
-                            aspectRatio:
-                                _videoPlayerController!.value.aspectRatio,
-                            child: VideoPlayer(_videoPlayerController!),
-                          )
-                        : Container(
-                            // height: 120,
-                            // width: 220,
-                            // decoration: BoxDecoration(
-                            //   color: kPrimaryColor1,
-                            //   borderRadius: BorderRadius.circular(26),
-                            // ),
-                            )
-                  else
-                    Container(
-                      height: 120,
-                      width: 220,
-                      decoration: BoxDecoration(
-                        color: kPrimaryColor1,
-                        borderRadius: BorderRadius.circular(26),
-                      ),
-                      child: Center(child: Text('Pick video')),
-                    ),
-                  // SizedBox(
-                  //   height: 200,
-                  //   child: Container(
-                  //     height: 120,
-                  //     width: 220,
-                  //     decoration: BoxDecoration(
-                  //       color: kPrimaryColor1,
-                  //       borderRadius: BorderRadius.circular(26),
-                  //     ),
-                  //     child: Image.file(
-                  //       File(
-                  //         pickedFile!.path!
-                  //       ),
-                  //       width: size.width,
-
-                  //       fit: BoxFit.cover,
-                  //     ),
-                  //   ),
-                  // ),
-
+                  Text(
+                    fileName,
+                    style: GoogleFonts.kanit(
+                        fontSize: 16, fontWeight: FontWeight.w400),
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -215,7 +142,6 @@ class _VideoInfoState extends State<VideoInfo> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-
                   SizedBox(
                     height: 20,
                   ),
@@ -271,4 +197,8 @@ class _VideoInfoState extends State<VideoInfo> {
           }
         },
       );
+
+}
+
+basename(String path) {
 }
