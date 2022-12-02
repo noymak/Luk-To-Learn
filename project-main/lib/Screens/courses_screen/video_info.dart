@@ -24,15 +24,15 @@ class _VideoInfoState extends State<VideoInfo> {
   UploadTask? uploadTask;
   File? _video;
   @override
-  var videoController = Get.put(CoursesController());
+  // var videoController = Get.put(CoursesController());
 
   final nameVideoField = TextFormField(
     autofocus: false,
-    // controller: nameVideoController.namevideoController,
+    // controller: controller,
     keyboardType: TextInputType.name,
-    // onSaved: (value) {
-    //   nameVideoController.namevideoController.text = value!;
-    // },
+    onSaved: (value) {
+      // controller.text = value!;
+    },
     textInputAction: TextInputAction.next,
     decoration: InputDecoration(
       prefixIcon: Icon(Icons.video_camera_front),
@@ -44,12 +44,15 @@ class _VideoInfoState extends State<VideoInfo> {
     ),
   );
 
-  
+  Future saveName() async {
+    if (nameVideoField == null) return;
+     
+  }
 
   Future uploadFile() async {
     if (_video == null) return;
 
-    final videoName = basename(_video!.path);
+    final videoName = (_video!.path);
     final destination = 'videotest/$videoName';
 
     // final ref = FirebaseStorage.instance.ref().child('path');
@@ -84,7 +87,7 @@ class _VideoInfoState extends State<VideoInfo> {
   }
 
   Widget build(BuildContext context) {
-    final fileName = _video != null ? basename(_video!.path) : 'no selected video';
+    final fileName = _video != null ? (_video!.path) : 'no selected video';
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -200,5 +203,4 @@ class _VideoInfoState extends State<VideoInfo> {
 
 }
 
-basename(String path) {
-}
+
