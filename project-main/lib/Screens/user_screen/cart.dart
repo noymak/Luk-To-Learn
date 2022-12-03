@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/editprofiletutor.dart';
+import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/widgets/appbar.dart';
 import 'package:luk_to_learn/widgets/cartlist.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
@@ -19,51 +21,14 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff6360FF),
+      appBar: Themeappbar(),
+      backgroundColor: kPrimaryLightColor,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/route');
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back_ios_new,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 25,
-                      ),
-                      Text(
-                        'Cart',
-                        style: GoogleFonts.kanit(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: size.width,
-              height: size.height*2,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-                color: Color.fromARGB(255, 230, 230, 236),
-              ),
-              child: Padding(
+            Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
@@ -202,7 +167,7 @@ class _CartScreenState extends State<CartScreen> {
                   ],
                 ),
               ),
-            ),
+            
           ],
         ),
       ),

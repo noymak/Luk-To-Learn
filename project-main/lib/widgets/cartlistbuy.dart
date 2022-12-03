@@ -55,6 +55,7 @@ class cartlistbuy extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Row(
+                
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
@@ -75,7 +76,7 @@ class cartlistbuy extends StatelessWidget {
                           ),
                   ),
                   SizedBox(
-                    width: 20,
+                    width: 10,
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +85,7 @@ class cartlistbuy extends StatelessWidget {
                       Text(
                         nameCourse!,
                         style: GoogleFonts.kanit(
-                          textStyle: TextStyle(fontWeight: FontWeight.w500),
+                          textStyle: TextStyle(fontWeight: FontWeight.w400),
                         ),
                       ),
                       SizedBox(
@@ -101,10 +102,10 @@ class cartlistbuy extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
+                          // Icon(
+                          //   Icons.star,
+                          //   color: Colors.amber,
+                          // ),
                           // Text(
                           //   rate!,
                           //   style: GoogleFonts.kanit(

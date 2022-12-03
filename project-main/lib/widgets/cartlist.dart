@@ -60,7 +60,7 @@ class cartlist extends StatelessWidget {
                             Icon(
                               Icons.circle,
                               color: Colors.amber,
-                              size: 10,
+                              size: 5,
                             ),
                             Text(
                               "By SomChai Wong",
@@ -69,7 +69,7 @@ class cartlist extends StatelessWidget {
                             Icon(
                               Icons.circle,
                               color: Colors.amber,
-                              size: 10,
+                              size: 5,
                             ),
                             Text(
                               "All Level",

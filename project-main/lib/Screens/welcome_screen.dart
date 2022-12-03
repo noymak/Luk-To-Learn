@@ -195,7 +195,7 @@ class WelcomeScreen extends StatelessWidget {
                                   decorationColor: Colors.black54,),
                             ),
                           ),
-                          SizedBox(width: 20),
+                          SizedBox(width: 15),
                           GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, '/registertutor');
@@ -209,7 +209,7 @@ class WelcomeScreen extends StatelessWidget {
                                   decorationColor: Colors.black54,),
                             ),
                           ),
-                          SizedBox(width: 30),
+                          SizedBox(width: 15),
                           GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, '/login_tutor');

@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/api/firebase_api.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/courses_controller.dart';
-
+import 'package:path/path.dart' as path;
 
 class VideoInfo extends StatefulWidget {
   const VideoInfo({Key? key}) : super(key: key);
@@ -23,44 +23,31 @@ class _VideoInfoState extends State<VideoInfo> {
   PlatformFile? pickedFile;
   UploadTask? uploadTask;
   File? _video;
+  final TextEditingController videoNameController = TextEditingController();
+
   @override
   // var videoController = Get.put(CoursesController());
 
-  final nameVideoField = TextFormField(
-    autofocus: false,
-    // controller: controller,
-    keyboardType: TextInputType.name,
-    onSaved: (value) {
-      // controller.text = value!;
-    },
-    textInputAction: TextInputAction.next,
-    decoration: InputDecoration(
-      prefixIcon: Icon(Icons.video_camera_front),
-      contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-      hintText: 'Video Name',
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-    ),
-  );
+  // changeFileNameOnly(String newFileName) async {
+  //   print('Original path: ${_video!.path}');
+  //   String dir = path.dirname(_video!.path);
+  //   String newPath = path.join(dir, newFileName);
+  //   print('NewPath: ${newPath}');
+  //   _video!.renameSync(newPath);
+  // }
 
-  Future saveName() async {
-    if (nameVideoField == null) return;
-     
-  }
-
-  Future uploadFile() async {
+  Future uploadFile(String newFileName) async {
     if (_video == null) return;
 
     final videoName = (_video!.path);
-    final destination = 'videotest/$videoName';
-
-    // final ref = FirebaseStorage.instance.ref().child('path');
-    // setState(() {
-    //   uploadTask = ref.putFile(_video!);
-    // });
-
-    uploadTask = FirebaseApi.uploadFile(destination, _video!);
+    String newPath = path.join(newFileName);
+    _video!.renameSync(newPath);
+    final ref = FirebaseStorage.instance
+        .ref('videotest/$videoName')
+        .child(_video!.path);
+    setState(() {
+      uploadTask = ref.putFile(_video!);
+    });
 
     if (uploadTask == null) return;
 
@@ -83,7 +70,6 @@ class _VideoInfoState extends State<VideoInfo> {
     setState(() {
       _video = File(path);
     });
-
   }
 
   Widget build(BuildContext context) {
@@ -148,10 +134,29 @@ class _VideoInfoState extends State<VideoInfo> {
                   SizedBox(
                     height: 20,
                   ),
-                  nameVideoField,
+                  TextFormField(
+                    autofocus: false,
+                    controller: videoNameController,
+                    keyboardType: TextInputType.name,
+                    onSaved: (value) {
+                      print(value);
+                      uploadFile(value.toString());
+                    },
+                    textInputAction: TextInputAction.next,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.video_camera_front),
+                      contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                      hintText: 'Video Name',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: uploadFile,
+                    onPressed: () {
+                      uploadFile(videoNameController.value.toString());
+                    },
                     child: const Text('Upload File'),
                   ),
                   SizedBox(
@@ -200,7 +205,4 @@ class _VideoInfoState extends State<VideoInfo> {
           }
         },
       );
-
 }
-
-

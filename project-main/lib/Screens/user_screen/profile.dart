@@ -199,7 +199,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
                     SizedBox(
-                      height: 5,
+                      height: 2,
                     ),
                     Text(
                       "Por Lazuardi",
@@ -209,7 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: 5,
+                      height: 2,
                     ),
                     Text(
                       "por.lazuardi@gmail.com",
@@ -220,7 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Container(
-              height: size.height * 0.6,
+              height: size.height * 0.8,
               decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.only(

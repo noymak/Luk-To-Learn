@@ -163,10 +163,10 @@ class _ProfileTutorState extends State<ProfileTutor> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 30,
+                                      width: 20,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(15.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Container(
                                         width: 80,
                                         height: 80,
