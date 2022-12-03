@@ -24,29 +24,29 @@ class _VideoInfoState extends State<VideoInfo> {
   UploadTask? uploadTask;
   File? _video;
   final TextEditingController videoNameController = TextEditingController();
+  
+  File? test;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   // var videoController = Get.put(CoursesController());
 
-  // changeFileNameOnly(String newFileName) async {
-  //   print('Original path: ${_video!.path}');
-  //   String dir = path.dirname(_video!.path);
-  //   String newPath = path.join(dir, newFileName);
-  //   print('NewPath: ${newPath}');
-  //   _video!.renameSync(newPath);
-  // }
+  changeFileNameOnly(String newFileName) async {
+    print('Original path: ${_video!.path}');
+    String dir = path.dirname(_video!.path);
+    String newPath = path.join(dir, newFileName);
+    print('NewPath: ${newPath}');
+    test = _video!.renameSync(newPath);
+  }
 
-  Future uploadFile(String newFileName) async {
+  Future uploadFile() async {
     if (_video == null) return;
 
-    final videoName = (_video!.path);
-    String newPath = path.join(newFileName);
-    _video!.renameSync(newPath);
-    final ref = FirebaseStorage.instance
-        .ref('videotest/$videoName')
-        .child(_video!.path);
+    final ref =
+        FirebaseStorage.instance.ref('videoImage/').child(test!.path.split('/').last);
     setState(() {
-      uploadTask = ref.putFile(_video!);
+      uploadTask = ref.putFile(test!);
     });
 
     if (uploadTask == null) return;
@@ -134,28 +134,37 @@ class _VideoInfoState extends State<VideoInfo> {
                   SizedBox(
                     height: 20,
                   ),
-                  TextFormField(
-                    autofocus: false,
-                    controller: videoNameController,
-                    keyboardType: TextInputType.name,
-                    onSaved: (value) {
-                      print(value);
-                      uploadFile(value.toString());
-                    },
-                    textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.video_camera_front),
-                      contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                      hintText: 'Video Name',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+                  Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      autofocus: false,
+                      controller: videoNameController,
+                      keyboardType: TextInputType.name,
+                      // onChanged: (value) => changeFileNameOnly(value),
+                      onSaved: (value) {
+                        print(value);
+                        changeFileNameOnly(value!);
+                        print('saved');
+                      },
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.video_camera_front),
+                        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                        hintText: 'Video Name',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      uploadFile(videoNameController.value.toString());
+                       _formKey.currentState!.save();
+                      //print(videoNameController.value.text);
+                      print(_video!.path.toString());
+                      print(test!.path.toString());
+                      uploadFile();
                     },
                     child: const Text('Upload File'),
                   ),
