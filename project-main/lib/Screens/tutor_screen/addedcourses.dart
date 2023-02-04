@@ -355,7 +355,15 @@ class _AddedCoursesState extends State<AddedCourses> {
                   addedForm('รายละเอียดคอร์ส',
                       coursesController.detailcourseController),
                       SizedBox(height: 20,),
-                  DropdownButtonFormField(items: categoryItems.map((category){
+                      Text(
+                    'เลือกประเภทของคอร์ส',
+                    style: GoogleFonts.kanit(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 5,),
+                  DropdownButtonFormField(
+                    // value: 'Select Category',
+                    items: categoryItems.map((category){
                     return DropdownMenuItem(
                         value: category,
                         child: Text('$category category'),
@@ -363,8 +371,8 @@ class _AddedCoursesState extends State<AddedCourses> {
                   }).toList(), 
                   onChanged: (val){
                     setState(() {
-                      coursesController.categoryValue = val as String;
-                      print(coursesController.categoryValue);
+                      coursesController.typeController.text = val as String;
+                      print(coursesController.typeController.text.trim());
                     });
                   }
                   )
@@ -424,6 +432,8 @@ class _AddedCoursesState extends State<AddedCourses> {
             SizedBox(height: 15),
             GestureDetector(
               onTap: () {
+                print('urlprofile ${coursesController.imageUrl}');
+                print('urlbg ${coursesController.imageUrlBackground}');
                 coursesController.addDetail(
                     coursesController.tutornameController.text,
                     coursesController.coursenameController.text,
@@ -433,6 +443,7 @@ class _AddedCoursesState extends State<AddedCourses> {
                     coursesController.emailController.text,
                     coursesController.imageUrl.toString(),
                     coursesController.imageUrlBackground.toString(),
+                    coursesController.typeController.text,
                     );
               },
               child: Container(

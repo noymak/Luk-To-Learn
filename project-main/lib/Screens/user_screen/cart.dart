@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/editprofiletutor.dart';
 import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/controllers/cart_controller.dart';
+import 'package:luk_to_learn/controllers/courses_controller.dart';
 import 'package:luk_to_learn/widgets/appbar.dart';
 import 'package:luk_to_learn/widgets/cartlist.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
@@ -17,160 +19,125 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  var cartController = Get.find<CartContorller>();
+  var courses = Get.arguments[0];
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: Themeappbar(),
-      backgroundColor: kPrimaryLightColor,
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    cartlist(size: size),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    cartlist(size: size),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Save for later',
-                          style: GoogleFonts.kanit(
-                            color: Colors.grey,
-                          ),
-                        ),
-                        Text(
-                          'Remove',
-                          style: GoogleFonts.kanit(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Divider(
-                      color: Colors.grey,
-                      thickness: 1,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Saved for later',
-                          style: GoogleFonts.kanit(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    ...List.generate(
-                      coursesBox.length,
-                      (index) => cartlistbuy(
-                        
-                        linkImage: coursesBox[index].image!,
-                        nameCourse: coursesBox[index].nameCourse!,
-                        // level: coursesBox[index].level!,
-                        name: coursesBox[index].name!,
-                        price: coursesBox[index].price!,
-                        // rate: coursesBox[index].rate!,
-                        detail: coursesBox[index].detail!,
-                        profileTutors: coursesBox[index].profileTutors,
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Add to cart',
-                          style: GoogleFonts.kanit(
-                            color: Colors.grey,
-                          ),
-                        ),
-                        Text(
-                          'Remove',
-                          style: GoogleFonts.kanit(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      color: Colors.grey,
-                      thickness: 1,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Total Items',
-                          style: GoogleFonts.kanit(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        Text(
-                          '1,900.00 BTH',
-                          style: GoogleFonts.kanit(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      width: size.width,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Color.fromARGB(255, 54, 175, 115),
-                      ),
-                      child: Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, "/paymentselect");
-                          },
-                          child: Text(
-                            'Checkout Now',
-                            style: GoogleFonts.kanit(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+  print(courses);
+  return Scaffold(
+  appBar: Themeappbar(),
+  backgroundColor: kPrimaryLightColor,
+  body: Container(
+    width: size.width,
+    height: size.height,
+    child: GetBuilder<CartContorller>(
+      builder: (context) {
+        return ListView.builder(
+          itemCount: cartController.cartList.length,
+          itemBuilder: (context, index) {
+            return Card(
+              color: kPrimaryColors,
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(cartController.cartList[index].image!),
+                ),
+                title: Text(
+                  cartController.cartList[index].name!,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0
+                  ),
+                ),
+                subtitle: Text(
+                  '${cartController.cartList[index].price}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14.0
+                  ),
+                ),
+                trailing: IconButton(
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    cartController.removeFromCart(index);
+                    
+                    // cartController.removeFromCart(courses);
+                  },
                 ),
               ),
-            
-          ],
-        ),
+            );
+          },
+        );
+      }
+    ),
+  ),
+  bottomNavigationBar: Container(
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
       ),
-    );
+    ),
+    child: Padding(
+      padding: EdgeInsets.all(20.0),
+      child: GetBuilder<CartContorller>(
+        builder: (context) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Total: ${cartController.total}',
+                style: TextStyle(
+                  color: kPrimaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed('/payment');
+                },
+                child: Text(
+                  'Checkout',
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
+      ),
+    ),
+  ),
+);
+
+  //   return Scaffold(
+  //     appBar: Themeappbar(),
+  //     backgroundColor: kPrimaryLightColor,
+  // //     
+  //     body: Container(
+  //       width: size.width,
+  //       height: size.height,
+  //       child: ListView.builder(
+          
+  //         itemCount : cartController.cartList.length,
+  //         itemBuilder: (context, index) {
+  //           print(cartController.cartList[index].name!);
+  //           return Text(cartController.cartList[index].name!);
+  //         },
+  //       ),
+  //     ),
+    
+  //   );
+    
   }
 }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/auth_tutor_controller.dart';
+import 'package:luk_to_learn/controllers/cart_controller.dart';
 import 'package:luk_to_learn/controllers/video_controller.dart';
 
 class CoursesScreen extends StatefulWidget {
@@ -20,11 +21,13 @@ class _CoursesScreenState extends State<CoursesScreen> {
     var courseName = Get.arguments[0];
     var detailCourse = Get.arguments[1];
     var tutorName = Get.arguments[2];
-
+    var index =Get.arguments[3];
     var size = MediaQuery.of(context).size;
 
     var controller = Get.put(AuthTutorController());
     var videoController = Get.put(VideoController());
+    var cartContorller = Get.put(CartContorller());
+    
 
     controller.fetchTutor(tutorName);
 
@@ -213,11 +216,11 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      CircleAvatar(
-                                        radius: 28,
-                                        backgroundImage: NetworkImage(
-                                            '${controller.imageTutor[0]['image']}'),
-                                      ),
+                                      // CircleAvatar(
+                                      //   radius: 28,
+                                      //   backgroundImage: NetworkImage(
+                                      //       '${controller.imageTutor[0]['image']}'),
+                                      // ),
                                       SizedBox(
                                         width: 20,
                                       ),
@@ -235,33 +238,33 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                           SizedBox(
                                             height: 8,
                                           ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                '14 Courses',
-                                                style: GoogleFonts.kanit(
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Icon(
-                                                Icons.circle,
-                                                size: 8,
-                                                color: Colors.grey.shade600,
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                '1,400 Students',
-                                                style: GoogleFonts.kanit(
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                          // Row(
+                                          //   children: [
+                                          //     Text(
+                                          //       '14 Courses',
+                                          //       style: GoogleFonts.kanit(
+                                          //         color: Colors.grey,
+                                          //       ),
+                                          //     ),
+                                          //     SizedBox(
+                                          //       width: 5,
+                                          //     ),
+                                          //     Icon(
+                                          //       Icons.circle,
+                                          //       size: 8,
+                                          //       color: Colors.grey.shade600,
+                                          //     ),
+                                          //     SizedBox(
+                                          //       width: 5,
+                                          //     ),
+                                          //     Text(
+                                          //       '1,400 Students',
+                                          //       style: GoogleFonts.kanit(
+                                          //         color: Colors.grey,
+                                          //       ),
+                                          //     ),
+                                          //   ],
+                                          // ),
                                         ],
                                       ),
                                     ],
@@ -307,7 +310,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.pushNamed(context, '/cart');
+                                        Get.toNamed('/cart',arguments: [index]);
+                                        cartContorller.addCart(index);
                                       },
                                       child: Container(
                                         width: 150,

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/controllers/show_course_controller.dart';
 import 'package:luk_to_learn/model/banner.dart';
+import 'package:luk_to_learn/model/courses.dart';
 
 import '../../widgets/Indicator.dart';
 
@@ -241,14 +242,19 @@ PageController _pageController = PageController(
           //test
           // print(_selectedIndex);
         },
-        itemCount: controller.dataFromFirebase.length,
+        // itemCount: controller.dataFromFirebase.length,
+        itemCount: coursesInfo.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               Get.toNamed('/courses', arguments: [
-                controller.dataFromFirebase[index]['coursename'],
-                controller.dataFromFirebase[index]['detailcourse'],
-                controller.dataFromFirebase[index]['tutorname'],
+                coursesInfo[index].nameCourse,
+                coursesInfo[index].detail,
+                coursesInfo[index].profileTutors,
+                coursesInfo[index]
+                // controller.dataFromFirebase[index]['coursename'],
+                // controller.dataFromFirebase[index]['detailcourse'],
+                // controller.dataFromFirebase[index]['tutorname'],
               ]);
               //print('${controller.dataFromFirebase[index]['tutorname']}');
             },
@@ -258,8 +264,9 @@ PageController _pageController = PageController(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: NetworkImage(
-                        '${controller.dataFromFirebase[index]['image']}'),
+                    image: NetworkImage('${coursesInfo[index].image}'),
+                    // image: NetworkImage(
+                    //     '${controller.dataFromFirebase[index]['image']}'),
                     fit: BoxFit.cover,
                   ),
                   boxShadow: [

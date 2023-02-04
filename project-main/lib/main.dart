@@ -26,6 +26,7 @@ import 'package:luk_to_learn/Screens/tutor_screen/infocourse.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/login_tutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/info.demo.dart';
 import 'package:luk_to_learn/Screens/user_screen/orderhis.dart';
+import 'package:luk_to_learn/Screens/user_screen/payment.dart';
 import 'package:luk_to_learn/Screens/user_screen/paymentqr.dart';
 import 'package:luk_to_learn/Screens/user_screen/paymentselect.dart';
 import 'package:luk_to_learn/Screens/user_screen/paymentvisa.dart';
@@ -108,6 +109,7 @@ class MyApp extends StatelessWidget {
         '/login_tutor': ((context) => LoginTutor()),
         '/coursesvideonew': ((context) => CourseVideoNew()),
         '/video_info': ((context) => VideoInfo()),
+        '/payment': ((context) => PaymentForm()),
         '/info.demo': ((context) => Infodemo(linkImage: '', nameCourse: '', price: null, name: '', detail: '', profileTutors: '')),
       },
     );

@@ -17,6 +17,7 @@ class CoursesController extends GetxController {
   final TextEditingController detailcourseController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController namevideoController = TextEditingController();
+  final TextEditingController typeController = TextEditingController();
 
   late List listCoursesId = [];
 
@@ -25,7 +26,7 @@ class CoursesController extends GetxController {
   String? imageUrlBackground;
   String? imageUrl;
 
-  var categoryValue = '';
+  late List showCoursesId = [];
 
   List listCourse = [];
 
@@ -39,112 +40,129 @@ class CoursesController extends GetxController {
         coursenameController.text.isEmpty &&
         priceController.text.isEmpty &&
         detailcourseController.text.isEmpty &&
-        emailController.text.isEmpty 
-        ) {
+        emailController.text.isEmpty) {
       return true;
     } else {
       return false;
     }
   }
 
-  Future addDetail(String tutorname, String coursename, String price,
-      String detailcourse, BuildContext context, String email ,String image, String imageBackground,) async {
-        print(email);
-        print(tutorname);
-        print(price);
-        print(detailcourse);
-        print(coursename);
-        print(image);
-        print(imageUrlBackground);
-        // print(dropdownValue);
-      
-   try {
+  Future addDetail(
+      String tutorname,
+      String coursename,
+      String price,
+      String detailcourse,
+      BuildContext context,
+      String email,
+      String image,
+      String imageBackground,
+      String type) async {
+    print(email);
+    print(tutorname);
+    print(price);
+    print(detailcourse);
+    print(coursename);
+    print(image);
+    print(imageUrlBackground);
+    // print(dropdownValue);
+
+    try {
       if (checkEmpty()) {
-      return MotionToast.error(
-        description: Text("Error"),
-        title: Text("กรอกข้อมูลให้ครบถ้วน",
-            style: TextStyle(fontWeight: FontWeight.bold)),
-      ).show(context);
-    } else {
-      await FirebaseFirestore.instance
-      .collection('courses')
-      .doc(email)
-      .set({
-        'tutorname': tutorname,
-        'coursename': coursename,
-        'price': price,
-        'detailcourse': detailcourse,
-        'email': email,
-        'image' : image,
-        'backgroudTutor': imageBackground,
-      }).then((value) {
-       
-        Get.toNamed('/checkinfocourse');
-        showDetail(email);
-        MotionToast.info(
-          description: Text("การเพิ่มรายการ"),
-          title: Text("ทำรายการสำเร็จ",
+        return MotionToast.error(
+          description: Text("Error"),
+          title: Text("กรอกข้อมูลให้ครบถ้วน",
               style: TextStyle(fontWeight: FontWeight.bold)),
         ).show(context);
-      });
-    }
-   } catch (e) {
+      } else {
+        await FirebaseFirestore.instance
+            .collection('category')
+            .doc(type)
+            .collection('courses')
+            .doc(email)
+            .collection('my-courses')
+            .doc()
+            .set({
+          'tutorname': tutorname,
+          'coursename': coursename,
+          'price': price,
+          'detailcourse': detailcourse,
+          'email': email,
+          'image': image,
+          'backgroudTutor': imageBackground,
+        }).then((value) {
+          Get.toNamed('/checkinfocourse');
+          showDetail(email);
+          MotionToast.info(
+            description: Text("การเพิ่มรายการ"),
+            title: Text("ทำรายการสำเร็จ",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+          ).show(context);
+        });
+      }
+    } catch (e) {
       print(e);
-   }
+    }
   }
 
   Future showDetail(
     String email,
   ) async {
     await FirebaseFirestore.instance
-        .collection('courses').where('email',isEqualTo: email)
-        .get().then((value) {
-          value.docs.forEach((element) {
-            listCoursesId.add(element.data());
-            listCoursesId.forEach((element) {
-              print(element['tutorname']);
-            });
-
-            // print(listCourses.toString());
-          });
-
-           update();
-          // print(value.docs[0]['tutorname']);
-        });
-    print(email);
-    var data = await FirebaseFirestore.instance
+        .collection('category')
+        .doc(typeController.text)
         .collection('courses')
-        .where('email', isEqualTo: email)
-        .get();
-    data.docs.forEach((element) {
-      print(element['tutorname']);
-      listCoursesId.add(element.data());
+        .doc(email)
+        .collection('my-courses')
+        .get()
+        .then((snapshot) {
+      var data = snapshot.docs[0]['coursename'];
+
+      print(data);
+
+      snapshot.docs.forEach(
+        (element) {
+          print(element['tutorname']);
+          listCoursesId.add(element.data());
+        },
+      );
+
+      listCoursesId.where(((element) => element[0]['email'] == email));
+
+      print(listCoursesId);
+
       update();
+      // print(value.docs[0]['tutorname']);
+    });
+    print(email);
+    // var data = await FirebaseFirestore.instance
+    //     .collection('courses')
+    //     .where('email', isEqualTo: email)
+    //     .get();
+    // data.docs.forEach((element) {
+    //   print(element['tutorname']);
+    //   listCoursesId.add(element.data());
+    update();
+    // });
+  }
+
+  Future<void> fetchCourse() async {
+    listCourse.clear();
+    await FirebaseFirestore.instance.collection('courses').get().then((value) {
+      value.docs.forEach((element) {
+        listCourse.add(element.data());
+        listCourse.forEach((element) {
+          print('++ ' + element['tutorname']);
+        });
+
+        // print(listCourses.toString());
+      });
+
+      update();
+      // print(value.docs[0]['tutorname']);
     });
   }
 
-  Future<void> fetchCourse () async {
-    listCourse.clear();
-    await FirebaseFirestore.instance
-        .collection('courses')
-        .get().then((value) {
-          value.docs.forEach((element) {
-            listCourse.add(element.data());
-            listCourse.forEach((element) {
-              print('++ ' + element['tutorname']);
-            });
-
-            // print(listCourses.toString());
-          });
-
-           update();
-          // print(value.docs[0]['tutorname']);
-        });
-  }
-
-  
-
- Future<Null> chooseImage(ImageSource source, BuildContext context) async {
+  Future<Null> chooseImage(ImageSource source, BuildContext context) async {
     try {
       var result = await ImagePicker().getImage(
         source: source,
@@ -155,69 +173,73 @@ class CoursesController extends GetxController {
         final Rx<File> _imagePath = File(result.path).obs;
         file = _imagePath.value;
       }
-      uploadPictureToStorage(file!.path.toString(),context);
+      uploadPictureToStorage(file!.path.toString(), context);
     } catch (e) {}
   }
 
-  Future<Null> chooseBackground(ImageSource source, BuildContext context) async {
+  Future<Null> chooseBackground(
+      ImageSource source, BuildContext context) async {
     try {
       var result = await ImagePicker().getImage(
         source: source,
         maxWidth: 800,
         maxHeight: 800,
       );
-     if (result != null) {
+      if (result != null) {
         final Rx<File> _imagePath = File(result.path).obs;
         fileBackgound = _imagePath.value;
       }
       update();
-      uploadBackgoundToStorage(fileBackgound!.path.toString(),context);
+      uploadBackgoundToStorage(fileBackgound!.path.toString(), context);
     } catch (e) {}
   }
 
   Future<void> updateImageProfile(String image) async {
     try {
       await FirebaseFirestore.instance
-      .collection('courses')
-      .doc(FirebaseAuth.instance.currentUser!.uid)
-      .update({'image': image,});
-    }catch (e) {
-
-    }
+          .collection('courses')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .update({
+        'image': image,
+      });
+    } catch (e) {}
   }
 
-  Future<void> uploadPictureToStorage(String imagePath,BuildContext context) async{
+  Future<void> uploadPictureToStorage(
+      String imagePath, BuildContext context) async {
     var firebaseRef = await FirebaseStorage.instance
-    .ref()
-    .child('image/${imagePath.split('/').last}');
+        .ref()
+        .child('image/${imagePath.split('/').last}');
     var uploadTask = firebaseRef.putFile(file!);
     var taskSnapshot = await uploadTask.whenComplete(() async {
       MotionToast.info(
-          description: Text("การเพิ่มรูป"),
-          title: Text("ทำรายการสำเร็จ",
-              style: TextStyle(fontWeight: FontWeight.bold)),
-        ).show(context);
-    }).then((value) async{
+        description: Text("การเพิ่มรูป"),
+        title: Text("ทำรายการสำเร็จ",
+            style: TextStyle(fontWeight: FontWeight.bold)),
+      ).show(context);
+    }).then((value) async {
       imageUrl = await value.ref.getDownloadURL();
-      updateImageProfile(imageUrl.toString());
+      print(imageUrl);
+      // updateImageProfile(imageUrl.toString());
       // insertValueToFireStore();
     });
   }
 
-  Future<void> uploadBackgoundToStorage(String imagePath, BuildContext context) async{
+  Future<void> uploadBackgoundToStorage(
+      String imagePath, BuildContext context) async {
     var firebaseRef = await FirebaseStorage.instance
-    .ref()
-    .child('backgound/${imagePath.split('/').last}');
+        .ref()
+        .child('backgound/${imagePath.split('/').last}');
     var uploadTask = firebaseRef.putFile(fileBackgound!);
     var taskSnapshot = await uploadTask.whenComplete(() async {
       MotionToast.info(
-          description: Text("การเพิ่มรูป"),
-          title: Text("ทำรายการสำเร็จ",
-              style: TextStyle(fontWeight: FontWeight.bold)),
-        ).show(context);
-    }).then((value) async{
+        description: Text("การเพิ่มรูป"),
+        title: Text("ทำรายการสำเร็จ",
+            style: TextStyle(fontWeight: FontWeight.bold)),
+      ).show(context);
+    }).then((value) async {
       imageUrlBackground = await value.ref.getDownloadURL();
-      print(imageUrl);
+      print(imageUrlBackground);
       // insertValueToFireStore();
     });
   }
@@ -239,7 +261,7 @@ class CoursesController extends GetxController {
   // Future<void> selectFile () async {
   //   final result = await FilePicker.platform.pickFiles();
   //   if (result == null) return;
-        
+
   // }
 
   // Future<void> getImage (ImageSource imageSource, BuildContext context) async {
@@ -254,8 +276,5 @@ class CoursesController extends GetxController {
   //       ).show(context);
   //   }
   // }
-
-
-
 
 }

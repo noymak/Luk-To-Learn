@@ -176,28 +176,6 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                           SizedBox(
                             height: 30,
                           ),
-                          // DropdownButton<String>(
-                          //   value: catagoryValue,
-                          //   icon: Icon(Icons.arrow_drop_down),
-                          //   iconSize: 24,
-                          //   elevation: 18,
-                          //   underline: Container(height: 2,color: Colors.pink,),
-                          //   style: ("ภาษาไทย",
-                          //     "ภาษาอังกฤษ",
-                          //     "คณิตศาสตร์",
-                          //     "วิทยาศาสตร์",
-                          //     "ศิลปะ",
-                          //     "พละศึกษา",
-                          //     "เทคโนโลยี").map<DropdownMenuItem<String>>((String value){
-                          //       return DropdownMenuItem<String>(child: Text(value),value: value,);
-                          //     }).toList(),
-                          //     onChanged: (newvalue) {
-                          //       catagoryValue = newvalue;
-                          //     },
-
-                          
-                          // ),
-                         
                           SizedBox(
                             height: 50,
                           ),
