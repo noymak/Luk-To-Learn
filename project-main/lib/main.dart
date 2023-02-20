@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/Screens/courses_screen/video_info.dart';
@@ -7,30 +8,31 @@ import 'package:luk_to_learn/Screens/tutor_screen/addedcourses.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/mycoursetutor.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/registertutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/about.dart';
-import 'package:luk_to_learn/Screens/user_screen/cart.dart';
-import 'package:luk_to_learn/Screens/user_screen/changepassword.dart';
+import 'package:luk_to_learn/Screens/user_screen/cart-payment/add-card.dart';
+import 'package:luk_to_learn/Screens/user_screen/cart-payment/cart.dart';
+import 'package:luk_to_learn/Screens/user_screen/login/changepassword.dart';
 import 'package:luk_to_learn/Screens/user_screen/chatroom.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/chatroomtutor.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/checkinfocourse.dart';
-import 'package:luk_to_learn/Screens/user_screen/courses.dart';
+import 'package:luk_to_learn/Screens/user_screen/courses/courses.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/addcourses.dart';
 import 'package:luk_to_learn/Screens/courses_screen/coursesdetail.dart';
 
-import 'package:luk_to_learn/Screens/user_screen/coursesvideo.dart';
-import 'package:luk_to_learn/Screens/user_screen/coursevideo.new.dart';
-import 'package:luk_to_learn/Screens/user_screen/editprofile.dart';
+import 'package:luk_to_learn/Screens/user_screen/courses/coursesvideo.dart';
+import 'package:luk_to_learn/Screens/user_screen/courses/coursevideo.new.dart';
+import 'package:luk_to_learn/Screens/user_screen/profile/editprofile.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/editprofiletutor.dart';
-import 'package:luk_to_learn/Screens/user_screen/forgotpass.dart';
-import 'package:luk_to_learn/Screens/user_screen/forgotpassOTP.dart';
+import 'package:luk_to_learn/Screens/user_screen/login/forgotpass.dart';
+import 'package:luk_to_learn/Screens/user_screen/login/forgotpassOTP.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/infocourse.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/login_tutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/info.demo.dart';
 import 'package:luk_to_learn/Screens/user_screen/orderhis.dart';
-import 'package:luk_to_learn/Screens/user_screen/payment.dart';
-import 'package:luk_to_learn/Screens/user_screen/paymentqr.dart';
-import 'package:luk_to_learn/Screens/user_screen/paymentselect.dart';
-import 'package:luk_to_learn/Screens/user_screen/paymentvisa.dart';
-import 'package:luk_to_learn/Screens/user_screen/profile.dart';
+import 'package:luk_to_learn/Screens/user_screen/cart-payment/payment.dart';
+import 'package:luk_to_learn/Screens/user_screen/cart-payment/paymentqr.dart';
+import 'package:luk_to_learn/Screens/user_screen/cart-payment/paymentselect.dart';
+import 'package:luk_to_learn/Screens/user_screen/cart-payment/paymentvisa.dart';
+import 'package:luk_to_learn/Screens/user_screen/profile/profile.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/profiletutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/question.dart';
 import 'package:luk_to_learn/route.dart';
@@ -41,11 +43,13 @@ import 'package:splash_screen_view/SplashScreenView.dart';
 
 import 'Screens/Auth/auth.dart';
 import 'Screens/tutor_screen/hometutor.dart';
-import 'Screens/user_screen/register.dart';
+import 'Screens/user_screen/login/register.dart';
+import 'Screens/user_screen/login/register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Stripe.publishableKey = 'pk_test_51MdZALDNQPZ0Ew6OPPwkrVzx8NHjEOeVj8RZfrfxOLktyT6BIW05D5NXln0dbw0BlIgwDt4V97PjCTa67Kn5L49P00s2D8h50B';
   runApp(MyApp());
 }
 
@@ -110,6 +114,7 @@ class MyApp extends StatelessWidget {
         '/coursesvideonew': ((context) => CourseVideoNew()),
         '/video_info': ((context) => VideoInfo()),
         '/payment': ((context) => PaymentForm()),
+        '/add-card': ((context) => AddCard()),
         '/info.demo': ((context) => Infodemo(linkImage: '', nameCourse: '', price: null, name: '', detail: '', profileTutors: '')),
       },
     );

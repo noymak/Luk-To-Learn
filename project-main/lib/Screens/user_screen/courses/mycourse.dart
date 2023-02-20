@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
-import '../../model/courses.dart';
+import '../../../model/courses.dart';
 
 class Mycourses extends StatefulWidget {
   const Mycourses({Key? key}) : super(key: key);

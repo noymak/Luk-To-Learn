@@ -9,7 +9,7 @@ import 'package:luk_to_learn/widgets/appbar.dart';
 import 'package:luk_to_learn/widgets/cartlist.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
-import '../../model/courses.dart';
+import '../../../model/courses.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -101,7 +101,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.toNamed('/payment');
+                  Get.toNamed('/add-card');
                 },
                 child: Text(
                   'Checkout',

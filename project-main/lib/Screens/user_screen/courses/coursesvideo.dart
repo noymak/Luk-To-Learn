@@ -7,7 +7,7 @@ import 'package:luk_to_learn/model/video.demo.dart';
 import 'package:collection/collection.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../model/lesson.dart';
+import '../../../model/lesson.dart';
 
 class CoursesVideo extends StatefulWidget {
   final String title;

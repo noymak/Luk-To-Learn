@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:luk_to_learn/Screens/user_screen/home.dart';
-import 'package:luk_to_learn/Screens/user_screen/mycourse.dart';
-import 'package:luk_to_learn/Screens/user_screen/profile.dart';
+import 'package:luk_to_learn/Screens/user_screen/courses/mycourse.dart';
+import 'package:luk_to_learn/Screens/user_screen/profile/profile.dart';
 import 'package:luk_to_learn/Screens/user_screen/search.dart';
 
 const TextStyle _textStyle = TextStyle(
