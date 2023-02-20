@@ -120,7 +120,7 @@ class WelcomeScreen extends StatelessWidget {
                       // SizedBox(height: 8,),
                       GestureDetector(
                         onTap: () {
-                          FocusScope.of(context).unfocus();
+                          Get.offNamed('/home');
                           summit();
                         },
                         child: Container(

@@ -10,6 +10,7 @@ import 'package:luk_to_learn/Screens/tutor_screen/registertutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/about.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/add-card.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/cart.dart';
+import 'package:luk_to_learn/Screens/user_screen/home.dart';
 import 'package:luk_to_learn/Screens/user_screen/login/changepassword.dart';
 import 'package:luk_to_learn/Screens/user_screen/chatroom.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/chatroomtutor.dart';
@@ -115,6 +116,7 @@ class MyApp extends StatelessWidget {
         '/video_info': ((context) => VideoInfo()),
         '/payment': ((context) => PaymentForm()),
         '/add-card': ((context) => AddCard()),
+        '/home': ((context) => HomeScreen()),
         '/info.demo': ((context) => Infodemo(linkImage: '', nameCourse: '', price: null, name: '', detail: '', profileTutors: '')),
       },
     );

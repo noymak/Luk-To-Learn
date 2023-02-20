@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/show_course_controller.dart';
 import 'package:luk_to_learn/model/banner.dart';
 import 'package:luk_to_learn/model/courses.dart';
@@ -68,17 +69,21 @@ PageController _pageController = PageController(
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    
+    // var shoppingCart = Get.arguments[0];
     return Scaffold(
-      backgroundColor: Color(0xff6360FF),
+      appBar: AppBar(
+        backgroundColor: kPrimaryColors,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.shopping_bag),
+            onPressed: () {
+              Get.toNamed('/cart');
+            },
+          ),]
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: size.width,
-              height: size.height * 0.095,
-              color: Color(0xff6360FF),
-            ),
             Container(
               width: size.width,
               height: size.height,

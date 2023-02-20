@@ -24,120 +24,114 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-  print(courses);
-  return Scaffold(
-  appBar: Themeappbar(),
-  backgroundColor: kPrimaryLightColor,
-  body: Container(
-    width: size.width,
-    height: size.height,
-    child: GetBuilder<CartContorller>(
-      builder: (context) {
-        return ListView.builder(
-          itemCount: cartController.cartList.length,
-          itemBuilder: (context, index) {
-            return Card(
-              color: kPrimaryColors,
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(cartController.cartList[index].image!),
-                ),
-                title: Text(
-                  cartController.cartList[index].name!,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0
+    print(courses);
+    return Scaffold(
+      appBar: Themeappbar(),
+      backgroundColor: kPrimaryLightColor,
+      body: Container(
+        width: size.width,
+        height: size.height,
+        child: GetBuilder<CartContorller>(builder: (context) {
+          return ListView.builder(
+            itemCount: cartController.cartList.length,
+            itemBuilder: (context, index) {
+              return Card(
+                color: kPrimaryColors,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage:
+                        NetworkImage(cartController.cartList[index].image!),
                   ),
-                ),
-                subtitle: Text(
-                  '${cartController.cartList[index].price}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14.0
+                  title: Text(
+                    cartController.cartList[index].name!,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0),
                   ),
-                ),
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.delete,
-                    color: Colors.white,
+                  subtitle: Text(
+                    '${cartController.cartList[index].price}',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.0),
                   ),
-                  onPressed: () {
-                    cartController.removeFromCart(index);
-                    
-                    // cartController.removeFromCart(courses);
-                  },
-                ),
-              ),
-            );
-          },
-        );
-      }
-    ),
-  ),
-  bottomNavigationBar: Container(
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
-      ),
-    ),
-    child: Padding(
-      padding: EdgeInsets.all(20.0),
-      child: GetBuilder<CartContorller>(
-        builder: (context) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                'Total: ${cartController.total}',
-                style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed('/add-card');
-                },
-                child: Text(
-                  'Checkout',
-                  style: TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0
-                  ),
-                ),
-              ),
-            ],
-          );
-        }
-      ),
-    ),
-  ),
-);
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      cartController.removeFromCart(index);
 
-  //   return Scaffold(
-  //     appBar: Themeappbar(),
-  //     backgroundColor: kPrimaryLightColor,
-  // //     
-  //     body: Container(
-  //       width: size.width,
-  //       height: size.height,
-  //       child: ListView.builder(
-          
-  //         itemCount : cartController.cartList.length,
-  //         itemBuilder: (context, index) {
-  //           print(cartController.cartList[index].name!);
-  //           return Text(cartController.cartList[index].name!);
-  //         },
-  //       ),
-  //     ),
-    
-  //   );
-    
+                      // cartController.removeFromCart(courses);
+                    },
+                  ),
+                ),
+              );
+            },
+          );
+        }),
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: GetBuilder<CartContorller>(builder: (context) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Total: ${cartController.total}',
+                  style: TextStyle(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed('/add-card', arguments: [
+                      cartController.total,
+                    ]);
+                  },
+                  child: Text(
+                    'Checkout',
+                    style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0),
+                  ),
+                ),
+              ],
+            );
+          }),
+        ),
+      ),
+    );
+
+    //   return Scaffold(
+    //     appBar: Themeappbar(),
+    //     backgroundColor: kPrimaryLightColor,
+    // //
+    //     body: Container(
+    //       width: size.width,
+    //       height: size.height,
+    //       child: ListView.builder(
+
+    //         itemCount : cartController.cartList.length,
+    //         itemBuilder: (context, index) {
+    //           print(cartController.cartList[index].name!);
+    //           return Text(cartController.cartList[index].name!);
+    //         },
+    //       ),
+    //     ),
+
+    //   );
   }
 }

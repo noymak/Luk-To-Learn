@@ -50,6 +50,9 @@ dependencies:
   video_thumbnail: ^0.5.3
   flutter_stripe: ^8.0.0+1
   http: ^0.13.5
+  flutter_credit_card: ^3.0.5
+  flutter_credit_card_new: ^0.0.4
+  quickalert: ^1.0.1
 
 dev_dependencies:
   flutter_test:
