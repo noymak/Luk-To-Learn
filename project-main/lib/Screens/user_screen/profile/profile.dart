@@ -79,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             File(file!.path.toString()),
                             fit: BoxFit.cover,
                           ).image
-                        : Image.asset('assets/images/profile.jpg').image,
+                        : Image.asset('assets/images/Portrait_Placeholder.png').image,
                   ),
                 ),
                 Positioned(
@@ -220,7 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Container(
-              height: size.height * 0.8,
+              height: size.height * 0.6,
               decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.only(
@@ -290,28 +290,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             SizedBox(
                               height: 15,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, '/editprofile');
-                                  },
-                                  child: Text(
-                                    "Edit Profile",
-                                    style: GoogleFonts.kanit(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.black,
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         Navigator.pushNamed(
+                            //             context, '/editprofile');
+                            //       },
+                            //       child: Text(
+                            //         "Edit Profile",
+                            //         style: GoogleFonts.kanit(
+                            //           fontSize: 20,
+                            //           fontWeight: FontWeight.w500,
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     Icon(
+                            //       Icons.arrow_forward_ios,
+                            //       color: Colors.black,
+                            //     ),
+                            //   ],
+                            // ),
                             SizedBox(
                               height: 50,
                             ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 class AboutLTL extends StatefulWidget {
   const AboutLTL({Key? key}) : super(key: key);
 
@@ -12,54 +14,14 @@ class _AboutLTLState extends State<AboutLTL> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff6360FF),
+      appBar: AppBar(
+        backgroundColor: kPrimaryColors,
+        title: Text('About Luk to Learn'),
+      ),
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
-          Container(
-            color: Color(0xff6360FF),
-            height: size.height * 0.15,
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SafeArea(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/route');
-                        },
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 25,
-                            ),
-                            Text("About Luk to Learn",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey[300])),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          
           Container(
             height: size.height,
             width: size.width,

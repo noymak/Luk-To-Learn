@@ -161,7 +161,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                         ),
                         Container(
                           width: size.width,
-                          height: size.height * 0.6,
+                          height: size.height * 0.9,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
@@ -209,66 +209,63 @@ class _CoursesScreenState extends State<CoursesScreen> {
                                     color: Colors.grey,
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      // CircleAvatar(
-                                      //   radius: 28,
-                                      //   backgroundImage: NetworkImage(
-                                      //       '${controller.imageTutor[0]['image']}'),
-                                      // ),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            '${tutorName}',
-                                            style: GoogleFonts.kanit(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          // Row(
-                                          //   children: [
-                                          //     Text(
-                                          //       '14 Courses',
-                                          //       style: GoogleFonts.kanit(
-                                          //         color: Colors.grey,
-                                          //       ),
-                                          //     ),
-                                          //     SizedBox(
-                                          //       width: 5,
-                                          //     ),
-                                          //     Icon(
-                                          //       Icons.circle,
-                                          //       size: 8,
-                                          //       color: Colors.grey.shade600,
-                                          //     ),
-                                          //     SizedBox(
-                                          //       width: 5,
-                                          //     ),
-                                          //     Text(
-                                          //       '1,400 Students',
-                                          //       style: GoogleFonts.kanit(
-                                          //         color: Colors.grey,
-                                          //       ),
-                                          //     ),
-                                          //   ],
-                                          // ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    // CircleAvatar(
+                                    //   radius: 28,
+                                    //   backgroundImage: NetworkImage(
+                                    //       '${controller.imageTutor[0]['image']}'),
+                                    // ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        // Text(
+                                        //   '${tutorName}',
+                                        //   style: GoogleFonts.kanit(
+                                        //     fontSize: 16,
+                                        //     fontWeight: FontWeight.bold,
+                                        //   ),
+                                        // ),
+                                        // SizedBox(
+                                        //   height: 8,
+                                        // ),
+                                        // Row(
+                                        //   children: [
+                                        //     Text(
+                                        //       '14 Courses',
+                                        //       style: GoogleFonts.kanit(
+                                        //         color: Colors.grey,
+                                        //       ),
+                                        //     ),
+                                        //     SizedBox(
+                                        //       width: 5,
+                                        //     ),
+                                        //     Icon(
+                                        //       Icons.circle,
+                                        //       size: 8,
+                                        //       color: Colors.grey.shade600,
+                                        //     ),
+                                        //     SizedBox(
+                                        //       width: 5,
+                                        //     ),
+                                        //     Text(
+                                        //       '1,400 Students',
+                                        //       style: GoogleFonts.kanit(
+                                        //         color: Colors.grey,
+                                        //       ),
+                                        //     ),
+                                        //   ],
+                                        // ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(
                                   height: 15,

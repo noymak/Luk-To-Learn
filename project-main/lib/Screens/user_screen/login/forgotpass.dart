@@ -41,7 +41,7 @@ class ForgotPass extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                     onTap: () {
-                                      Navigator.pushNamed(context, '/route');
+                                      Navigator.pushNamed(context, '/welcome_screen');
                                     },
                                     child: Icon(Icons.arrow_back_ios)),
                                 Text(
@@ -78,7 +78,7 @@ class ForgotPass extends StatelessWidget {
                                   _authController.forgotEmailController.text
                                       .trim(),
                                   context);
-                              // Get.snackbar('แจ้งเตือน', 'โปรดเช็ก E-mail');
+                              Get.snackbar('แจ้งเตือน', 'โปรดเช็ก E-mail');
                               Get.toNamed('/welcome_screen');
                             },
                             child: Container(

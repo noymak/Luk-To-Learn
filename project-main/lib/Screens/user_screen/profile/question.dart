@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/constants.dart';
 
 class Question extends StatefulWidget {
   const Question({Key? key}) : super(key: key);
@@ -13,54 +14,14 @@ class _QuestionState extends State<Question> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff6360FF),
+      appBar: AppBar(
+        backgroundColor: kPrimaryColors,
+        title: Text('Frequntly asked question'),
+      ),
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
-          Container(
-            color: Color(0xff6360FF),
-            height: size.height * 0.15,
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SafeArea(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/route');
-                        },
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 25,
-                            ),
-                            Text("Frequntly asked question",
-                                style: GoogleFonts.kanit(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.grey[300])),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+         
           Container(
             height: size.height,
             width: size.width,
@@ -104,7 +65,7 @@ class _QuestionState extends State<Question> {
                     ),
                     Container(
                       width: size.width,
-                      height: 250,
+                      height: 280,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.grey[300],

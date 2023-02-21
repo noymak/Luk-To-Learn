@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constants.dart';
+
 class OrderHistory extends StatefulWidget {
   const OrderHistory({Key? key}) : super(key: key);
 
@@ -13,54 +15,14 @@ class _OrderHistoryState extends State<OrderHistory> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff6360FF),
+      appBar: AppBar(
+        backgroundColor: kPrimaryColors,
+        title: Text('Order History'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              color: Color(0xff6360FF),
-              height: size.height * 0.15,
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 20,
-                    ),
-                    SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/route');
-                          },
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Icon(
-                                Icons.arrow_back_ios,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 25,
-                              ),
-                              Text("Order History",
-                                  style: GoogleFonts.kanit(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.grey[300])),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            
             Container(
               height: size.height,
               width: size.width,
@@ -117,7 +79,7 @@ Container orderhis(Size size) {
             ),
           ),
           SizedBox(
-            width: 100,
+            width: 80,
           ),
           Text(
             "850.00 BTH",
