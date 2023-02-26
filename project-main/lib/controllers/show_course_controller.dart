@@ -12,26 +12,32 @@ class showCourse extends GetxController {
 
   void onInit() {
     super.onInit();
-    // fetchDataFromFirebase();
+    fetchDataFromFirebase();
   }
 
 
-  // Future<void> fetchDataFromFirebase() async {
-  //   isLoading = true;
-  //   final data = await FirebaseFirestore.instance.collection('category').get();
-  //   update();
-  //   data.docs.forEach((element) {
-  //     //print(element.data());
-  //     dataShow.add(element.data());
-  //     dataFromFirebase.add(element.data());
-  //   });
-  //   isLoading = false;
-  //   update();
-  // }
+  Future<void> fetchDataFromFirebase() async {
+    isLoading = true;
+    final data = await FirebaseFirestore.instance
+        .collection('courses')
+        .get();
+        if (data.docs.isEmpty) return;
+    update();
+    data.docs.forEach((element) {
+      //print(element.data());
+      dataShow.add(element.data());
+      print(dataShow);
+      dataFromFirebase.add(element.data());
+    });
+    isLoading = false;
+    update();
+  }
 
   void onSearch(keyword) {
+    if (dataFromFirebase.isEmpty) return;
     dataShow = dataFromFirebase.where((element) {
-      return (element['coursename'] as String).contains(keyword);
+      final courseName = element['coursename'].toString().toLowerCase();
+    return courseName.contains(keyword.toLowerCase());
     }).toList();
     update();
   }

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/Screens/courses_screen/coursedata.dart';
 import 'package:luk_to_learn/Screens/courses_screen/video_info.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/addedcourses.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/mycoursetutor.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/registertutor.dart';
-import 'package:luk_to_learn/Screens/user_screen/about.dart';
+import 'package:luk_to_learn/Screens/user_screen/profile/about.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/add-card.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/cart.dart';
 import 'package:luk_to_learn/Screens/user_screen/home.dart';
@@ -28,14 +29,14 @@ import 'package:luk_to_learn/Screens/user_screen/login/forgotpassOTP.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/infocourse.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/login_tutor.dart';
 import 'package:luk_to_learn/Screens/user_screen/info.demo.dart';
-import 'package:luk_to_learn/Screens/user_screen/orderhis.dart';
+import 'package:luk_to_learn/Screens/user_screen/profile/orderhis.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/payment.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/paymentqr.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/paymentselect.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/paymentvisa.dart';
 import 'package:luk_to_learn/Screens/user_screen/profile/profile.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/profiletutor.dart';
-import 'package:luk_to_learn/Screens/user_screen/question.dart';
+import 'package:luk_to_learn/Screens/user_screen/profile/question.dart';
 import 'package:luk_to_learn/route.dart';
 import 'package:luk_to_learn/Screens/welcome_screen.dart';
 import 'package:luk_to_learn/constants.dart';
@@ -117,6 +118,7 @@ class MyApp extends StatelessWidget {
         '/payment': ((context) => PaymentForm()),
         '/add-card': ((context) => AddCard()),
         '/home': ((context) => HomeScreen()),
+        '/coursedata': ((context) => courseData()),
         '/info.demo': ((context) => Infodemo(linkImage: '', nameCourse: '', price: null, name: '', detail: '', profileTutors: '')),
       },
     );

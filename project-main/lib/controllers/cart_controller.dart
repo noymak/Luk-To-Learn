@@ -3,32 +3,33 @@ import 'package:luk_to_learn/model/courses.dart';
 
 class CartContorller extends GetxController{
   List<Courses> cartList = [];
-
-  var total = 0;
+  double total = 0;
   
+  void addSearch (index) {
+    cartList.add(index);
+    calculateTotalPrice();
+  }
 
-addCart (Courses courses) {
-  cartList.add(courses);
-  totalPrice();
-}
+  void addCart (Courses courses) {
+    cartList.add(courses);
+    calculateTotalPrice();
+  }
 
-removeFromCart(int index) {
-  print(cartList);
-    cartList.removeAt((index));
-    totalPrice();
+  void removeFromCart(int index) {
+    int priceToRemove = cartList[index].price!;
+    cartList.removeAt(index);
+    total -= priceToRemove;
     update();
-    
-  print(cartList);
-  print(total);
-}
+    print(cartList);
+    print(total);
+  }
 
-totalPrice() {
-    cartList.forEach((element) {
-    total = element.price! * cartList.length;
-    });
+  void calculateTotalPrice() {
+    total = 0;
+    for (int i = 0; i < cartList.length; i++) {
+      total += cartList[i].price!;
+    }
     update();
-    
+  }
 }
 
-
-}

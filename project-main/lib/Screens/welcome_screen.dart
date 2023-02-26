@@ -120,7 +120,7 @@ class WelcomeScreen extends StatelessWidget {
                       // SizedBox(height: 8,),
                       GestureDetector(
                         onTap: () {
-                          Get.offNamed('/home');
+                          Get.find<AuthController>().signIn();
                           summit();
                         },
                         child: Container(

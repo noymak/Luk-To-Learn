@@ -39,25 +39,36 @@ class AuthController extends GetxController {
     await FirebaseAuth.instance.signOut();
   }
 
-  Future signUp() async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim());
-      addDetail(emailController.text.trim(),
-          firstname.text.trim(),
-          lastname.text.trim(), 
-          phone.text.trim());
-
-          
-    } on FirebaseAuthException catch (e) {
-      switch (e.code) {
-        case "email-already-in-use":
-          return Get.snackbar(
-              'เกิดข้อผิดพลาด', 'อีเมลนี้เชื่อมโยงกับบัญชีอื่นแล้ว');
-      }
+ Future signUp() async {
+  try {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim());
+    await addDetail(emailController.text.trim(),
+        firstname.text.trim(),
+        lastname.text.trim(),
+        phone.text.trim());
+  } on FirebaseAuthException catch (e) {
+    switch (e.code) {
+      case "email-already-in-use":
+        return Get.snackbar(
+            'เกิดข้อผิดพลาด', 'อีเมลนี้เชื่อมโยงกับบัญชีอื่นแล้ว');
+      case "weak-password":
+        return Get.snackbar(
+            'เกิดข้อผิดพลาด', 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร');
+      case "invalid-email":
+        return Get.snackbar(
+            'เกิดข้อผิดพลาด', 'กรุณากรอกอีเมลให้ถูกต้อง');
+      default:
+        return Get.snackbar(
+            'เกิดข้อผิดพลาด', 'ไม่สามารถสมัครบัญชีได้ในขณะนี้ กรุณาลองใหม่อีกครั้งในภายหลัง');
     }
+  } catch (e) {
+    print(e);
+    return Get.snackbar(
+        'เกิดข้อผิดพลาด', 'ไม่สามารถสมัครบัญชีได้ในขณะนี้ กรุณาลองใหม่อีกครั้งในภายหลัง');
   }
+}
 
   Future addDetail(
       String email, String firstname, String lastname, String phone) async {

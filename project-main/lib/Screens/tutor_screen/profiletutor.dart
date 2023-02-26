@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,8 +40,7 @@ class _ProfileTutorState extends State<ProfileTutor> {
                           tag: 'image',
                           child: CircleAvatar(
                             radius: 40,
-                            backgroundImage: NetworkImage(
-                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
+                            backgroundImage: Image.asset('assets/images/Portrait_Placeholder.png').image,
                           )),
                       SizedBox(
                         width: 15,
@@ -60,7 +60,7 @@ class _ProfileTutorState extends State<ProfileTutor> {
                           //   height: 3,
                           // ),
                           Text(
-                            'Sarah William',
+                            '${FirebaseAuth.instance.currentUser!.email}',
                             style: GoogleFonts.kanit(
                               textStyle: TextStyle(
                                 fontSize: 16,
@@ -88,19 +88,7 @@ class _ProfileTutorState extends State<ProfileTutor> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        width: 120,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/editprofiletutor');
-                        },
-                        child: Icon(
-                          Icons.settings,
-                          size: 40,
-                          color: Colors.white,
-                        ),
-                      ),
+                      
                     ],
                   ),
                 ),
@@ -239,7 +227,7 @@ class _ProfileTutorState extends State<ProfileTutor> {
                           // level: coursesInfo[index].level!,
                           name: coursesInfo[index].name!,
                           price: coursesInfo[index].price!,
-                          // rate: coursesInfo[index].rate!,
+                          type: coursesInfo[index].type!,
                           detail: coursesInfo[index].detail!,
                           profileTutors: coursesInfo[index].profileTutors!,
                         ),

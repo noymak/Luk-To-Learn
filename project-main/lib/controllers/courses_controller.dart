@@ -75,12 +75,8 @@ class CoursesController extends GetxController {
         ).show(context);
       } else {
         await FirebaseFirestore.instance
-            .collection('category')
-            .doc(type)
             .collection('courses')
             .doc(email)
-            .collection('my-courses')
-            .doc()
             .set({
           'tutorname': tutorname,
           'coursename': coursename,
@@ -88,6 +84,7 @@ class CoursesController extends GetxController {
           'detailcourse': detailcourse,
           'email': email,
           'image': image,
+          'type' : type,
           'backgroudTutor': imageBackground,
         }).then((value) {
           Get.toNamed('/checkinfocourse');
@@ -108,11 +105,7 @@ class CoursesController extends GetxController {
     String email,
   ) async {
     await FirebaseFirestore.instance
-        .collection('category')
-        .doc(typeController.text)
         .collection('courses')
-        .doc(email)
-        .collection('my-courses')
         .get()
         .then((snapshot) {
       var data = snapshot.docs[0]['coursename'];

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 import '../../../controllers/auth_controller.dart';
+import 'changepassword.dart';
 
 class ForgotPass extends StatelessWidget {
   @override

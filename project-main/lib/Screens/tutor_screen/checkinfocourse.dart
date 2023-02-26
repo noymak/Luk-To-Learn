@@ -188,20 +188,25 @@ class _CheckInfoCourseState extends State<CheckInfoCourse> {
                                                    onTap: () {
                                   // courseController.updateCategoryToStorage(context);
                                 },
-                                child: Container(
-                                  width: 120,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                      color: kPrimaryColor1,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Text(
-                                      'Done',
-                                      style: GoogleFonts.kanit(
-                                          fontSize: 25,
-                                          color: kPrimaryLightColor,
-                                          fontWeight: FontWeight.bold),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed('/routetotur');
+                                  },
+                                  child: Container(
+                                    width: 120,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                        color: kPrimaryColor1,
+                                        borderRadius: BorderRadius.circular(20)),
+                                    child: Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Text(
+                                        'Done',
+                                        style: GoogleFonts.kanit(
+                                            fontSize: 25,
+                                            color: kPrimaryLightColor,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ),
                                 ),

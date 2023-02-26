@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -202,17 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 2,
                     ),
                     Text(
-                      "Por Lazuardi",
-                      style: GoogleFonts.kanit(
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Text(
-                      "por.lazuardi@gmail.com",
+                      "${FirebaseAuth.instance.currentUser!.email}",
                       style: GoogleFonts.kanit(fontSize: 16, color: Colors.white),
                     ),
                   ],

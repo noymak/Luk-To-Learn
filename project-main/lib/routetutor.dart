@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/addcourses.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/createchatroom.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/hometutor.dart';
+import 'package:luk_to_learn/Screens/tutor_screen/mycoursetutor.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/profiletutor.dart';
 
 const TextStyle _textStyle = TextStyle(
@@ -23,7 +24,7 @@ class _RouteTutorScreenState extends State<RouteTutorScreen> {
   List<Widget> pages = const [
     HomeTutor(),
     AddCourses(),
-    CreateChatRoom(),
+    MycourseTutor(),
     ProfileTutor(),
   ];
   @override

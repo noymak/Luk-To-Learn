@@ -20,11 +20,11 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   var cartController = Get.find<CartContorller>();
-  var courses = Get.arguments[0];
+  // var courses = Get.arguments[0];
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    print(courses);
+    // print(courses);
     return Scaffold(
       appBar: Themeappbar(),
       backgroundColor: kPrimaryLightColor,
@@ -35,7 +35,12 @@ class _CartScreenState extends State<CartScreen> {
           return ListView.builder(
             itemCount: cartController.cartList.length,
             itemBuilder: (context, index) {
-              return Card(
+              if (cartController.cartList.isEmpty) {
+                return Container(
+                  child: Center(child: Text('Empty')),
+                );
+              } else {
+                return Card(
                 color: kPrimaryColors,
                 child: ListTile(
                   leading: CircleAvatar(
@@ -69,6 +74,8 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
               );
+              }
+
             },
           );
         }),
@@ -96,7 +103,8 @@ class _CartScreenState extends State<CartScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed('/add-card', arguments: [
+                    Get.toNamed('/add-card', 
+                    arguments: [
                       cartController.total,
                     ]);
                   },
@@ -114,24 +122,5 @@ class _CartScreenState extends State<CartScreen> {
         ),
       ),
     );
-
-    //   return Scaffold(
-    //     appBar: Themeappbar(),
-    //     backgroundColor: kPrimaryLightColor,
-    // //
-    //     body: Container(
-    //       width: size.width,
-    //       height: size.height,
-    //       child: ListView.builder(
-
-    //         itemCount : cartController.cartList.length,
-    //         itemBuilder: (context, index) {
-    //           print(cartController.cartList[index].name!);
-    //           return Text(cartController.cartList[index].name!);
-    //         },
-    //       ),
-    //     ),
-
-    //   );
   }
 }

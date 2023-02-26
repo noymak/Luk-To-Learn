@@ -88,7 +88,7 @@ class AuthTutorController extends GetxController {
   Future signOut() async {
     await FirebaseAuth.instance
         .signOut()
-        .then((value) => Get.toNamed('/login_tutor'));
+        .then((value) => Get.offNamed('/login_tutor'));
   }
 
   Future signUp(BuildContext context, String email, String password,

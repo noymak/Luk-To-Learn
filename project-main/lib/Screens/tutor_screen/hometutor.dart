@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luk_to_learn/controllers/courses_controller.dart';
 import 'package:luk_to_learn/controllers/show_course_controller.dart';
 
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
@@ -28,9 +30,15 @@ class _HomeTutorState extends State<HomeTutor> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var _controllerCourse = Get.put(CoursesController());
     // print(coursesInfo[0].name);
     return Scaffold(
       backgroundColor: kPrimaryColors,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: kPrimaryColor1,
+        title: Text('Home'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -41,34 +49,7 @@ class _HomeTutorState extends State<HomeTutor> {
                   // crossAxisAlignment: CrossAxisAlignment.start,
 
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.arrow_back_ios_new,
-                                color: Colors.white,
-                              ),
-                              Text(
-                                'Author',
-                                style: GoogleFonts.kanit(
-                                  textStyle: TextStyle(
-                                    fontSize: 20,
-                                    color: kPrimaryLightColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Icon(
-                          Icons.shop_2_outlined,
-                          color: Colors.white,
-                        ),
-                      ],
-                    ),
+                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -80,8 +61,7 @@ class _HomeTutorState extends State<HomeTutor> {
                           tag: 'image',
                           child: CircleAvatar(
                             radius: 40,
-                            backgroundImage: NetworkImage(
-                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
+                            backgroundImage: Image.asset('assets/images/Portrait_Placeholder.png').image,
                           )),
                                 Padding(
                                   padding: const EdgeInsets.all(20),
@@ -90,7 +70,7 @@ class _HomeTutorState extends State<HomeTutor> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Sarah William',
+                                        '${FirebaseAuth.instance.currentUser!.email}',
                                         style: GoogleFonts.kanit(
                                           textStyle: TextStyle(
                                             fontSize: 18,
@@ -132,56 +112,7 @@ class _HomeTutorState extends State<HomeTutor> {
                   SizedBox(
                     height: 6,
                   ),
-                  Row(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.grey,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.class_sharp,
-                              size: 36,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Taotal students',
-                              style: GoogleFonts.kanit(
-                                textStyle: TextStyle(
-                                  fontSize: 18,
-                                  color: kPrimaryLightColor,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              '2405',
-                              style: GoogleFonts.kanit(
-                                textStyle: TextStyle(
-                                  fontSize: 18,
-                                  color: kPrimaryLightColor,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  
                 ],
               ),
             ),
@@ -212,36 +143,50 @@ class _HomeTutorState extends State<HomeTutor> {
                             Text(
                               "Courses",
                               style: GoogleFonts.kanit(
-                                textStyle: TextStyle(
-                                    fontSize: 26, fontWeight: FontWeight.bold),
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              "Total ${coursesInfo.length}",
+                              "Total  ${_controllerCourse.listCourse.length}",
                               style: GoogleFonts.kanit(
-                                textStyle: TextStyle(
-                                    fontSize: 26, fontWeight: FontWeight.bold),
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
-                        ...List.generate(
-                          coursesInfo.length,
-                          (index) => cartlistbuy(
-                            
-                            linkImage: coursesInfo[index].image!,
-                            nameCourse: coursesInfo[index].nameCourse!,
-                            // level: coursesInfo[index].level!,
-                            name: coursesInfo[index].name!,
-                            price: coursesInfo[index].price!,
-                            // rate: coursesInfo[index].rate!,
-                            detail: coursesInfo[index].detail!,
-                            profileTutors: coursesInfo[index].profileTutors!,
-                          ),
-                        ),
+                        StreamBuilder(
+                            stream: _controllerCourse.fetchCourse().asStream(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Text('process');
+                              } else {
+                                return Container(
+                                  width: size.width,
+                                  height: size.height * 0.6,
+                                  child: ListView.builder(
+                                      physics: BouncingScrollPhysics(),
+                                      itemCount:
+                                          _controllerCourse.listCourse.length,
+                                      itemBuilder: (context, index) {
+                                        return cartlistbuy(
+                                            linkImage: _controllerCourse.listCourse[index]['backgroudTutor'],
+                                            nameCourse: _controllerCourse.listCourse[index]['coursename'],
+                                            price: int.parse(_controllerCourse.listCourse[index]['price']),
+                                            type: _controllerCourse.listCourse[index]['type'],
+                                            name: _controllerCourse.listCourse[index]['tutorname'],
+                                            // level: _controllerCourse.listCourse[index]['coursename'],
+                                            detail: _controllerCourse.listCourse[index]['detailcourse'],
+                                            profileTutors:_controllerCourse.listCourse[index]['image']);
+                                      }),
+                                );
+                              }
+                            })
                       ],
                     ),
                   ),

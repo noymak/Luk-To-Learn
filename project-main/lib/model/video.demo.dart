@@ -19,7 +19,7 @@ List<VideoDemo> videoDemo = [
   ),
   VideoDemo(
     c_id: 'manybath',
-    titleName: 'video 3',
+    titleName: 'video 4',
     fileUrl:
         'https://res.cloudinary.com/dtdhnrtir/video/upload/v1668840405/video/STAYC_%EC%8A%A4%ED%85%8C%EC%9D%B4%EC%94%A8_SO_BAD_MV_yj3xyf.mp4',
   ),

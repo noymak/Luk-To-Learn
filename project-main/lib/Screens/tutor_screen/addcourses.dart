@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,33 +22,15 @@ class _AddCoursesState extends State<AddCourses> {
     var _controllerCourse = Get.put(CoursesController());
     return Scaffold(
       backgroundColor: kPrimaryColors,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: kPrimaryColor1,
+        title: Text('Add Courses'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SafeArea(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.arrow_back_ios_new,
-                          color: kPrimaryLightColor,
-                        ),
-                        Text(
-                          'Add Courses',
-                          style: GoogleFonts.kanit(
-                            fontSize: 20,
-                            color: kPrimaryLightColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            
             Container(
               padding: const EdgeInsets.all(20),
               width: size.width,
@@ -57,8 +40,7 @@ class _AddCoursesState extends State<AddCourses> {
                       tag: 'image',
                       child: CircleAvatar(
                         radius: 40,
-                        backgroundImage: NetworkImage(
-                            'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
+                        backgroundImage: Image.asset('assets/images/Portrait_Placeholder.png').image,
                       )),
                   SizedBox(
                     width: 20,
@@ -67,7 +49,7 @@ class _AddCoursesState extends State<AddCourses> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Sarah William',
+                        '${FirebaseAuth.instance.currentUser!.email}',
                         style: GoogleFonts.kanit(
                           fontSize: 20,
                           color: kPrimaryLightColor,
@@ -177,7 +159,7 @@ class _AddCoursesState extends State<AddCourses> {
                                             linkImage: _controllerCourse.listCourse[index]['backgroudTutor'],
                                             nameCourse: _controllerCourse.listCourse[index]['coursename'],
                                             price: int.parse(_controllerCourse.listCourse[index]['price']),
-                                            // rate: _controllerCourse.listCourse[index]['coursename'],
+                                            type: _controllerCourse.listCourse[index]['type'],
                                             name: _controllerCourse.listCourse[index]['tutorname'],
                                             // level: _controllerCourse.listCourse[index]['coursename'],
                                             detail: _controllerCourse.listCourse[index]['detailcourse'],

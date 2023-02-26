@@ -8,8 +8,8 @@ import 'package:luk_to_learn/model/courses.dart';
 import 'package:luk_to_learn/widgets/appbar.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
 
-import '../../controllers/courses_controller.dart';
-import '../../controllers/show_course_controller.dart';
+import '../../../controllers/courses_controller.dart';
+import '../../../controllers/show_course_controller.dart';
 
 class ScearchScreen extends StatefulWidget {
   const ScearchScreen({Key? key}) : super(key: key);
@@ -99,7 +99,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                            ),
                           Container(
                             width: size.width,
-                            height: size.height*0.4,
+                            height: size.height*0.8,
                             
                             
                             child: ListView.builder(
@@ -114,7 +114,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                                             linkImage: _controller.dataShow[index]['backgroudTutor'],
                                             nameCourse: _controller.dataShow[index]['coursename'],
                                             price: int.parse(_controller.dataShow[index]['price']),
-                                            // rate: _controller.dataShow[index]['coursename'],
+                                            type: _controller.dataShow[index]['type'],
                                             name: _controller.dataShow[index]['tutorname'],
                                             // level: _controller.dataShow[index]['coursename'],
                                             detail: _controller.dataShow[index]['detailcourse'],
@@ -125,37 +125,7 @@ class _ScearchScreenState extends State<ScearchScreen> {
                           SizedBox(
                             height: 20,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Browser Catagory",
-                                style: GoogleFonts.kanit(
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
-                              child: Wrap(
-                                children: [
-                                  Category(width: 100, height: 50, text: 'Tekno'),
-                                  Category(
-                                      width: 100, height: 50, text: 'Business'),
-                                  Category(width: 100, height: 50, text: 'Math'),
-                                  Category(width: 100, height: 50, text: 'Thai'),
-                                  Category(
-                                      width: 100, height: 50, text: 'English'),
-                                ],
-                              ),
-                            ),
-                          ),
-                         
+                          
                         ],
                       );
                     }
@@ -169,28 +139,5 @@ class _ScearchScreenState extends State<ScearchScreen> {
     );
   }
 
-  Widget Category(
-      {required String text, required double width, required double height}) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(26),
-          color: Color(0xff6360FF),
-        ),
-        child: Center(
-          child: Text(
-            text,
-            style: GoogleFonts.kanit(
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
-    );
+ 
   }
-}

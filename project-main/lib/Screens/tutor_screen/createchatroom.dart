@@ -54,13 +54,13 @@ class _CreateChatRoomState extends State<CreateChatRoom> {
                             children: [
                               Row(
                                 children: [
-                                 Hero(
-                          tag: 'image',
-                          child: CircleAvatar(
-                            radius: 40,
-                            backgroundImage: NetworkImage(
-                                'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
-                          )),
+                                  Hero(
+                                      tag: 'image',
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: NetworkImage(
+                                            'https://firebasestorage.googleapis.com/v0/b/luktolearn-fd692.appspot.com/o/image%2Fprofile.jpg?alt=media&token=b09dbfef-a9cf-45c2-9d09-ac71c41ca4d8'),
+                                      )),
                                   Padding(
                                     padding: const EdgeInsets.all(20),
                                     child: Column(

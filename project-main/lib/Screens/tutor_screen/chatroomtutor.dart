@@ -64,8 +64,7 @@ class _ChatRoomTutorState extends State<ChatRoomTutor> {
                                     height: 80,
                                     child: CircleAvatar(
                                         radius: 55,
-                                        backgroundImage: AssetImage(
-                                            'assets/images/profile.jpg')),
+                                        backgroundImage: Image.asset('assets/images/Portrait_Placeholder.png').image,),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(20),

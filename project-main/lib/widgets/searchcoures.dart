@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:luk_to_learn/Screens/courses_screen/coursesdetail.dart';
-import 'package:luk_to_learn/constants.dart';
 
-class cartlistbuy extends StatelessWidget {
-  const cartlistbuy(
-      {Key? key,
+class MyWidget extends StatelessWidget {
+  const MyWidget({Key? key,
       
       required this.linkImage,
       required this.nameCourse,
@@ -23,7 +22,7 @@ class cartlistbuy extends StatelessWidget {
   final String? linkImage;
   final String? nameCourse;
   final int? price;
-  final String? type;
+   final String? type;
   final String? name;
   // final String? level;
   final String? detail;
@@ -31,22 +30,16 @@ class cartlistbuy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(profileTutors);
-    // print(nameCourse);
-    var size = MediaQuery.of(context).size;
+     var size = MediaQuery.of(context).size;
     return Column(
       children: [
         GestureDetector(
           onTap: (() {
-            Get.toNamed(('/coursedata')
-            , arguments: [
+            Get.toNamed(('/coursesdetails'), arguments: [
               name,
-              nameCourse,
+              linkImage,
               detail,
               profileTutors,
-              type,
-              price,
-              linkImage,
             ]
             );
           }),
@@ -97,7 +90,7 @@ class cartlistbuy extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        '${price} THB',
+                        '${price} BTH',
                         style: GoogleFonts.kanit(
                           textStyle: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -114,7 +107,7 @@ class cartlistbuy extends StatelessWidget {
                           Text(
                             type!,
                             style: GoogleFonts.kanit(
-                              textStyle: TextStyle(color: Colors.grey),
+                              textStyle: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
                           Icon(
