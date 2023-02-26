@@ -25,6 +25,9 @@ class CoursesController extends GetxController {
   File? fileBackgound;
   String? imageUrlBackground;
   String? imageUrl;
+  File? videoFile;
+  String? videoUrl;
+  File? selectedFile;
 
   late List showCoursesId = [];
 
@@ -47,16 +50,19 @@ class CoursesController extends GetxController {
     }
   }
 
-  Future addDetail(
-      String tutorname,
-      String coursename,
-      String price,
-      String detailcourse,
-      BuildContext context,
-      String email,
-      String image,
-      String imageBackground,
-      String type) async {
+  Future addDetail({
+    required String tutorname,
+    required  String coursename,
+    required  String price,
+    required  String detailcourse,
+    required  BuildContext context,
+    required  String email,
+    required  String image,
+    required  String imageBackground,
+    required  String video,
+    required  String type,
+  }
+      ) async {
     print(email);
     print(tutorname);
     print(price);
@@ -85,6 +91,7 @@ class CoursesController extends GetxController {
           'email': email,
           'image': image,
           'type' : type,
+          'video': video,
           'backgroudTutor': imageBackground,
         }).then((value) {
           Get.toNamed('/checkinfocourse');
@@ -237,37 +244,51 @@ class CoursesController extends GetxController {
     });
   }
 
-  // Future<void> updateCategoryToStorage(context) async {
-  //   await FirebaseFirestore.instance
-  //   .collection('category')
-  //   .doc(FirebaseAuth.instance.currentUser!.uid)
-  //   .collection('')
-  //   .add({'category': categoryValue,});
-  //     MotionToast.info(
-  //         description: Text("เพิ่มข้อมูล"),
-  //         title: Text("ทำรายการสำเร็จ",
-  //             style: TextStyle(fontWeight: FontWeight.bold)),
-  //       ).show(context);
+  Future<void> pickFile() async {
+    // print('run');
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['mp4', 'avi', 'mov'],
+      );
 
-  // }
+      if (result != null) {
+        selectedFile = File(result.files.single.path!);
+        print('Selected file: ${selectedFile?.path}');
+        uploadVideo(selectedFile!.path.toString());
+      } else {
+        // User canceled the picker
+        print('User canceled file picker');
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
-  // Future<void> selectFile () async {
-  //   final result = await FilePicker.platform.pickFiles();
-  //   if (result == null) return;
+    Future<void> uploadVideo(String selectedFilePath) async {
+      print('run');
+      // print(selectedFile);
+    try {
+      // สร้าง reference สำหรับไฟล์ video ใหม่ใน Firebase Storage
+      // selectedFile = selectedFile!.path.split('/').last;
+      // videoFile = selectedFile.path.split('/').last; 
+      Reference firebaseStorageRef =
+      FirebaseStorage.instance.ref().child('videos/${selectedFilePath.split('/').last}');
 
-  // }
+      // Upload video file ไปยัง Firebase Storage
+      UploadTask uploadTask = firebaseStorageRef.putFile(selectedFile!);
+      TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
 
-  // Future<void> getImage (ImageSource imageSource, BuildContext context) async {
-  //   final pickedFile = await ImagePicker().getImage(source: imageSource);
-  //   if (pickedFile != null) {
-  //     selectedImagePath.value = pickedFile.path;
-  //   } else {
-  //       MotionToast.error(
-  //         description: Text("การเพิ่มรูป"),
-  //         title: Text("ไม่ได้ทำรายการสำเร็จ",
-  //             style: TextStyle(fontWeight: FontWeight.bold)),
-  //       ).show(context);
-  //   }
-  // }
+      // ดึง URL ของ video ที่อัพโหลดเสร็จสิ้นจาก Firebase Storage
+      videoUrl = await taskSnapshot.ref.getDownloadURL();
+
+      // พิมพ์ URL ของ video ใน Console
+      print('Video URL: $videoUrl');
+    } on FirebaseException catch (e) {
+      print(e.message);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
 }

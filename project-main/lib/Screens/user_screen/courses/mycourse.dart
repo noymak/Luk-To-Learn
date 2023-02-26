@@ -19,92 +19,67 @@ class _MycoursesState extends State<Mycourses> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff6360FF),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: kPrimaryColors,
+        title: Text('Mycourses'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: size.width,
-              color: Color(0xff6360FF),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
+            Column(
+              children: [
+                
+                
+                Container(
+                  width: size.width,
+                  height: size.height,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 230, 230, 236),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Icon(
-                              Icons.arrow_back_ios_new,
-                              color: Colors.white,
-                            ),
                             Text(
                               "My Courses",
                               style: GoogleFonts.kanit(
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                                  fontSize: 26, fontWeight: FontWeight.bold),
                             ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                      //       ...List.generate(
+                      //   coursesInfo.length,
+                      //   (index) => cartlistbuy(
+                          
+                      //     linkImage: coursesInfo[index].image!,
+                      //     nameCourse: coursesInfo[index].nameCourse!,
+                      //     // level: coursesInfo[index].level!,
+                      //     name: coursesInfo[index].name!,
+                      //     price: coursesInfo[index].price!,
+                      //     type: coursesInfo[index].type!,
+                      //     detail: coursesInfo[index].detail!,
+                      //     profileTutors: coursesInfo[index].profileTutors!,
+                      //   ),
+                      // ),
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: size.width,
-                    height: size.height,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 230, 230, 236),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
                       ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "My Courses",
-                                style: GoogleFonts.kanit(
-                                    fontSize: 26, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              ...List.generate(
-                          coursesInfo.length,
-                          (index) => cartlistbuy(
-                            
-                            linkImage: coursesInfo[index].image!,
-                            nameCourse: coursesInfo[index].nameCourse!,
-                            // level: coursesInfo[index].level!,
-                            name: coursesInfo[index].name!,
-                            price: coursesInfo[index].price!,
-                            type: coursesInfo[index].type!,
-                            detail: coursesInfo[index].detail!,
-                            profileTutors: coursesInfo[index].profileTutors!,
-                          ),
-                        ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

@@ -4,20 +4,20 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/controllers/auth_tutor_controller.dart';
+import 'package:luk_to_learn/controllers/cart_controller.dart';
 import 'package:luk_to_learn/controllers/video_controller.dart';
 import 'package:luk_to_learn/model/courses.dart';
 
 import '../../constants.dart';
-import '../../controllers/cart_controller.dart';
 
-class courseData extends StatefulWidget {
-  const courseData({Key? key}) : super(key: key);
+class CourseHome extends StatefulWidget {
+  const CourseHome({Key? key}) : super(key: key);
 
   @override
-  State<courseData> createState() => _courseDataState();
+  State<CourseHome> createState() => _CourseHomeState();
 }
 
-class _courseDataState extends State<courseData> {
+class _CourseHomeState extends State<CourseHome> {
   @override
   Widget build(BuildContext context) {
     var tutorName = Get.arguments[0];
@@ -33,15 +33,11 @@ class _courseDataState extends State<courseData> {
     var videoController = Get.put(VideoController());
     var cartContorller = Get.put(CartContorller());
 
-    controller.fetchTutor(tutorName);
-
-    print(index);
-
     List<Courses> itemCourses = [
       Courses(
           image: image,
           nameCourse: courseName,
-          price: price,
+          price: int.parse(price),
           type: type,
           name: tutorName,
           level: '',
@@ -49,8 +45,7 @@ class _courseDataState extends State<courseData> {
           profileTutors: '')
     ];
 
-    print(courseName);
-
+    controller.fetchTutor(tutorName);
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
       body: SingleChildScrollView(
@@ -227,11 +222,7 @@ class _courseDataState extends State<courseData> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // CircleAvatar(
-                                    //   radius: 28,
-                                    //   backgroundImage: NetworkImage(
-                                    //       '${controller.imageTutor[0]['image']}'),
-                                    // ),
+                                    
                                     SizedBox(
                                       width: 20,
                                     ),
@@ -246,36 +237,7 @@ class _courseDataState extends State<courseData> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        // SizedBox(
-                                        //   height: 8,
-                                        // ),
-                                        // Row(
-                                        //   children: [
-                                        //     Text(
-                                        //       '14 Courses',
-                                        //       style: GoogleFonts.kanit(
-                                        //         color: Colors.grey,
-                                        //       ),
-                                        //     ),
-                                        //     SizedBox(
-                                        //       width: 5,
-                                        //     ),
-                                        //     Icon(
-                                        //       Icons.circle,
-                                        //       size: 8,
-                                        //       color: Colors.grey.shade600,
-                                        //     ),
-                                        //     SizedBox(
-                                        //       width: 5,
-                                        //     ),
-                                        //     Text(
-                                        //       '1,400 Students',
-                                        //       style: GoogleFonts.kanit(
-                                        //         color: Colors.grey,
-                                        //       ),
-                                        //     ),
-                                        //   ],
-                                        // ),
+                                        
                                       ],
                                     ),
                                   ],

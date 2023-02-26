@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luk_to_learn/constants.dart';
 import 'package:luk_to_learn/controllers/courses_controller.dart';
-
 
 class AddedCourses extends StatefulWidget {
   const AddedCourses({Key? key}) : super(key: key);
@@ -21,19 +19,15 @@ class AddedCourses extends StatefulWidget {
 class _AddedCoursesState extends State<AddedCourses> {
   get selectedcategory => null;
 
-  
-
   @override
   Widget build(BuildContext context) {
     var coursesController = Get.put(CoursesController());
     var size = MediaQuery.of(context).size;
     File? file;
     File? fileBackgound;
-    final List<String> categoryItems = ['math','eng','thai','art'];
+    final List<String> categoryItems = ['math', 'eng', 'thai', 'art'];
 
-    
     String? _currentCategory;
-    
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -44,30 +38,32 @@ class _AddedCoursesState extends State<AddedCourses> {
               width: size.width,
               child: Stack(
                 children: [
-                 GetBuilder<CoursesController>(builder: (_) {
-                      if (coursesController.fileBackgound != null) {
-                        return Container(
-                          width: size.width,
-                          height: size.width,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: Image.file(coursesController.fileBackgound!)
-                                    .image),
-                          ),
-                        );
-                      } else {
-                        return Container(
-                          width: size.width,
-                          height: size.width,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    Image.asset('assets/images/placeholder.png',fit: BoxFit.cover,)
-                                        .image),
-                          ),
-                        );
-                      }
-                    }),
+                  GetBuilder<CoursesController>(builder: (_) {
+                    if (coursesController.fileBackgound != null) {
+                      return Container(
+                        width: size.width,
+                        height: size.width,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image:
+                                  Image.file(coursesController.fileBackgound!)
+                                      .image),
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        width: size.width,
+                        height: size.width,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: Image.asset(
+                            'assets/images/placeholder.png',
+                            fit: BoxFit.cover,
+                          ).image),
+                        ),
+                      );
+                    }
+                  }),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Align(
@@ -119,7 +115,8 @@ class _AddedCoursesState extends State<AddedCourses> {
                                       InkWell(
                                         onTap: () {
                                           setState(() {
-                                            coursesController.fileBackgound = null;
+                                            coursesController.fileBackgound =
+                                                null;
                                           });
                                         },
                                         splashColor: kPrimaryColor1,
@@ -166,20 +163,20 @@ class _AddedCoursesState extends State<AddedCourses> {
             Stack(
               children: [
                 GetBuilder<CoursesController>(builder: (_) {
-                      if (coursesController.file != null) {
-                        return CircleAvatar(
-                          radius: 80,
-                              backgroundImage: Image.file(coursesController.file!)
-                                  .image
-                        );
-                      } else {
-                        return CircleAvatar(
-                          radius: 80,
-                            backgroundImage: 
-                                    Image.asset('assets/images/Portrait_Placeholder.png',fit: BoxFit.cover,)
-                                        .image);
-                      }
-                    }),
+                  if (coursesController.file != null) {
+                    return CircleAvatar(
+                        radius: 80,
+                        backgroundImage:
+                            Image.file(coursesController.file!).image);
+                  } else {
+                    return CircleAvatar(
+                        radius: 80,
+                        backgroundImage: Image.asset(
+                          'assets/images/Portrait_Placeholder.png',
+                          fit: BoxFit.cover,
+                        ).image);
+                  }
+                }),
                 Positioned(
                   left: 75,
                   top: 95,
@@ -354,28 +351,43 @@ class _AddedCoursesState extends State<AddedCourses> {
                   ),
                   addedForm('รายละเอียดคอร์ส',
                       coursesController.detailcourseController),
-                      SizedBox(height: 20,),
-                      Text(
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                      child: ElevatedButton(
+                    onPressed: () async {
+                      
+                        await coursesController.pickFile();
+                       
+                    },
+                    child: Text('เลือกไฟล์และอัพโหลด'),
+                  )),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
                     'เลือกประเภทของคอร์ส',
                     style: GoogleFonts.kanit(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 5,),
+                  SizedBox(
+                    height: 5,
+                  ),
                   DropdownButtonFormField(
-                    // value: 'Select Category',
-                    items: categoryItems.map((category){
-                    return DropdownMenuItem(
-                        value: category,
-                        child: Text('$category category'),
-                      );
-                  }).toList(), 
-                  onChanged: (val){
-                    setState(() {
-                      coursesController.typeController.text = val as String;
-                      print(coursesController.typeController.text.trim());
-                    });
-                  }
-                  )
+                      // value: 'Select Category',
+                      items: categoryItems.map((category) {
+                        return DropdownMenuItem(
+                          value: category,
+                          child: Text('$category category'),
+                        );
+                      }).toList(),
+                      onChanged: (val) {
+                        setState(() {
+                          coursesController.typeController.text = val as String;
+                          print(coursesController.typeController.text.trim());
+                        });
+                      })
                   //      StreamBuilder<QuerySnapshot>(
                   // stream: FirebaseFirestore.instance.collection("category").snapshots(),
                   // builder: (context, snapshot) {
@@ -435,16 +447,17 @@ class _AddedCoursesState extends State<AddedCourses> {
                 print('urlprofile ${coursesController.imageUrl}');
                 print('urlbg ${coursesController.imageUrlBackground}');
                 coursesController.addDetail(
-                    coursesController.tutornameController.text,
-                    coursesController.coursenameController.text,
-                    coursesController.priceController.text,
-                    coursesController.detailcourseController.text,
-                    context,
-                    coursesController.emailController.text,
-                    coursesController.imageUrl.toString(),
-                    coursesController.imageUrlBackground.toString(),
-                    coursesController.typeController.text,
-                    );
+                  tutorname:coursesController.tutornameController.text,
+                  coursename:coursesController.coursenameController.text,
+                  price:coursesController.priceController.text,
+                  detailcourse:coursesController.detailcourseController.text,
+                  context:context,
+                  email:coursesController.emailController.text,
+                  image:coursesController.imageUrl.toString(),
+                  imageBackground:coursesController.imageUrlBackground.toString(),
+                  type:coursesController.typeController.text,
+                  video:coursesController.videoUrl.toString(),
+                );
               },
               child: Container(
                 width: 200,

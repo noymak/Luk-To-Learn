@@ -31,7 +31,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
 
     controller.fetchTutor(tutorName);
 
-    print(courseName);
+    // print(courseName);
+    print(index);
 
     return Scaffold(
       backgroundColor: Color(0xff6360FF),
