@@ -354,18 +354,6 @@ class _AddedCoursesState extends State<AddedCourses> {
                   SizedBox(
                     height: 20,
                   ),
-                  Center(
-                      child: ElevatedButton(
-                    onPressed: () async {
-                      
-                        await coursesController.pickFile();
-                       
-                    },
-                    child: Text('เลือกไฟล์และอัพโหลด'),
-                  )),
-                  SizedBox(
-                    height: 20,
-                  ),
                   Text(
                     'เลือกประเภทของคอร์ส',
                     style: GoogleFonts.kanit(
@@ -375,6 +363,11 @@ class _AddedCoursesState extends State<AddedCourses> {
                     height: 5,
                   ),
                   DropdownButtonFormField(
+                      decoration: InputDecoration(
+                        hintText: 'เลือกประเภทของคอร์ส',
+                        // ตัวอย่างการกำหนดสีของ hint text
+                        hintStyle: TextStyle(color: Colors.grey),
+                      ),
                       // value: 'Select Category',
                       items: categoryItems.map((category) {
                         return DropdownMenuItem(
@@ -387,57 +380,33 @@ class _AddedCoursesState extends State<AddedCourses> {
                           coursesController.typeController.text = val as String;
                           print(coursesController.typeController.text.trim());
                         });
-                      })
-                  //      StreamBuilder<QuerySnapshot>(
-                  // stream: FirebaseFirestore.instance.collection("category").snapshots(),
-                  // builder: (context, snapshot) {
-                  //   if (!snapshot.hasData)
-                  //     const Text("Loading.....");
-                  //   else {
-                  //     List<DropdownMenuItem> categoryItems = [];
-                  //     for (int i = 0; i < snapshot.data.documents.length; i++) {
-                  //       DocumentSnapshot snap = snapshot.data.documents[i];
-                  //       categoryItems.add(
-                  //         DropdownMenuItem(
-                  //           child: Text(
-                  //             snap.documentID,
-                  //             style: TextStyle(color: Color(0xff11b719)),
-                  //           ),
-                  //           value: "${snap.documentID}",
-                  //         ),
-                  //       );
-                  //     }
-                  //     return Row(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: <Widget>[
-                  //         Icon(Icons.control_point_sharp,
-                  //             size: 25.0, color: Color(0xff11b719)),
-                  //         SizedBox(width: 50.0),
-                  //         DropdownButton(
-                  //           items: categoryItems,
-                  //           onChanged: (categoryValue) {
-                  //             final snackBar = SnackBar(
-                  //               content: Text(
-                  //                 'Selected category value is $categoryValue',
-                  //                 style: TextStyle(color: Color(0xff11b719)),
-                  //               ),
-                  //             );
-                  //             Scaffold.of(context).showSnackBar(snackBar);
-                  //             setState(() {
-                  //               var selectedcategory = categoryValue;
-                  //             });
-                  //           },
-                  //           value: selectedcategory,
-                  //           isExpanded: false,
-                  //           hint: new Text(
-                  //             "Choose category Type",
-                  //             style: TextStyle(color: Color(0xff11b719)),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     );
-                  //   }
-                  // }),
+                      }),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                      child: ElevatedButton(
+                    onPressed: () async {
+                      await coursesController.pickFile();
+                    },
+                    child: Text('เลือกไฟล์และอัพโหลด'),
+                  )),
+                  SizedBox(height: 20,),
+                  if (coursesController.videoUrl != null)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Selected Video: ${coursesController.selectedFile}'),
+                  SizedBox(height: 10),
+                  // Image.network(
+                  //   '${coursesController.videoUrl}',
+                  //   height: 200,
+                  //   width: double.infinity,
+                  //   fit: BoxFit.cover,
+                  // ),
+                ],
+              ),
+
                 ],
               ),
             ),
@@ -447,16 +416,17 @@ class _AddedCoursesState extends State<AddedCourses> {
                 print('urlprofile ${coursesController.imageUrl}');
                 print('urlbg ${coursesController.imageUrlBackground}');
                 coursesController.addDetail(
-                  tutorname:coursesController.tutornameController.text,
-                  coursename:coursesController.coursenameController.text,
-                  price:coursesController.priceController.text,
-                  detailcourse:coursesController.detailcourseController.text,
-                  context:context,
-                  email:coursesController.emailController.text,
-                  image:coursesController.imageUrl.toString(),
-                  imageBackground:coursesController.imageUrlBackground.toString(),
-                  type:coursesController.typeController.text,
-                  video:coursesController.videoUrl.toString(),
+                  tutorname: coursesController.tutornameController.text,
+                  coursename: coursesController.coursenameController.text,
+                  price: coursesController.priceController.text,
+                  detailcourse: coursesController.detailcourseController.text,
+                  context: context,
+                  email: coursesController.emailController.text,
+                  image: coursesController.imageUrl.toString(),
+                  imageBackground:
+                      coursesController.imageUrlBackground.toString(),
+                  type: coursesController.typeController.text,
+                  video: coursesController.videoUrl.toString(),
                 );
               },
               child: Container(

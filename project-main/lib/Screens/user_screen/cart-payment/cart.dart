@@ -20,7 +20,7 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   var cartController = Get.find<CartContorller>();
-  // var courses = Get.arguments[0];
+  var courses = Get.arguments[0];
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -106,6 +106,7 @@ class _CartScreenState extends State<CartScreen> {
                     Get.toNamed('/add-card', 
                     arguments: [
                       cartController.total,
+                      cartController.cartList,
                     ]);
                   },
                   child: Text(

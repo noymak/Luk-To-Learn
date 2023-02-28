@@ -52,17 +52,16 @@ class CoursesController extends GetxController {
 
   Future addDetail({
     required String tutorname,
-    required  String coursename,
-    required  String price,
-    required  String detailcourse,
-    required  BuildContext context,
-    required  String email,
-    required  String image,
-    required  String imageBackground,
-    required  String video,
-    required  String type,
-  }
-      ) async {
+    required String coursename,
+    required String price,
+    required String detailcourse,
+    required BuildContext context,
+    required String email,
+    required String image,
+    required String imageBackground,
+    required String video,
+    required String type,
+  }) async {
     print(email);
     print(tutorname);
     print(price);
@@ -80,21 +79,19 @@ class CoursesController extends GetxController {
               style: TextStyle(fontWeight: FontWeight.bold)),
         ).show(context);
       } else {
-        await FirebaseFirestore.instance
-            .collection('courses')
-            .doc(email)
-            .set({
+        await FirebaseFirestore.instance.collection('courses').doc(email).set({
+          'isLock': true,
           'tutorname': tutorname,
           'coursename': coursename,
           'price': price,
           'detailcourse': detailcourse,
           'email': email,
           'image': image,
-          'type' : type,
+          'type': type,
           'video': video,
           'backgroudTutor': imageBackground,
         }).then((value) {
-          Get.toNamed('/checkinfocourse');
+          Get.toNamed('/addcourses');
           showDetail(email);
           MotionToast.info(
             description: Text("การเพิ่มรายการ"),
@@ -244,6 +241,8 @@ class CoursesController extends GetxController {
     });
   }
 
+  bool _isVideoAdded = false;
+
   Future<void> pickFile() async {
     // print('run');
     try {
@@ -263,17 +262,22 @@ class CoursesController extends GetxController {
     } catch (e) {
       print(e.toString());
     }
+
+    if (_isVideoAdded) {
+      Text('Video added successfully!');
+    }
   }
 
-    Future<void> uploadVideo(String selectedFilePath) async {
-      print('run');
-      // print(selectedFile);
+  Future<void> uploadVideo(String selectedFilePath) async {
+    print('run');
+    // print(selectedFile);
     try {
       // สร้าง reference สำหรับไฟล์ video ใหม่ใน Firebase Storage
       // selectedFile = selectedFile!.path.split('/').last;
-      // videoFile = selectedFile.path.split('/').last; 
-      Reference firebaseStorageRef =
-      FirebaseStorage.instance.ref().child('videos/${selectedFilePath.split('/').last}');
+      // videoFile = selectedFile.path.split('/').last;
+      Reference firebaseStorageRef = FirebaseStorage.instance
+          .ref()
+          .child('videos/${selectedFilePath.split('/').last}');
 
       // Upload video file ไปยัง Firebase Storage
       UploadTask uploadTask = firebaseStorageRef.putFile(selectedFile!);
@@ -290,5 +294,4 @@ class CoursesController extends GetxController {
       print(e.toString());
     }
   }
-
 }

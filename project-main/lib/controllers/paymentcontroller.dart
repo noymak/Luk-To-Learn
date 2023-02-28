@@ -3,26 +3,29 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class PaymentController extends GetxController {
-  Future addMyCourse(
-      String tutorname,
-      String coursename,
-      String detailcourse,
-      String email,
-      String image,
-      String imageBackground,
-      String type
+  Future addMyCourse({
+      required String tutorname,
+      required String coursename,
+      required String detailcourse,
+      required String image,
+      required String imageBackground,
+      required String type,
+      required String urlVideo,}
   ) async {
     FirebaseFirestore.instance
         .collection('MyCourse')
         .doc(FirebaseAuth.instance.currentUser!.email)
+        .collection('collectionCourse')
+        .doc(coursename)
         .set({
+          'isLock': false,
           'tutorname': tutorname,
           'coursename': coursename,
           'detailcourse': detailcourse,
-          'email': email,
           'image': image,
           'type' : type,
           'backgroudTutor': imageBackground,
+          'urlVideo': urlVideo,
         });
   }
 }

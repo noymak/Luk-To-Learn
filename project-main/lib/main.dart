@@ -5,10 +5,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/Screens/courses_screen/coursedata.dart';
 import 'package:luk_to_learn/Screens/courses_screen/coursehome.dart';
+import 'package:luk_to_learn/Screens/courses_screen/mylist.dart';
 import 'package:luk_to_learn/Screens/courses_screen/video_info.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/addedcourses.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/mycoursetutor.dart';
 import 'package:luk_to_learn/Screens/tutor_screen/registertutor.dart';
+import 'package:luk_to_learn/Screens/user_screen/courses/mycourse.dart';
 import 'package:luk_to_learn/Screens/user_screen/profile/about.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/add-card.dart';
 import 'package:luk_to_learn/Screens/user_screen/cart-payment/cart.dart';
@@ -119,8 +121,10 @@ class MyApp extends StatelessWidget {
         '/payment': ((context) => PaymentForm()),
         '/add-card': ((context) => AddCard()),
         '/home': ((context) => HomeScreen()),
+        '/mycourse':((context) => Mycourses()),
         '/coursedata': ((context) => courseData()),
         '/coursehome': ((context) => CourseHome()),
+        '/mylist': ((context) => MyList()),
         '/info.demo': ((context) => Infodemo(linkImage: '', nameCourse: '', price: null, name: '', detail: '', profileTutors: '')),
       },
     );

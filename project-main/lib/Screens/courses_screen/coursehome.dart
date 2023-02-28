@@ -23,10 +23,11 @@ class _CourseHomeState extends State<CourseHome> {
     var tutorName = Get.arguments[0];
     var courseName = Get.arguments[1];
     var detailCourse = Get.arguments[2];
-    var index = Get.arguments[3];
+    var backgroundTutor = Get.arguments[3];
     var type = Get.arguments[4];
     var price = Get.arguments[5];
     var image = Get.arguments[6];
+    var video = Get.arguments[7];
     var size = MediaQuery.of(context).size;
 
     var controller = Get.put(AuthTutorController());
@@ -40,9 +41,9 @@ class _CourseHomeState extends State<CourseHome> {
           price: int.parse(price),
           type: type,
           name: tutorName,
-          level: '',
           detail: detailCourse,
-          profileTutors: '')
+          profileTutors: '',
+          urlVideo: video,)
     ];
 
     controller.fetchTutor(tutorName);

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luk_to_learn/constants.dart';
+import 'package:luk_to_learn/controllers/mycourse.dart';
 import 'package:luk_to_learn/widgets/cartlistbuy.dart';
+import 'package:luk_to_learn/widgets/mylist.dart';
 
 import '../../../model/courses.dart';
 
@@ -18,6 +21,7 @@ class _MycoursesState extends State<Mycourses> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var controller = Get.put(myCourse());
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -29,53 +33,47 @@ class _MycoursesState extends State<Mycourses> {
           children: [
             Column(
               children: [
-                
-                
-                Container(
-                  width: size.width,
-                  height: size.height,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 230, 230, 236),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                  ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(
+                        "My Courses",
+                        style: GoogleFonts.kanit(
+                            fontSize: 26, fontWeight: FontWeight.bold),
+                      ),
                       SizedBox(
                         height: 20,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "My Courses",
-                              style: GoogleFonts.kanit(
-                                  fontSize: 26, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                      //       ...List.generate(
-                      //   coursesInfo.length,
-                      //   (index) => cartlistbuy(
-                          
-                      //     linkImage: coursesInfo[index].image!,
-                      //     nameCourse: coursesInfo[index].nameCourse!,
-                      //     // level: coursesInfo[index].level!,
-                      //     name: coursesInfo[index].name!,
-                      //     price: coursesInfo[index].price!,
-                      //     type: coursesInfo[index].type!,
-                      //     detail: coursesInfo[index].detail!,
-                      //     profileTutors: coursesInfo[index].profileTutors!,
-                      //   ),
-                      // ),
-                          ],
-                        ),
-                      ),
+
+                      SizedBox(
+                        height: size.height,
+                         child: ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount:
+                                  controller.dataShow.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  // child: Text('${_controller.dataShow[index]['coursename']}'),
+                                  child: mylist(
+                                      backgroundTutor: controller.dataShow[index]['backgroudTutor'],
+                                      courseName: controller.dataShow[index]['coursename'],
+                                      price: (controller.dataShow[index]['price']),
+                                      type: controller.dataShow[index]['type'],
+                                      tutorName: controller.dataShow[index]['tutorname'],
+                                      // level: _controller.dataShow[index]['coursename'],
+                                      detailCourse: controller.dataShow[index]['detailcourse'],
+                                      image:controller.dataShow[index]['image'], 
+                                      video:controller.dataShow[index] ['video'],),
+                                );
+                              }),
+                      )
+                
                     ],
                   ),
                 ),

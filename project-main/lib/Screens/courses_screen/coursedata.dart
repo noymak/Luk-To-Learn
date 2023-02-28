@@ -23,10 +23,11 @@ class _courseDataState extends State<courseData> {
     var tutorName = Get.arguments[0];
     var courseName = Get.arguments[1];
     var detailCourse = Get.arguments[2];
-    var index = Get.arguments[3];
+    var backgroundTutor = Get.arguments[3];
     var type = Get.arguments[4];
     var price = Get.arguments[5];
     var image = Get.arguments[6];
+    // var video = Get.arguments[7];
     var size = MediaQuery.of(context).size;
 
     var controller = Get.put(AuthTutorController());
@@ -35,18 +36,19 @@ class _courseDataState extends State<courseData> {
 
     controller.fetchTutor(tutorName);
 
-    print(index);
+    // print(index);
 
     List<Courses> itemCourses = [
       Courses(
-          image: image,
-          nameCourse: courseName,
-          price: price,
-          type: type,
-          name: tutorName,
-          level: '',
-          detail: detailCourse,
-          profileTutors: '')
+        image: image,
+        nameCourse: courseName,
+        price: price,
+        type: type,
+        name: tutorName,
+        detail: detailCourse,
+        profileTutors: '',
+        // urlVideo: video,
+      )
     ];
 
     print(courseName);
@@ -290,7 +292,13 @@ class _courseDataState extends State<courseData> {
                                       onTap: () {
                                         Get.toNamed('/coursesvideonew',
                                             arguments: [
+                                              tutorName,
                                               courseName,
+                                              detailCourse,
+                                              type,
+                                              price,
+                                              image,
+                                              // video,
                                             ]);
 
                                         videoController
