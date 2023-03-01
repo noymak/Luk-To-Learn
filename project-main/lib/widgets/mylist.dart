@@ -51,10 +51,8 @@ class mylist extends StatelessWidget {
               backgroundTutor,
               type,
               price,
-              type,
               image,
               video,
-
             ]
             );
           }),
@@ -104,15 +102,15 @@ class mylist extends StatelessWidget {
                       SizedBox(
                         height: 4,
                       ),
-                      Text(
-                        '${price} THB',
-                        style: GoogleFonts.kanit(
-                          textStyle: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
+                      // Text(
+                      //   '${price} THB',
+                      //   style: GoogleFonts.kanit(
+                      //     textStyle: TextStyle(fontWeight: FontWeight.bold),
+                      //   ),
+                      // ),
+                      // SizedBox(
+                      //   height: 4,
+                      // ),
                       Row(
                         children: [
                           Icon(

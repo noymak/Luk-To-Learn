@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:luk_to_learn/Screens/user_screen/home.dart';
 import 'package:luk_to_learn/Screens/user_screen/courses/mycourse.dart';
 import 'package:luk_to_learn/Screens/user_screen/profile/profile.dart';
 import 'package:luk_to_learn/Screens/user_screen/courses/search.dart';
+import 'package:luk_to_learn/controllers/mycourse.dart';
 
 const TextStyle _textStyle = TextStyle(
   fontSize: 40,

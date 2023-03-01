@@ -12,6 +12,13 @@ class PaymentController extends GetxController {
       required String type,
       required String urlVideo,}
   ) async {
+    print(tutorname);
+    print(coursename);
+    print(detailcourse);
+    print(image);
+    print(imageBackground);
+    print(type);
+    print(urlVideo);
     FirebaseFirestore.instance
         .collection('MyCourse')
         .doc(FirebaseAuth.instance.currentUser!.email)
@@ -24,7 +31,7 @@ class PaymentController extends GetxController {
           'detailcourse': detailcourse,
           'image': image,
           'type' : type,
-          'backgroudTutor': imageBackground,
+          'backgroudTutor': '',
           'urlVideo': urlVideo,
         });
   }

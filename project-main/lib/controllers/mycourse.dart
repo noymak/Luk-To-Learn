@@ -30,12 +30,16 @@ class myCourse extends GetxController {
     update();
   }
 
-  // void onSearch(keyword) {
-  //   if (dataFromFirebase.isEmpty) return;
-  //   dataShow = dataFromFirebase.where((element) {
-  //     final courseName = element['coursename'].toString().toLowerCase();
-  //   return courseName.contains(keyword.toLowerCase());
-  //   }).toList();
-  //   update();
-  // }
+  Future<void> fetchDataFromFirebase2() async {
+    final data = await FirebaseFirestore.instance
+        .collection('MyCourse')
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .collection('collectionCourse')
+        .get();
+        if (data.docs.isEmpty) return;
+    update();
+
+  }
+
+ 
 }

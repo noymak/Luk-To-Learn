@@ -28,59 +28,64 @@ class _MycoursesState extends State<Mycourses> {
         backgroundColor: kPrimaryColors,
         title: Text('Mycourses'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Column(
+      body: GetBuilder<myCourse>(
+        init: myCourse(),
+        builder: (_) {
+          return SingleChildScrollView(
+            child: Column(
               children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "My Courses",
-                        style: GoogleFonts.kanit(
-                            fontSize: 26, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "My Courses",
+                            style: GoogleFonts.kanit(
+                                fontSize: 26, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
 
-                      SizedBox(
-                        height: size.height,
-                         child: ListView.builder(
-                              physics: BouncingScrollPhysics(),
-                              itemCount:
-                                  controller.dataShow.length,
-                              itemBuilder: (context, index) {
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                  // child: Text('${_controller.dataShow[index]['coursename']}'),
-                                  child: mylist(
-                                      backgroundTutor: controller.dataShow[index]['backgroudTutor'],
-                                      courseName: controller.dataShow[index]['coursename'],
-                                      price: (controller.dataShow[index]['price']),
-                                      type: controller.dataShow[index]['type'],
-                                      tutorName: controller.dataShow[index]['tutorname'],
-                                      // level: _controller.dataShow[index]['coursename'],
-                                      detailCourse: controller.dataShow[index]['detailcourse'],
-                                      image:controller.dataShow[index]['image'], 
-                                      video:controller.dataShow[index] ['video'],),
-                                );
-                              }),
-                      )
-                
-                    ],
-                  ),
+                          SizedBox(
+                            height: size.height,
+                             child: ListView.builder(
+                                  physics: BouncingScrollPhysics(),
+                                  itemCount:
+                                      controller.dataShow.length,
+                                  itemBuilder: (context, index) {
+                                    print(controller.dataShow[index] ['urlVideo'].toString());
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                      // child: Text('${_controller.dataShow[index]['coursename']}'),
+                                      child: mylist(
+                                          backgroundTutor: controller.dataShow[index]['backgroudTutor'],
+                                          courseName: controller.dataShow[index]['coursename'],
+                                          price: (controller.dataShow[index]['price']),
+                                          type: controller.dataShow[index]['type'],
+                                          tutorName: controller.dataShow[index]['tutorname'],
+                                          detailCourse: controller.dataShow[index]['detailcourse'],
+                                          image:controller.dataShow[index]['image'], 
+                                          video:controller.dataShow[index] ['urlVideo'],),
+                                    );
+                                  }),
+                          )
+                    
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
