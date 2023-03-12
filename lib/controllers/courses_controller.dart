@@ -33,9 +33,11 @@ class CoursesController extends GetxController {
 
   List listCourse = [];
 
+  List listCourseTutor = [];
+
   void onInit() {
     super.onInit();
-    fetchCourse();
+    // fetchCourseNew();
   }
 
   checkEmpty() {
@@ -79,7 +81,7 @@ class CoursesController extends GetxController {
               style: TextStyle(fontWeight: FontWeight.bold)),
         ).show(context);
       } else {
-        await FirebaseFirestore.instance.collection('courses').doc(email).set({
+        await FirebaseFirestore.instance.collection('courses-new').doc(email).collection('tutor-courses').doc(coursename).set({
           'isLock': true,
           'tutorname': tutorname,
           'coursename': coursename,
@@ -148,12 +150,30 @@ class CoursesController extends GetxController {
       value.docs.forEach((element) {
         listCourse.add(element.data());
         listCourse.forEach((element) {
-          print('++ ' + element['tutorname']);
+          // print('++ ' + element['tutorname']);
         });
 
         // print(listCourses.toString());
       });
 
+      update();
+      // print(value.docs[0]['tutorname']);
+    });
+  }
+
+  Future<void> fetchCourseNew() async {
+    listCourseTutor.clear();
+    await FirebaseFirestore.instance.collection('courses-new').doc(FirebaseAuth.instance.currentUser!.email).collection('tutor-courses').get().then((value) {
+      value.docs.forEach((element) {
+        listCourseTutor.add(element.data());
+        listCourseTutor.forEach((element) {
+          // print('++ ' + element['tutorname']);
+        });
+
+        // print(listCourses.toString());
+      });
+
+      print(listCourseTutor);
       update();
       // print(value.docs[0]['tutorname']);
     });

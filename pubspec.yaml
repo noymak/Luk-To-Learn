@@ -54,6 +54,7 @@ dependencies:
   flutter_credit_card: ^3.0.5
   flutter_credit_card_new: ^0.0.4
   quickalert: ^1.0.1
+  flutter_slidable: ^2.0.0
 
 dev_dependencies:
   flutter_test:
